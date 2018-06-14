@@ -1,0 +1,10 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/digital-caliber/.vscode
+/.vs
+/digital-caliber.model/bin
+/digital-caliber.model/obj
+/digital-caliber.services/bin
+/digital-caliber.services/obj
