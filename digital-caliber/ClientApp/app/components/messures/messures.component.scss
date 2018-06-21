@@ -1,0 +1,115 @@
+.mouse-section{
+    margin: 5rem 15px 8rem 15px;
+    
+    .input-number{
+        width: 80px;
+    }
+    .mouse-sup{
+        margin: 2rem 0;
+        min-height: 250px;
+
+        .mouse-sup-left{
+            background: url("/images/mouse/mouse-sup-left.png") no-repeat right top;
+            min-height: 250px;
+
+            input.bottom-left{
+                position: absolute;
+                bottom: 10rem;
+                right: 20rem;
+            }
+    
+            input.center-left{
+                position: absolute;
+                bottom: 20rem;
+                right: 15rem;
+            }
+    
+            input.top-left{
+                position: absolute;
+                top: -4rem;
+                right: 4rem;
+            }
+        }
+
+        .mouse-sup-right{
+            background: url("/images/mouse/mouse-sup-right.png") no-repeat left top;
+            min-height: 250px;
+
+            input.bottom-right{
+                position: absolute;
+                bottom: 10rem;
+                left: 20rem;
+            }
+    
+            input.center-right{
+                position: absolute;
+                bottom: 20rem;
+                left: 15rem;
+            }
+    
+            input.top-right{
+                position: absolute;
+                top: -4rem;
+                left: 4rem;
+            }
+        }
+    }
+
+    .logo-center{
+        img{
+            margin: -8rem auto;
+            display: block;
+        }
+        
+    }
+    .mouse-inf{
+        margin: 2rem 0;
+        min-height: 250px;
+
+        .mouse-inf-left{
+            background: url("/images/mouse/mouse-inf-left.png") no-repeat right bottom;
+            min-height: 250px;
+
+            input.bottom-left{
+                position: absolute;
+                bottom: -6rem;
+                right: 1rem;
+            }
+    
+            input.center-left{
+                position: absolute;
+                bottom: -2rem;
+                right: 8rem;
+            }
+    
+            input.top-left{
+                position: absolute;
+                top: 15rem;
+                right: 20rem;
+            }
+        }
+
+        .mouse-inf-right{
+            background: url("/images/mouse/mouse-inf-right.png") no-repeat left bottom;
+            min-height: 250px;
+
+            input.bottom-right{
+                position: absolute;
+                bottom: -6rem;
+                left: .5rem;
+            }
+    
+            input.center-right{
+                position: absolute;
+                bottom: -2rem;
+                left: 8rem;
+            }
+    
+            input.top-right{
+                position: absolute;
+                top: 15rem;
+                left: 20rem;
+            }
+        }
+    }
+}

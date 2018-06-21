@@ -1,35 +1,63 @@
-import { NgModule } from '@angular/core';
+//Angular
+import { LOCALE_ID, NgModule,  Optional, SkipSelf, APP_INITIALIZER } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { RouterModule } from '@angular/router';
+import { HttpClient } from '@angular/common/http';
 
+import { AppRoutingModule } from './app.routing.module';
+//Services
+import { ConfigService } from './components/services/config.service';
+import { SpinnerService } from './components/services/spinner.service';
+
+//Components
 import { AppComponent } from './components/app/app.component';
 import { NavMenuComponent } from './components/navmenu/navmenu.component';
 import { HomeComponent } from './components/home/home.component';
-import { FetchDataComponent } from './components/fetchdata/fetchdata.component';
-import { CounterComponent } from './components/counter/counter.component';
+import { MessureComponent } from './components/messures/messures.component';
+import { SpinnerComponent } from './components/spinner/spinner.component';
+import { FooterComponent } from './components/footer/footer.component';
+
+import { throwIfAlreadyLoaded } from './module-import-guard';
 
 @NgModule({
     declarations: [
         AppComponent,
         NavMenuComponent,
-        CounterComponent,
-        FetchDataComponent,
+        MessureComponent,
+        SpinnerComponent,
+        FooterComponent,
         HomeComponent
     ],
     imports: [
         CommonModule,
         HttpModule,
         FormsModule,
-        RouterModule.forRoot([
-            { path: '', redirectTo: 'home', pathMatch: 'full' },
-            { path: 'home', component: HomeComponent },
-            { path: 'counter', component: CounterComponent },
-            { path: 'fetch-data', component: FetchDataComponent },
-            { path: '**', redirectTo: 'home' }
-        ])
+        AppRoutingModule
+    ],
+    providers: [
+        SpinnerService,
+        HttpClient,
+        { provide: LOCALE_ID, useValue: 'es' }
+        /*
+        ConfigService,
+        {
+            // Request that configuration loading be done at app-initialisation time (prior to rendering)
+            provide: APP_INITIALIZER,
+            useFactory: configFactory,
+            deps: [ConfigService],
+            multi: true
+        }
+        */
     ]
 })
 export class AppModuleShared {
+    constructor( @Optional() @SkipSelf() parentModule: AppModuleShared) {
+        throwIfAlreadyLoaded(parentModule, 'SharedModule');
+    }
+}
+
+export function configFactory(cfg: ConfigService) {
+    return () => cfg.loadConfigurationData();
 }

@@ -2,7 +2,15 @@
     ViewData["Title"] = "Home Page";
 }
 
-<app asp-prerender-module="ClientApp/dist/main-server">Loading...</app>
+<app asp-prerender-module="ClientApp/dist/main-server">
+    <div class="row align-items-center">
+        <div class="col-sm"></div>
+        <div class="col-sm text-center mt-5">
+            <img class="loading" src="~/images/spinner.png"/>
+        </div>
+        <div class="col-sm"></div>
+    </div>
+</app>
 
 <script src="~/dist/vendor.js" asp-append-version="true"></script>
 @section scripts {

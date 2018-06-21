@@ -1,3 +1,12 @@
+.navbar-brand{
+    height: auto;
+    display: flex;
+
+    img{
+        height: 50px;
+    }
+}
+
 li .glyphicon {
     margin-right: 10px;
 }
@@ -23,7 +32,7 @@ li.link-active a:focus {
     /* On small screens, convert the nav menu to a vertical sidebar */
     .main-nav {
         height: 100%;
-        width: calc(25% - 20px);
+        width: calc(25%);
     }
     .navbar {
         border-radius: 0px;
