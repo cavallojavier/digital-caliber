@@ -55,7 +55,7 @@ namespace digital.caliber
                 options.AddPolicy("AdminUser", policy => policy.RequireClaim("su", "admin_access"));
             });
 
-            services.AddIdentity<User, IdentityRole>()
+            services.AddIdentity<ApplicationUser, IdentityRole>()
                 .AddEntityFrameworkStores<CaliberDbContext>()
                 .AddDefaultTokenProviders();
 
