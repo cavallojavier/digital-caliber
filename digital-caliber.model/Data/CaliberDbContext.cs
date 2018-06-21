@@ -1,15 +1,17 @@
-﻿using digital.caliber.model.Models;
+﻿using System.Linq;
+using digital.caliber.model.Models;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
 namespace digital.caliber.model.Data
 {
-    public class CaliberDbContext : DbContext
+    public class CaliberDbContext : IdentityDbContext<ApplicationUser>
     {
         public CaliberDbContext(DbContextOptions<CaliberDbContext> options) : base(options)
         {
         }
 
-        public DbSet<User> Users { get; set; }
+        public DbSet<ApplicationUser> ApplicationUsers { get; set; }
 
         public DbSet<Log> Logs { get; set; }
 
@@ -24,6 +26,13 @@ namespace digital.caliber.model.Data
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
+
+            foreach (var property in modelBuilder.Model.GetEntityTypes()
+                                        .SelectMany(t => t.GetProperties())
+                                        .Where(p => p.ClrType == typeof(decimal)))
+            {
+                property.Relational().ColumnType = "decimal(5, 3)";
+            }
         }
     }
 }

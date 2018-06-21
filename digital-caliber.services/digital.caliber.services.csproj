@@ -13,4 +13,8 @@
     <ProjectReference Include="..\digital-caliber.model\digital.caliber.model.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="CalculationTables\" />
+  </ItemGroup>
+
 </Project>
