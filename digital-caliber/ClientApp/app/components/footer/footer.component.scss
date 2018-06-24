@@ -19,17 +19,28 @@ footer{
     left:0;
     right: 0;
     bottom: 0;
-    margin: 0 -15px;
-    background-color: #fff;
-    border-top: solid 1px #e7e7e7;
+    position: fixed;
+    background-color: transparent;
+    //border-top: solid 1px #e7e7e7;
     color: #3f3f3f!important;
 }
 .footer-component{
     bottom: 0;
     -webkit-font-smoothing: antialiased;
     padding-bottom: 1em;
-}
 
+    .logo-left{
+        float: right;
+
+        img{
+            max-width: 20%;
+            float: right;
+            margin-right: 2rem;
+            margin-bottom: 2rem;
+        }
+    }
+}
+/*
 .social-list{
     padding-top: .5rem !important;
     margin-bottom: 0;
@@ -81,3 +92,4 @@ footer{
 .linkedin:hover {
     opacity: 1;
 }
+*/

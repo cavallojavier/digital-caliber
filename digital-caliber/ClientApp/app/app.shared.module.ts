@@ -15,7 +15,9 @@ import { SpinnerService } from './components/services/spinner.service';
 import { AppComponent } from './components/app/app.component';
 import { NavMenuComponent } from './components/navmenu/navmenu.component';
 import { HomeComponent } from './components/home/home.component';
+import { RegisterComponent } from './components/register/register.component';
 import { MessureComponent } from './components/messures/messures.component';
+import { ContainerComponent } from './components/shared/container/container.component';
 import { SpinnerComponent } from './components/spinner/spinner.component';
 import { FooterComponent } from './components/footer/footer.component';
 
@@ -25,7 +27,9 @@ import { throwIfAlreadyLoaded } from './module-import-guard';
     declarations: [
         AppComponent,
         NavMenuComponent,
+        RegisterComponent,
         MessureComponent,
+        ContainerComponent,
         SpinnerComponent,
         FooterComponent,
         HomeComponent
@@ -35,6 +39,9 @@ import { throwIfAlreadyLoaded } from './module-import-guard';
         HttpModule,
         FormsModule,
         AppRoutingModule
+    ],
+    exports: [
+        ContainerComponent
     ],
     providers: [
         SpinnerService,

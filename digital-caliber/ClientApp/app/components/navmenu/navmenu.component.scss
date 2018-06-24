@@ -26,14 +26,51 @@ li.link-active a:focus {
     left: 0;
     right: 0;
     z-index: 1;
+    height: 50px;
+
+    .navbar{
+        background-color: transparent;
+        margin-bottom: 0;
+
+        li{
+            &.link-active{
+                border-bottom: 1px solid white;
+            }
+
+            a{
+                color: white;
+                background-color: transparent;
+                padding: 0 .8rem;
+            }
+        } 
+
+        hr{
+            margin: .5rem 5rem;
+            opacity: .5;
+            width: 100% !important;
+        }
+    }
+    .navbar-header{
+        display: flex;
+        flex-direction: row;
+    }
+
+    .navbar-collapse{
+        margin: auto;
+        border: none;
+        width: 100% !important;
+
+        .navbar-nav{
+            display: flex;
+            flex-direction: row;
+            float: right;
+            margin-right: 5rem;
+        }
+    }
 }
 
 @media (min-width: 768px) {
     /* On small screens, convert the nav menu to a vertical sidebar */
-    .main-nav {
-        height: 100%;
-        width: calc(25%);
-    }
     .navbar {
         border-radius: 0px;
         border-width: 0px;

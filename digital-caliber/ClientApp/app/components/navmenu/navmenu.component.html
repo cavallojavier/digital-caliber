@@ -1,5 +1,5 @@
 <div class='main-nav'>
-    <div class='navbar navbar-inverse'>
+    <div class='navbar navbar-inverse fixed-top'>
         <div class='navbar-header'>
             <button type='button' class='navbar-toggle' data-toggle='collapse' data-target='.navbar-collapse'>
                 <span class='sr-only'>Toggle navigation</span>
@@ -7,23 +7,34 @@
                 <span class='icon-bar'></span>
                 <span class='icon-bar'></span>
             </button>
-            <a class='navbar-brand' [routerLink]="['/home']"><img src="../../../../wwwroot/images/spinner.png">
-                <img src="../../../../wwwroot/images/Title.png"></a>
+            <!--<a class='navbar-brand' [routerLink]="['/home']"><img src="../../../../wwwroot/images/spinner.png">
+                <img src="../../../../wwwroot/images/Title.png"></a>-->
+            <div class='navbar-collapse collapse'>
+                <ul class='nav navbar-nav'>
+                    <li [routerLinkActive]="['link-active']">
+                        <a [routerLink]="['/register']">
+                            Registrarse
+                        </a>
+                    </li>
+                    <li [routerLinkActive]="['link-active']">
+                        <a [routerLink]="['/home']">
+                            Login
+                        </a>
+                    </li>
+                    <li [routerLinkActive]="['link-active']">
+                        <a [routerLink]="['/home']">
+                            MENU
+                        </a>
+                    </li>
+                    <li [routerLinkActive]="['link-active']">
+                        <a [routerLink]="['/messures']">
+                            Messures
+                        </a>
+                    </li>
+                </ul>
+            </div>
         </div>
+        <hr>
         <div class='clearfix'></div>
-        <div class='navbar-collapse collapse'>
-            <ul class='nav navbar-nav'>
-                <li [routerLinkActive]="['link-active']">
-                    <a [routerLink]="['/home']">
-                        <span class='glyphicon glyphicon-home'></span> Home
-                    </a>
-                </li>
-                <li [routerLinkActive]="['link-active']">
-                    <a [routerLink]="['/messures']">
-                        <span class='glyphicon glyphicon-eye-open'></span> Messures
-                    </a>
-                </li>
-            </ul>
-        </div>
     </div>
 </div>
