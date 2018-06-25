@@ -8,3 +8,8 @@
 /digital-caliber.model/obj
 /digital-caliber.services/bin
 /digital-caliber.services/obj
+/digital-caliber.tests/bin
+/digital-caliber.tests/obj
+/digital-caliber.tests/Debug
+/digital-caliber.tests/digital-caliber.tests.csproj.user
+

@@ -13,18 +13,18 @@
         .mouse-sup-left{
             background: url("/images/mouse/mouse-sup-left.png") no-repeat right top;
             min-height: 250px;
-            background-size: 25%;
+            //background-size: 25%;
 
             input.bottom-left{
                 position: absolute;
-                bottom: 14rem;
-                right: 15rem;
+                bottom: 10rem;
+                right: 20rem;
             }
     
             input.center-left{
                 position: absolute;
-                bottom: 21rem;
-                right: 11rem;
+                bottom: 20rem;
+                right: 15rem;
             }
     
             input.top-left{
@@ -37,18 +37,18 @@
         .mouse-sup-right{
             background: url("/images/mouse/mouse-sup-right.png") no-repeat left top;
             min-height: 250px;
-            background-size: 25%;
+            //background-size: 25%;
 
             input.bottom-right{
                 position: absolute;
-                bottom: 14rem;
-                left: 15rem;
+                bottom: 10rem;
+                left: 20rem;
             }
     
             input.center-right{
                 position: absolute;
-                bottom: 21rem;
-                left: 11rem;
+                bottom: 20rem;
+                left: 15rem;
             }
     
             input.top-right{
@@ -60,13 +60,13 @@
     }
 
     .mouse-inf{
-        margin: -20rem 0 6rem 0;
+        margin: -8rem 0 6rem 0;
         min-height: 250px;
         
         .mouse-inf-left{
             background: url("/images/mouse/mouse-inf-left.png") no-repeat right bottom;
             min-height: 250px;
-            background-size: 25%;
+            //background-size: 25%;
 
             input.bottom-left{
                 position: absolute;
@@ -82,15 +82,15 @@
     
             input.top-left{
                 position: absolute;
-                top: 16rem;
-                right: 15rem;
+                top: 15rem;
+                right: 20rem;
             }
         }
 
         .mouse-inf-right{
             background: url("/images/mouse/mouse-inf-right.png") no-repeat left bottom;
             min-height: 250px;
-            background-size: 25%;
+            //background-size: 25%;
 
             input.bottom-right{
                 position: absolute;
@@ -106,8 +106,8 @@
     
             input.top-right{
                 position: absolute;
-                top: 16rem;
-                left: 15rem;
+                top: 15rem;
+                left: 20rem;
             }
         }
     }
