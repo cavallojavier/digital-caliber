@@ -15,7 +15,8 @@ import { SpinnerService } from './components/services/spinner.service';
 import { AppComponent } from './components/app/app.component';
 import { NavMenuComponent } from './components/navmenu/navmenu.component';
 import { HomeComponent } from './components/home/home.component';
-import { RegisterComponent } from './components/register/register.component';
+import { RegisterComponent } from './components/account/register/register.component';
+import { LoginComponent } from './components/account/login/login.component';
 import { MessureComponent } from './components/messures/messures.component';
 import { ContainerComponent } from './components/shared/container/container.component';
 import { SpinnerComponent } from './components/spinner/spinner.component';
@@ -28,6 +29,7 @@ import { throwIfAlreadyLoaded } from './module-import-guard';
         AppComponent,
         NavMenuComponent,
         RegisterComponent,
+        LoginComponent,
         MessureComponent,
         ContainerComponent,
         SpinnerComponent,
