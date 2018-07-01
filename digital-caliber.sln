@@ -9,7 +9,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "digital.caliber.services", 
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "digital.caliber.model", "digital-caliber.model\digital.caliber.model.csproj", "{BBA3FB8E-0A5D-4600-B026-AB5363293F40}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "digital-caliber.tests", "digital-caliber.tests\digital-caliber.tests.csproj", "{8E20BA80-F605-4563-B863-2BDBA1CBBFAE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "digital.caliber.tests", "digital-caliber.tests\digital.caliber.tests.csproj", "{8E20BA80-F605-4563-B863-2BDBA1CBBFAE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

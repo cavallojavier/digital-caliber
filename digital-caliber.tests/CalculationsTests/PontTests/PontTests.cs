@@ -2,7 +2,7 @@
 using digital.caliber.services.Calculators;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace digital_caliber.tests.CalculationsTests.PontTests
+namespace digital.caliber.tests.CalculationsTests.PontTests
 {
     /// <summary>
     /// Summary description for PontTests

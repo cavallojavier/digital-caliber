@@ -2,7 +2,7 @@
 using digital.caliber.services.Calculators;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace digital_caliber.tests.CalculationsTests.MoyersTests
+namespace digital.caliber.tests.CalculationsTests.MoyersTests
 {
     [TestClass]
     public class MoyersTests : BaseTest

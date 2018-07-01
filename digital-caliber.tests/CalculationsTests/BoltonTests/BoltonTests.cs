@@ -2,7 +2,7 @@
 using digital.caliber.services.Calculators;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace digital_caliber.tests.CalculationsTests.BoltonTests
+namespace digital.caliber.tests.CalculationsTests.BoltonTests
 {
     [TestClass]
     public class BoltonTests : BaseTest

@@ -1,9 +1,12 @@
 @media screen and (max-width: 500px) /* Mobile */{
     .last-ul {
-        display: flex !important;
+        display: -webkit-box !important;
         display: -webkit-flex !important;
-        flex-direction: column;
+        display: -ms-flexbox !important;
+        display: flex !important;
         -webkit-flex-direction: column;
+        -ms-flex-direction: column;
+        flex-direction: column;
     }
 }
 .list-group-item{

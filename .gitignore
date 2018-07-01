@@ -12,4 +12,6 @@
 /digital-caliber.tests/obj
 /digital-caliber.tests/Debug
 /digital-caliber.tests/digital-caliber.tests.csproj.user
-
+bin
+obj
+*.user

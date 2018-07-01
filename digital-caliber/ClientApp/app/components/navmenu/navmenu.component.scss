@@ -1,7 +1,11 @@
 .navbar-brand{
     height: auto;
+    //display: -webkit-box;
+    display: -webkit-flex;
+    //display: -ms-flexbox;
     display: flex;
-
+    flex-direction: row;
+    -webkit-flex-direction: row;
     img{
         height: 50px;
     }
@@ -52,16 +56,30 @@ li.link-active a:focus {
     }
     .navbar-header{
         display: flex;
+        //display: -webkit-box;
+        display: -webkit-flex;
+        //display: -ms-flexbox;
+        
+        -webkit-flex-direction: row;
+        //-ms-flex-direction: row;
         flex-direction: row;
     }
-
+    _:-ms-lang(x),.navbar-header{
+        flex-direction: column;
+        height: 30px;
+    }
     .navbar-collapse{
         margin: auto;
         border: none;
         width: 100% !important;
 
         .navbar-nav{
+            display: -webkit-box;
+            display: -webkit-flex;
+            display: -ms-flexbox;
             display: flex;
+            -webkit-flex-direction: row;
+            -ms-flex-direction: row;
             flex-direction: row;
             float: right;
             margin-right: 5rem;

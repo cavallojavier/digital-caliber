@@ -13,12 +13,22 @@
         }
 
         ul{
+            display: -webkit-box;
+            display: -webkit-flex;
+            display: -ms-flexbox;
             display: flex;
+            -webkit-flex-direction: column;
+            -ms-flex-direction: column;
             flex-direction: column;
             padding: 0;
 
             li{
+                display: -webkit-box;
+                display: -webkit-flex;
+                display: -ms-flexbox;
                 display: flex;
+                -webkit-flex-direction: column;
+                -ms-flex-direction: column;
                 flex-direction: column;
                 flex-wrap: wrap;
                 margin: 1rem;

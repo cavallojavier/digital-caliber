@@ -1194,6 +1194,12 @@
         }
       }
     },
+    "classlist.js": {
+      "version": "1.1.20150312",
+      "resolved": "https://registry.npmjs.org/classlist.js/-/classlist.js-1.1.20150312.tgz",
+      "integrity": "sha1-HXCEL3Ai8I2awIbOaeWyUPLFd4k=",
+      "dev": true
+    },
     "clean-css": {
       "version": "4.1.11",
       "resolved": "https://registry.npmjs.org/clean-css/-/clean-css-4.1.11.tgz",
@@ -1727,6 +1733,12 @@
           "dev": true
         }
       }
+    },
+    "datalist-polyfill": {
+      "version": "1.15.1",
+      "resolved": "https://registry.npmjs.org/datalist-polyfill/-/datalist-polyfill-1.15.1.tgz",
+      "integrity": "sha1-tC9PGq1sZTn52RrGc0EZkX+/C1A=",
+      "dev": true
     },
     "date-now": {
       "version": "0.1.4",

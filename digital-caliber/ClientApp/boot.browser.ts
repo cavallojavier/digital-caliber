@@ -1,3 +1,4 @@
+import './app/polyfills.ts';
 import 'reflect-metadata';
 import 'zone.js';
 import 'bootstrap';

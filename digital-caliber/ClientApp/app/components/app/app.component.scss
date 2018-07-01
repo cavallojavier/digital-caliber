@@ -15,28 +15,8 @@
     line-height: 1.4 !important;
     width: 100%;
     overflow: auto;
-    position:sticky;
-}
-
-.main-body:before {
-    content: "";
-    position: fixed;
-    left: 0;
-    right: 0;
-    z-index: -1;
     
-    display: block;
-    background: url("../../../../wwwroot/images/background/chair-front.jpg") no-repeat right top;
-    background-size: cover;
-    width: 100%;
-    height: 100%;
-  
-    filter: grayscale(100%) brightness(60%); /* Current draft standard */
-    -webkit-filter: grayscale(100%) brightness(60%); /* New WebKit */
-    -moz-filter: grayscale(100%) brightness(60%);
-    -ms-filter: grayscale(100%) brightness(60%); 
-    -o-filter: grayscale(100%) brightness(60%); /* Not yet supported in Gecko, Opera or IE */ 
-    -webkit-filter: grayscale(1) brightness(60%); /* Old WebKit */
+    
 }
 
 .container-fluid{
@@ -59,7 +39,7 @@
 @media (min-width: 768px) {
     .body-content {
         //padding-top: 50px;
-        padding: 50px 5rem 0 5rem;
+        padding: 0px 8rem 0 8rem;
     }
 }
 

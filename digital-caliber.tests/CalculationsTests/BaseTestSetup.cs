@@ -3,7 +3,7 @@ using System.Threading;
 using digital.caliber.model.CalcModel;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace digital_caliber.tests.CalculationsTests
+namespace digital.caliber.tests.CalculationsTests
 {
     public abstract class BaseTest
     {

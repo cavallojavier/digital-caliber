@@ -2,7 +2,7 @@
 using digital.caliber.services;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace digital_caliber.tests.CalculationsTests
+namespace digital.caliber.tests.CalculationsTests
 {
     [TestClass]
     public class MessureResultTests : BaseTest

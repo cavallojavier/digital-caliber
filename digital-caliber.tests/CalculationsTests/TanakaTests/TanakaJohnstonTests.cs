@@ -2,7 +2,7 @@
 using digital.caliber.services.Calculators;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace digital_caliber.tests.CalculationsTests.TanakaTests
+namespace digital.caliber.tests.CalculationsTests.TanakaTests
 {
     [TestClass]
     public class TanakaJohnstonTests : BaseTest
