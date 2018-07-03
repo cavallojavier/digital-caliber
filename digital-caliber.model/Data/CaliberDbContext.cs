@@ -15,24 +15,24 @@ namespace digital.caliber.model.Data
 
         public DbSet<Log> Logs { get; set; }
 
-        public DbSet<BoltonTotalRef> BoltonTotalRef { get; set; }
+        //public DbSet<BoltonTotalRef> BoltonTotalRef { get; set; }
 
-        public DbSet<BoltonPreviousRef> BoltonPreviousRef { get; set; }
+        //public DbSet<BoltonPreviousRef> BoltonPreviousRef { get; set; }
 
-        public DbSet<PontRef> PontRef { get; set; }
+        //public DbSet<PontRef> PontRef { get; set; }
 
-        public DbSet<MoyersRef> MoyersRef { get; set; }
+        //public DbSet<MoyersRef> MoyersRef { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
 
-            foreach (var property in modelBuilder.Model.GetEntityTypes()
-                                        .SelectMany(t => t.GetProperties())
-                                        .Where(p => p.ClrType == typeof(decimal)))
-            {
-                property.Relational().ColumnType = "decimal(5, 3)";
-            }
+            //foreach (var property in modelBuilder.Model.GetEntityTypes()
+            //                            .SelectMany(t => t.GetProperties())
+            //                            .Where(p => p.ClrType == typeof(decimal)))
+            //{
+            //    property.Relational().ColumnType = "decimal(5, 3)";
+            //}
         }
     }
 }

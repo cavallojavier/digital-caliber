@@ -2,6 +2,7 @@ using System.Threading.Tasks;
 using AutoMapper;
 using digital.caliber.model.Data;
 using digital.caliber.model.Models;
+using digital.caliber.services.CustomLogger;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -58,6 +59,9 @@ namespace digital.caliber
             services.AddIdentity<ApplicationUser, IdentityRole>()
                 .AddEntityFrameworkStores<CaliberDbContext>()
                 .AddDefaultTokenProviders();
+
+            // add app services
+            services.AddTransient<ICustomLogger, CustomLogger>();
 
             //var tokenValidationParameters = new TokenValidationParameters
             //{
