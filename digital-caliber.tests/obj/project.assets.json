@@ -14802,9 +14802,9 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Programacion\\CalibreDigital\\digital-caliber\\digital-caliber.tests\\digital-caliber.tests.csproj",
-      "projectName": "digital-caliber.tests",
-      "projectPath": "C:\\Programacion\\CalibreDigital\\digital-caliber\\digital-caliber.tests\\digital-caliber.tests.csproj",
+      "projectUniqueName": "C:\\Programacion\\CalibreDigital\\digital-caliber\\digital-caliber.tests\\digital.caliber.tests.csproj",
+      "projectName": "digital.caliber.tests",
+      "projectPath": "C:\\Programacion\\CalibreDigital\\digital-caliber\\digital-caliber.tests\\digital.caliber.tests.csproj",
       "packagesPath": "C:\\Users\\javier.cavallo\\.nuget\\packages\\",
       "outputPath": "C:\\Programacion\\CalibreDigital\\digital-caliber\\digital-caliber.tests\\obj\\",
       "projectStyle": "PackageReference",
