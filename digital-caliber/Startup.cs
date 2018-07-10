@@ -3,6 +3,7 @@ using AutoMapper;
 using digital.caliber.model.Data;
 using digital.caliber.model.Models;
 using digital.caliber.services.CustomLogger;
+using digital.caliber.ViewModels;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -34,6 +35,7 @@ namespace digital.caliber
                 options.UseSqlServer(Configuration.GetConnectionString("DBConnection")));
 
             services.AddOptions();
+            services.Configure<ClientConfiguration>(Configuration.GetSection("ClientConfiguration"));
 
             services.Configure<MvcOptions>(options =>
             {

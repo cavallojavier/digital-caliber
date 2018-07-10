@@ -4,14 +4,15 @@ import { AppModuleShared } from './app.shared.module';
 import { AppComponent } from './components/app/app.component';
 
 import { AppRoutingModule } from './app.routing.module';
-
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
     bootstrap: [ AppComponent ],
     imports: [
         BrowserModule,
         AppModuleShared,
-        AppRoutingModule
+        AppRoutingModule,
+        BrowserAnimationsModule
     ],
     providers: [
         { provide: 'BASE_URL', useFactory: getBaseUrl }

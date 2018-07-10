@@ -21,8 +21,10 @@ import { MessureComponent } from './components/messures/messures.component';
 import { ContainerComponent } from './components/shared/container/container.component';
 import { SpinnerComponent } from './components/spinner/spinner.component';
 import { FooterComponent } from './components/footer/footer.component';
-
 import { throwIfAlreadyLoaded } from './module-import-guard';
+
+//Services
+import { AccountService } from './components/services/account.service';
 
 @NgModule({
     declarations: [
@@ -47,9 +49,10 @@ import { throwIfAlreadyLoaded } from './module-import-guard';
     ],
     providers: [
         SpinnerService,
+        AccountService,
         HttpClient,
-        { provide: LOCALE_ID, useValue: 'es' }
-        /*
+        { provide: LOCALE_ID, useValue: 'es' },
+        
         ConfigService,
         {
             // Request that configuration loading be done at app-initialisation time (prior to rendering)
@@ -58,7 +61,7 @@ import { throwIfAlreadyLoaded } from './module-import-guard';
             deps: [ConfigService],
             multi: true
         }
-        */
+        
     ]
 })
 export class AppModuleShared {

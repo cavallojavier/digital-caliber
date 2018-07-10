@@ -1,9 +1,10 @@
 {
   "compilerOptions": {
-    "module": "es2015",
+    "module": "es6",
     "moduleResolution": "node",
     "target": "es5",
     "sourceMap": true,
+    "declaration": false,
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true,
     "skipDefaultLibCheck": true,

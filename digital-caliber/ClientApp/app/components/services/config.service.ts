@@ -1,9 +1,8 @@
 ﻿import { Injectable, Inject } from '@angular/core';
-
 import { Http, Response } from '@angular/http';
-import 'rxjs/add/operator/toPromise';
-
 import { Configuration } from '../models/configuration';
+
+import { Observable } from 'rxjs';
 
 @Injectable()
 export class ConfigService {
@@ -13,19 +12,17 @@ export class ConfigService {
 
     constructor(private _http: Http) {
         this._apiURI = '/api';
+        this._configData = new Configuration();
     }
 
     // Call the ClientConfiguration endpoint, deserialize the response and store it in this.configData.
-    loadConfigurationData(): Promise<Configuration> {
+    loadConfigurationData() {
         return this._http.get(`${this._apiURI}/${this._configUrlPath}`)
-            .toPromise()
-            .then((response: Response) => {
-                this._configData = response.json();
-                return this._configData;
-            })
-            .catch(err => {
-                return Promise.reject(err);
-            });
+        .toPromise()
+        .then((response: Response) => {
+            this._configData = response.json();
+            return this._configData;
+        });
     }
 
     // A helper property to return the config object

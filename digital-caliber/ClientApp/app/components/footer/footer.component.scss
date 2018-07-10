@@ -19,7 +19,7 @@ ul {
 }
 
 footer{
-    left:0;
+    //left:0;
     right: 0;
     bottom: 0;
     position: fixed;
@@ -34,13 +34,9 @@ footer{
 
     .logo-left{
         float: right;
-
-        img{
-            max-width: 20%;
-            float: right;
-            margin-right: 2rem;
-            margin-bottom: 2rem;
-        }
+        width: 80px;
+        margin-right: 1rem;
+        margin-bottom: 1rem;
     }
 }
 /*

@@ -2,7 +2,7 @@
     ViewData["Title"] = "Home Page";
 }
 
-<app asp-prerender-module="ClientApp/dist/main-server">
+<app>
     <div class="row align-items-center">
         <div class="col-sm"></div>
         <div class="col-sm text-center mt-5">
@@ -12,7 +12,7 @@
     </div>
 </app>
 
-<script src="~/dist/vendor.js" asp-append-version="true"></script>
 @section scripts {
+    <script src="~/dist/vendor.js" asp-append-version="true"></script>
     <script src="~/dist/main-client.js" asp-append-version="true"></script>
 }

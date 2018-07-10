@@ -3,18 +3,19 @@
 
     <div class="box col-sm-5">
         <box-container>
-            <h3 class="text-center">REGISTRARSE</h3>
-            <ul>
-                <li><span>Nombre</span><input type="text" class="input-custom"></li>
-                <li><span>Apellido</span><input type="text" class="input-custom"></li>
-                <li><span>Email</span><input type="email" class="input-custom"></li>
-                <li><span>Contraseña</span><input type="password" class="input-custom"></li>
-                <li><span>Confirmacion contraseña</span><input type="password" class="input-custom"></li>
-            </ul>
-            <div class="button-align">
-                <button type="submit" class="btn btn-outline btn-secondary">Crear</button>
-            </div>
-            
+            <form #f="ngForm" novalidate (ngSubmit)="submitLogin(f)">
+                <h3 class="text-center">REGISTRARSE</h3>
+                <ul>
+                    <li><span>Nombre</span><input type="text" class="input-custom" required name="firstName" [(ngModel)]="user.firstName"></li>
+                    <li><span>Apellido</span><input type="text" class="input-custom" required name="lastName" [(ngModel)]="user.lastName"></li>
+                    <li><span>Email</span><input type="email" class="input-custom" required name="email" [(ngModel)]="user.email"></li>
+                    <li><span>Contraseña</span><input type="password" class="input-custom" required name="password" [(ngModel)]="password"></li>
+                    <li><span>Confirmacion contraseña</span><input type="password" class="input-custom" required name="passwordVal" [(ngModel)]="passwordVal"></li>
+                </ul>
+                <div class="button-align">
+                    <button type="button" class="btn btn-outline btn-secondary">Crear</button>
+                </div>
+            </form>
         </box-container>
     </div>
     
