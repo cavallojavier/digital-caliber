@@ -4,7 +4,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { RouterModule } from '@angular/router';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app.routing.module';
 //Services
@@ -41,6 +41,7 @@ import { AccountService } from './components/services/account.service';
     imports: [
         CommonModule,
         HttpModule,
+        HttpClientModule,
         FormsModule,
         AppRoutingModule
     ],

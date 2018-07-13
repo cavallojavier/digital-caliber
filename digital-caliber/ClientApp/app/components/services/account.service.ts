@@ -8,7 +8,9 @@ import { SpinnerService } from './spinner.service';
 
 import { AccountUser } from '../models/account.interface';
 
-import { Observable } from 'rxjs';
+import { Observable, Subscription } from "rxjs";
+import { map, tap, catchError, finalize } from "rxjs/operators";
+
 @Injectable()
 
 export class AccountService extends BaseService implements OnInit{
@@ -72,8 +74,9 @@ export class AccountService extends BaseService implements OnInit{
 
         this.spinner.show();
         return this.http.post(this.baseUrl + url, body)
-        .subscribe({
-            next: (auth: any) => {
+        .pipe(
+            map((auth: any) => {
+                debugger;
                 localStorage.setItem('uId', auth.uId);
                 localStorage.setItem('auth_token', auth.auth_token);
 
@@ -91,15 +94,11 @@ export class AccountService extends BaseService implements OnInit{
                 localStorage.setItem('isLoggedIn', 'true');
 
                 return true;
-            },
-            error: (err: any) => {
-                this.handleError;
-                return false;
-            },
-            complete: () => {
+            }),
+            finalize(() => {
                 this.spinner.hide();
-            }
-        });
+            })
+        );
     }
 
     public login(email: string, password: string): any{

@@ -17,16 +17,17 @@ using Newtonsoft.Json;
 namespace digital.caliber.Controllers
 {
     [Route("api/[controller]")]
+    [Produces("application/json")]
     [ApiController]
-    [Authorize]
+    //[Authorize]
     public class AccountController : ControllerBase
     {
-        private readonly AccountManager _accountManager;
+        private readonly IAccountManager _accountManager;
         private readonly IJwtFactory _jwtFactory;
         private readonly JwtIssuerOptions _jwtOptions;
         private readonly ICustomLogger _logger;
 
-        public AccountController(AccountManager accountManager, 
+        public AccountController(IAccountManager accountManager, 
             IJwtFactory jwtFactory,
             IOptions<JwtIssuerOptions> jwtOptions, 
             ICustomLogger logger)
@@ -37,43 +38,55 @@ namespace digital.caliber.Controllers
             _logger = logger;
         }
 
+        [HttpGet]
+        public IActionResult Get()
+        {
+            return Ok("OK!");
+        }
+
         [AllowAnonymous]
-        [HttpPost("Register"), ActionName("Register")]
+        //[HttpPost("Register"), ActionName("Register")]
         public async Task<ActionResult> Register([FromBody] AccountRegisterViewModel registerVm)
         {
-            try
-            {
-                var identityResult = await _accountManager.Register(registerVm.FirstName, registerVm.LastName, registerVm.Email, registerVm.Password);
-                if (!identityResult.Succeeded)
-                    throw new Exception("An error ocurred while creating account!");
+            return Ok("yeah");
+            //if (!ModelState.IsValid)
+            //{
+            //    return BadRequest(ModelState);
+            //}
 
-                var user = await _accountManager.Authenticate(registerVm.Email, registerVm.Password);
+            //try
+            //{
+            //    var identityResult = await _accountManager.Register(registerVm.FirstName, registerVm.LastName, registerVm.Email, registerVm.Password);
+            //    if (!identityResult.Succeeded)
+            //        throw new Exception("An error ocurred while creating account!");
 
-                if (user == null)
-                    return Unauthorized();
+            //    var user = await _accountManager.Authenticate(registerVm.Email, registerVm.Password);
 
-                var identity = await GetClaimsIdentity(user);
+            //    if (user == null)
+            //        return Unauthorized();
 
-                var response = new
-                {
-                    uId = identity.Claims.Single(c => c.Type == "id").Value,
-                    firstName = user.FirstName,
-                    lastName = user.LastName,
-                    email = user.Email,
-                    formattedName = user.FirstName + " " + user.LastName,
-                    auth_token = await _jwtFactory.GenerateEncodedToken(user.Email, identity),
-                    expires_in = (int)_jwtOptions.ValidFor.TotalSeconds
-                };
+            //    var identity = await GetClaimsIdentity(user);
 
-                var userData = JsonConvert.SerializeObject(response);
+            //    var response = new
+            //    {
+            //        uId = identity.Claims.Single(c => c.Type == "id").Value,
+            //        firstName = user.FirstName,
+            //        lastName = user.LastName,
+            //        email = user.Email,
+            //        formattedName = user.FirstName + " " + user.LastName,
+            //        auth_token = await _jwtFactory.GenerateEncodedToken(user.Email, identity),
+            //        expires_in = (int)_jwtOptions.ValidFor.TotalSeconds
+            //    };
 
-                return new OkObjectResult(userData);
-            }
-            catch (Exception ex)
-            {
-                await _logger.Log(LogLevel.Error, "Account", ex, "Register");
-                throw ex;
-            }
+            //    var userData = JsonConvert.SerializeObject(response);
+
+            //    return new OkObjectResult(userData);
+            //}
+            //catch (Exception ex)
+            //{
+            //    await _logger.Log(LogLevel.Error, "Account", ex, "Register");
+            //    throw ex;
+            //}
         }
 
         [AllowAnonymous]

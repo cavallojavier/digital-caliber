@@ -3,7 +3,7 @@
 
     <div class="box col-sm-5">
         <box-container>
-            <form #f="ngForm" novalidate (ngSubmit)="submitLogin(f)">
+            <form #f="ngForm" novalidate (ngSubmit)="submitRegister(f)">
                 <h3 class="text-center">REGISTRARSE</h3>
                 <ul>
                     <li><span>Nombre</span><input type="text" class="input-custom" required name="firstName" [(ngModel)]="user.firstName"></li>
@@ -13,7 +13,7 @@
                     <li><span>Confirmacion contraseña</span><input type="password" class="input-custom" required name="passwordVal" [(ngModel)]="passwordVal"></li>
                 </ul>
                 <div class="button-align">
-                    <button type="button" class="btn btn-outline btn-secondary">Crear</button>
+                    <button type="submit" class="btn btn-outline btn-secondary">Crear</button>
                 </div>
             </form>
         </box-container>

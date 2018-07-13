@@ -39,7 +39,7 @@ namespace digital.caliber.services.CalculationTables
 
                 return closest.Item2;
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 return null;
             }
@@ -65,7 +65,7 @@ namespace digital.caliber.services.CalculationTables
 
                 return closest.Item3;
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 return null;
             }
@@ -95,7 +95,7 @@ namespace digital.caliber.services.CalculationTables
 
                 return closest.Item2;
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 return null;
             }
@@ -121,7 +121,7 @@ namespace digital.caliber.services.CalculationTables
 
                 return closest.Item3;
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 return null;
             }

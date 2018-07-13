@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-
-import { SpinnerService } from '../../services/spinner.service';
+import { Injectable } from '@angular/core';
 import { AccountService } from '../../services/account.service';
 import { AccountUser } from '../../models/account.interface';
 
@@ -11,38 +10,39 @@ import { AccountUser } from '../../models/account.interface';
     styleUrls: ['./register.component.scss']
 })
 /** candidate-home component*/
-export class RegisterComponent {
-    errors: string;
-    user: AccountUser;
-    password: string;
-    passwordVal: string;
+export class RegisterComponent implements OnInit {
+    private errors: string;
+    private user: AccountUser;
+    private password: string;
+    private passwordVal: string;
 
     constructor(private _router: Router,
                 private _routeQuery: ActivatedRoute,
-                private _accountService: AccountService,
-                private _spinner: SpinnerService) { 
+                private _accountService: AccountService) { 
                     this.errors = '';
-
                     this.password = '';
                     this.passwordVal = '';
                     this.user = {
                         id: '',
                         email: '',
                         firstName: '',
-                        lastName: '',
-                        formattedName: ''
+                        formattedName: '',
+                        lastName: ''
                     };
                 }
 
     /** Called by Angular after candidate.join component initialized */
     ngOnInit(): void {
+        
     }
 
-    submitLogin({ value, valid }: { value: any, valid: boolean }) {
+    submitRegister({ value, valid }: { value: any, valid: boolean }) {
         debugger;
-        if(!valid) return;
+
+        if(!valid || this.password !== this.passwordVal) {
+            return;
+        }
         
         this._accountService.register(this.user, this.password);
-
     }
 }

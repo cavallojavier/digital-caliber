@@ -31,7 +31,7 @@ namespace digital.caliber.services.CalculationTables
 
                 return closest.Item2;
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 return null;
             }

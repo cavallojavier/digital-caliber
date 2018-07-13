@@ -8,11 +8,8 @@ import {
   HttpErrorResponse
 } from '@angular/common/http';
 
-import { tap } from 'rxjs/operators';
-//import 'rxjs/add/operator/do';
 import { Observable, of } from 'rxjs';
-import 'rxjs/add/operator/catch';
-import 'rxjs/add/observable/throw';
+import { tap, catchError, finalize } from "rxjs/operators";
 
 @Injectable()
 export class RequestInterceptor implements HttpInterceptor {
@@ -35,26 +32,29 @@ export class RequestInterceptor implements HttpInterceptor {
     });
 
     return next.handle(request).pipe(
-        tap((event: any) => {
+        tap((event: HttpEvent<any>) => {
           if (event instanceof HttpResponse) {
           }
-        }, 
-        (error: any) => {
+        }), 
+        catchError((error: any) => {
             if (error.status >= 200 && error.status < 300) {
-        
-                const res = new HttpResponse({
-                  body: null,
-                  headers: error.headers,
-                  status: error.status,
-                  statusText: error.statusText,
-                  //url: err.url
-                });
-                
-                return of(res);
-              } else {
-                return Observable.throw(error);
-              }
-            })
-        );
-    }
+          
+              const res = new HttpResponse({
+                body: null,
+                headers: error.headers,
+                status: error.status,
+                statusText: error.statusText,
+                //url: err.url
+              });
+              
+              return of(res);
+            } else {
+              return Observable.throw(error);
+            }
+        }),
+        finalize(() => {
+
+        })
+    )
+  };
 }

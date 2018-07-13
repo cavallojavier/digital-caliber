@@ -1,10 +1,17 @@
+using System;
+using System.Text;
 using System.Threading.Tasks;
 using AutoMapper;
+using digital.caliber.Auth;
 using digital.caliber.model.Data;
 using digital.caliber.model.Models;
 using digital.caliber.services.CustomLogger;
+using digital.caliber.services.Services;
 using digital.caliber.ViewModels;
+using FluentValidation;
+using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
@@ -13,14 +20,20 @@ using Microsoft.AspNetCore.SpaServices.Webpack;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.IdentityModel.Tokens;
 
 namespace digital.caliber
 {
     public class Startup
     {
+        private readonly string SecretKey;
+        private readonly SymmetricSecurityKey _signingKey;
+
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
+            SecretKey = Configuration["JWTSecret"];
+            _signingKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(SecretKey));
         }
 
         public IConfiguration Configuration { get; }
@@ -28,14 +41,31 @@ namespace digital.caliber
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddMvc()
+                .AddFluentValidation(fv => fv.RegisterValidatorsFromAssemblyContaining<Startup>());
+            services.AddTransient<IValidatorFactory, ServiceProviderValidatorFactory>();
+
             services.AddAutoMapper();
-            services.AddMvc();
 
             services.AddDbContext<CaliberDbContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("DBConnection")));
 
             services.AddOptions();
             services.Configure<ClientConfiguration>(Configuration.GetSection("ClientConfiguration"));
+
+            // add app services
+            services.AddTransient<ICustomLogger, CustomLogger>();
+            services.AddTransient<IAccountManager, AccountManager>();
+
+            services.AddSingleton<IJwtFactory, JwtFactory>();
+            var jwtAppSettingOptions = Configuration.GetSection(nameof(JwtIssuerOptions));
+
+            services.Configure<JwtIssuerOptions>(options =>
+            {
+                options.Issuer = jwtAppSettingOptions[nameof(JwtIssuerOptions.Issuer)];
+                options.Audience = jwtAppSettingOptions[nameof(JwtIssuerOptions.Audience)];
+                options.SigningCredentials = new SigningCredentials(_signingKey, SecurityAlgorithms.HmacSha256);
+            });
 
             services.Configure<MvcOptions>(options =>
             {
@@ -62,30 +92,32 @@ namespace digital.caliber
                 .AddEntityFrameworkStores<CaliberDbContext>()
                 .AddDefaultTokenProviders();
 
-            // add app services
-            services.AddTransient<ICustomLogger, CustomLogger>();
-
-            //var tokenValidationParameters = new TokenValidationParameters
-            //{
-            //    ValidateIssuer = true,
-            //    ValidIssuer = jwtAppSettingOptions[nameof(JwtIssuerOptions.Issuer)],
-            //    ValidateAudience = true,
-            //    ValidAudience = jwtAppSettingOptions[nameof(JwtIssuerOptions.Audience)],
-            //    ValidateIssuerSigningKey = true,
-            //    IssuerSigningKey = _signingKey,
-            //    RequireExpirationTime = false,
-            //    ValidateLifetime = false,
-            //    ClockSkew = TimeSpan.Zero
-            //};
+            var tokenValidationParameters = new TokenValidationParameters
+            {
+                ValidateIssuer = true,
+                ValidIssuer = jwtAppSettingOptions[nameof(JwtIssuerOptions.Issuer)],
+                ValidateAudience = true,
+                ValidAudience = jwtAppSettingOptions[nameof(JwtIssuerOptions.Audience)],
+                ValidateIssuerSigningKey = true,
+                IssuerSigningKey = _signingKey,
+                RequireExpirationTime = false,
+                ValidateLifetime = false,
+                ClockSkew = TimeSpan.Zero
+            };
 
             services.AddAuthentication(options =>
             {
                 options.DefaultScheme = CookieAuthenticationDefaults.AuthenticationScheme;
-                //options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+                options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
             }).AddCookie("hdc_login", options =>
             {
                 options.LoginPath = new Microsoft.AspNetCore.Http.PathString("/login");
                 options.LogoutPath = new Microsoft.AspNetCore.Http.PathString("/logout");
+            })
+            .AddJwtBearer(options =>
+            {
+                options.RequireHttpsMetadata = false;
+                options.TokenValidationParameters = tokenValidationParameters;
             });
 
             services.ConfigureApplicationCookie(o =>
