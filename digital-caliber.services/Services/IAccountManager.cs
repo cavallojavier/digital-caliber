@@ -17,7 +17,7 @@ namespace digital.caliber.services.Services
 
         Task<IdentityResult> Register(string firstName, string lastName, string email, string password);
 
-        Task<ApplicationUser> Authenticate(string email, string password);
+        Task<ApplicationUser> Authenticate(string email, string password, bool rememberMe);
 
         Task<bool> Update(ApplicationUser user);
 

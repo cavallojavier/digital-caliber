@@ -37,12 +37,16 @@ export class RegisterComponent implements OnInit {
     }
 
     submitRegister({ value, valid }: { value: any, valid: boolean }) {
-        debugger;
-
         if(!valid || this.password !== this.passwordVal) {
             return;
         }
         
-        this._accountService.register(this.user, this.password);
+        this._accountService.register(this.user, this.password)
+        .toPromise()
+        .then(() => {
+            //this._router.navigate(['/home']);
+        })
+        .catch((err: any) => {
+        });
     }
 }

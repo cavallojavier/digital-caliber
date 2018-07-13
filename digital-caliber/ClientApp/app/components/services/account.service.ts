@@ -1,6 +1,5 @@
 import { Injectable, OnInit } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { Response, RequestOptions, ResponseOptions } from '@angular/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 
 import { ConfigService } from './config.service';
 import { BaseService } from './base.service';
@@ -8,14 +7,13 @@ import { SpinnerService } from './spinner.service';
 
 import { AccountUser } from '../models/account.interface';
 
-import { Observable, Subscription } from "rxjs";
-import { map, tap, catchError, finalize } from "rxjs/operators";
+import { Observable } from "rxjs";
+import { catchError, map, tap } from 'rxjs/operators';
+import { error } from '../../../../node_modules/@angular/compiler/src/util';
 
 @Injectable()
-
 export class AccountService extends BaseService implements OnInit{
     private baseUrl: string = '';
-    private loggedIn = false;
     public loggedUser: AccountUser | null;
     public redirectUrl: string;
 
@@ -23,7 +21,6 @@ export class AccountService extends BaseService implements OnInit{
         super(spinner);
 
         this.redirectUrl = '';
-        this.loggedIn = !!localStorage.getItem('auth_token');
         this.baseUrl = configService.getApiURI();
         this.loggedUser = {
             id: '',
@@ -38,17 +35,27 @@ export class AccountService extends BaseService implements OnInit{
         
     }
 
-    logout() {
+    getLoggedUser(): AccountUser | null{
+        let usr = localStorage.getItem("user");
+        
+        if(usr){
+            this.loggedUser = JSON.parse(usr);
+            return this.loggedUser;
+        }
+
+        return null;
+    }
+
+    logout(): Observable<any> {
         
         return this.http.post(this.baseUrl + '/account/logout', '')
-        .subscribe({
-            complete: () => {
+        .pipe(
+            map(() => {
                 localStorage.clear();
-                this.loggedIn = false;
                 this.loggedUser = null;
-                this.spinner.hide();
-            }
-        });
+            }),
+            catchError(this.handleError)
+        );
     }
 
     public getAuthToken(): string {
@@ -59,24 +66,20 @@ export class AccountService extends BaseService implements OnInit{
         return eval(localStorage.getItem('isLoggedIn') || 'false');
     }
 
-    register(account: AccountUser, password: string){
+    register(account: AccountUser, password: string):Observable<any>{
+        let url = this.baseUrl + '/account/register';
+        
+        this.spinner.show();
 
-        debugger;
-        let user = {
+        return this.http.post<AccountUser>(url, {
             firstName: account.firstName,
             lastName: account.lastName,
             email: account.email,
             password: password
-        };
-
-        let body = JSON.stringify(user);
-        let url = '/account/register';
-
-        this.spinner.show();
-        return this.http.post(this.baseUrl + url, body)
+            })
         .pipe(
-            map((auth: any) => {
-                debugger;
+            map((res:any) => {
+                let auth = JSON.parse(res);
                 localStorage.setItem('uId', auth.uId);
                 localStorage.setItem('auth_token', auth.auth_token);
 
@@ -88,20 +91,14 @@ export class AccountService extends BaseService implements OnInit{
                     email: auth.email
                 }
 
-                this.loggedIn = true;
-
                 localStorage.setItem("user",  JSON.stringify(this.loggedUser));
                 localStorage.setItem('isLoggedIn', 'true');
-
-                return true;
             }),
-            finalize(() => {
-                this.spinner.hide();
-            })
+            catchError(this.handleError)
         );
     }
 
-    public login(email: string, password: string): any{
+    public login(email: string, password: string, remember: boolean): Observable<any>{
         let user = {
             email: email,
             password: password
@@ -111,9 +108,12 @@ export class AccountService extends BaseService implements OnInit{
         let url = '/account/login';
 
         this.spinner.show();
-        return this.http.post(this.baseUrl + url, body)
-        .subscribe({
-            next: (auth: any) => {
+        return this.http.post(this.baseUrl + url, {email: email,
+            password: password,
+            rememberMe: remember})
+        .pipe(
+            map((res:any) => {
+                let auth = JSON.parse(res);
                 localStorage.setItem('uId', auth.uId);
                 localStorage.setItem('auth_token', auth.auth_token);
 
@@ -125,17 +125,10 @@ export class AccountService extends BaseService implements OnInit{
                     email: auth.email
                 }
 
-                this.loggedIn = true;
-
                 localStorage.setItem("user",  JSON.stringify(this.loggedUser));
                 localStorage.setItem('isLoggedIn', 'true');
-            },
-            error: (err: any) => {
-                this.handleError
-            },
-            complete: () => {
-                this.spinner.hide();
-            }
-        });
+            }),
+            catchError(this.handleError)
+        );
     }
 }

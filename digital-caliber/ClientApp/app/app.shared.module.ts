@@ -4,12 +4,16 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { RouterModule } from '@angular/router';
-import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { HttpClient, HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import { AppRoutingModule } from './app.routing.module';
+
+import { AuthGuard } from "./components/services/auth-guard.service";
+
 //Services
 import { ConfigService } from './components/services/config.service';
 import { SpinnerService } from './components/services/spinner.service';
+import { AccountService } from './components/services/account.service';
 
 //Components
 import { AppComponent } from './components/app/app.component';
@@ -22,9 +26,7 @@ import { ContainerComponent } from './components/shared/container/container.comp
 import { SpinnerComponent } from './components/spinner/spinner.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { throwIfAlreadyLoaded } from './module-import-guard';
-
-//Services
-import { AccountService } from './components/services/account.service';
+import { RequestInterceptor } from './components/services/http.interceptors';
 
 @NgModule({
     declarations: [
@@ -50,8 +52,10 @@ import { AccountService } from './components/services/account.service';
     ],
     providers: [
         SpinnerService,
+        AuthGuard,
         AccountService,
         HttpClient,
+        { provide: HTTP_INTERCEPTORS, useClass: RequestInterceptor, multi: true },
         { provide: LOCALE_ID, useValue: 'es' },
         
         ConfigService,

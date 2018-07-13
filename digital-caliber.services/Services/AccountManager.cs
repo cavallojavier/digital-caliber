@@ -22,9 +22,9 @@ namespace digital.caliber.services.Services
             _logger = logger;
         }
 
-        public async Task<ApplicationUser> Authenticate(string email, string password)
+        public async Task<ApplicationUser> Authenticate(string email, string password, bool rememberMe)
         {
-            var result = await _signInManager.PasswordSignInAsync(email, password, false, false);
+            var result = await _signInManager.PasswordSignInAsync(email, password, rememberMe, false);
 
             if (!result.Succeeded)
                 throw new Exception("Authentication failed");
@@ -64,13 +64,14 @@ namespace digital.caliber.services.Services
         public async Task<IdentityResult> Register(string firstName, string lastName, string email, string password)
         {
             //Check if existing already
-            var exists = _userManager.FindByEmailAsync(email);
+            var exists = await _userManager.FindByEmailAsync(email);
 
             if (exists != null)
                 throw new Exception("Email already existing");
 
             var user = new ApplicationUser()
             {
+                UserName = email,
                 FirstName = firstName,
                 LastName = lastName,
                 Email = email,

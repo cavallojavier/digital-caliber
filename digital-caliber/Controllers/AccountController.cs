@@ -8,7 +8,6 @@ using digital.caliber.services.CustomLogger;
 using digital.caliber.services.Services;
 using digital.caliber.ViewModels;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
@@ -19,13 +18,14 @@ namespace digital.caliber.Controllers
     [Route("api/[controller]")]
     [Produces("application/json")]
     [ApiController]
-    //[Authorize]
+    [Authorize]
     public class AccountController : ControllerBase
     {
         private readonly IAccountManager _accountManager;
         private readonly IJwtFactory _jwtFactory;
         private readonly JwtIssuerOptions _jwtOptions;
         private readonly ICustomLogger _logger;
+        private readonly JsonSerializerSettings _serializerSettings;
 
         public AccountController(IAccountManager accountManager, 
             IJwtFactory jwtFactory,
@@ -36,66 +36,29 @@ namespace digital.caliber.Controllers
             _jwtFactory = jwtFactory;
             _jwtOptions = jwtOptions.Value;
             _logger = logger;
-        }
 
-        [HttpGet]
-        public IActionResult Get()
-        {
-            return Ok("OK!");
-        }
-
-        [AllowAnonymous]
-        //[HttpPost("Register"), ActionName("Register")]
-        public async Task<ActionResult> Register([FromBody] AccountRegisterViewModel registerVm)
-        {
-            return Ok("yeah");
-            //if (!ModelState.IsValid)
-            //{
-            //    return BadRequest(ModelState);
-            //}
-
-            //try
-            //{
-            //    var identityResult = await _accountManager.Register(registerVm.FirstName, registerVm.LastName, registerVm.Email, registerVm.Password);
-            //    if (!identityResult.Succeeded)
-            //        throw new Exception("An error ocurred while creating account!");
-
-            //    var user = await _accountManager.Authenticate(registerVm.Email, registerVm.Password);
-
-            //    if (user == null)
-            //        return Unauthorized();
-
-            //    var identity = await GetClaimsIdentity(user);
-
-            //    var response = new
-            //    {
-            //        uId = identity.Claims.Single(c => c.Type == "id").Value,
-            //        firstName = user.FirstName,
-            //        lastName = user.LastName,
-            //        email = user.Email,
-            //        formattedName = user.FirstName + " " + user.LastName,
-            //        auth_token = await _jwtFactory.GenerateEncodedToken(user.Email, identity),
-            //        expires_in = (int)_jwtOptions.ValidFor.TotalSeconds
-            //    };
-
-            //    var userData = JsonConvert.SerializeObject(response);
-
-            //    return new OkObjectResult(userData);
-            //}
-            //catch (Exception ex)
-            //{
-            //    await _logger.Log(LogLevel.Error, "Account", ex, "Register");
-            //    throw ex;
-            //}
+            _serializerSettings = new JsonSerializerSettings
+            {
+                Formatting = Formatting.Indented
+            };
         }
 
         [AllowAnonymous]
-        [HttpPost("Login"), ActionName("Login")]
-        public async Task<ActionResult> Login([FromBody] AccountLoginViewModel loginVm)
+        [HttpPost("Register"), ActionName("Register")]
+        public async Task<ActionResult> Register(AccountRegisterViewModel registerVm)
         {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
             try
             {
-                var user = await _accountManager.Authenticate(loginVm.Email, loginVm.Password);
+                var identityResult = await _accountManager.Register(registerVm.FirstName, registerVm.LastName, registerVm.Email, registerVm.Password);
+                if (!identityResult.Succeeded)
+                    throw new Exception("An error ocurred while creating account!");
+
+                var user = await _accountManager.Authenticate(registerVm.Email, registerVm.Password, false);
 
                 if (user == null)
                     return Unauthorized();
@@ -105,6 +68,45 @@ namespace digital.caliber.Controllers
                 var response = new
                 {
                     uId = identity.Claims.Single(c => c.Type == "id").Value,
+                    firstName = user.FirstName,
+                    lastName = user.LastName,
+                    email = user.Email,
+                    formattedName = user.FirstName + " " + user.LastName,
+                    auth_token = await _jwtFactory.GenerateEncodedToken(user.Email, identity),
+                    expires_in = (int)_jwtOptions.ValidFor.TotalSeconds
+                };
+
+                var userData = JsonConvert.SerializeObject(response);
+
+                return new OkObjectResult(userData);
+            }
+            catch (Exception ex)
+            {
+                await _logger.Log(LogLevel.Error, "Account", ex, "Register");
+                throw ex;
+            }
+        }
+
+        [AllowAnonymous]
+        [HttpPost("Login"), ActionName("Login")]
+        public async Task<ActionResult> Login([FromBody] AccountLoginViewModel loginVm)
+        {
+            try
+            {
+                var user = await _accountManager.Authenticate(loginVm.Email, loginVm.Password, loginVm.RememberMe);
+
+                if (user == null)
+                    return Unauthorized();
+
+                var identity = await GetClaimsIdentity(user);
+
+                var response = new
+                {
+                    uId = identity.Claims.Single(c => c.Type == "id").Value,
+                    firstName = user.FirstName,
+                    lastName = user.LastName,
+                    email = user.Email,
+                    formattedName = user.FirstName + " " + user.LastName,
                     auth_token = await _jwtFactory.GenerateEncodedToken(user.Email, identity),
                     expires_in = (int)_jwtOptions.ValidFor.TotalSeconds
                 };

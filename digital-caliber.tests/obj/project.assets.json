@@ -14791,11 +14791,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Programacion\\digital-caliber\\digital-caliber.tests\\digital.caliber.tests.csproj",
+      "projectUniqueName": "C:\\Programacion\\Caliber\\development\\digital-caliber\\digital-caliber.tests\\digital.caliber.tests.csproj",
       "projectName": "digital.caliber.tests",
-      "projectPath": "C:\\Programacion\\digital-caliber\\digital-caliber.tests\\digital.caliber.tests.csproj",
+      "projectPath": "C:\\Programacion\\Caliber\\development\\digital-caliber\\digital-caliber.tests\\digital.caliber.tests.csproj",
       "packagesPath": "C:\\Users\\javier.cavallo\\.nuget\\packages\\",
-      "outputPath": "C:\\Programacion\\digital-caliber\\digital-caliber.tests\\obj\\",
+      "outputPath": "C:\\Programacion\\Caliber\\development\\digital-caliber\\digital-caliber.tests\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
@@ -14814,11 +14814,11 @@
       "frameworks": {
         "netcoreapp2.1": {
           "projectReferences": {
-            "C:\\Programacion\\digital-caliber\\digital-caliber.model\\digital.caliber.model.csproj": {
-              "projectPath": "C:\\Programacion\\digital-caliber\\digital-caliber.model\\digital.caliber.model.csproj"
+            "C:\\Programacion\\Caliber\\development\\digital-caliber\\digital-caliber.model\\digital.caliber.model.csproj": {
+              "projectPath": "C:\\Programacion\\Caliber\\development\\digital-caliber\\digital-caliber.model\\digital.caliber.model.csproj"
             },
-            "C:\\Programacion\\digital-caliber\\digital-caliber.services\\digital.caliber.services.csproj": {
-              "projectPath": "C:\\Programacion\\digital-caliber\\digital-caliber.services\\digital.caliber.services.csproj"
+            "C:\\Programacion\\Caliber\\development\\digital-caliber\\digital-caliber.services\\digital.caliber.services.csproj": {
+              "projectPath": "C:\\Programacion\\Caliber\\development\\digital-caliber\\digital-caliber.services\\digital.caliber.services.csproj"
             }
           }
         }

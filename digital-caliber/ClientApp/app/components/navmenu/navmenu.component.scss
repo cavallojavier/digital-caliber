@@ -92,6 +92,24 @@ li.link-active a:focus {
                     text-decoration: none;
                 }
             }
+
+            .dropdown-menu{
+                background-color: #333;
+
+                a{
+                    padding: 5px 8px;
+
+                    &:last-child{
+                        color: red;
+                    }
+
+                    &:hover{
+                        opacity: .6;
+                    }
+                }
+
+                
+            }
         } 
     }
 }

@@ -4,17 +4,17 @@ import {
   HttpHandler,
   HttpEvent,
   HttpInterceptor,
-  HttpResponse,
-  HttpErrorResponse
+  HttpResponse
 } from '@angular/common/http';
 
 import { Observable, of } from 'rxjs';
 import { tap, catchError, finalize } from "rxjs/operators";
+import { SpinnerService } from './spinner.service';
 
 @Injectable()
 export class RequestInterceptor implements HttpInterceptor {
 
-  constructor() {
+  constructor(private spinner: SpinnerService) {
   }
 
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
@@ -37,23 +37,23 @@ export class RequestInterceptor implements HttpInterceptor {
           }
         }), 
         catchError((error: any) => {
-            if (error.status >= 200 && error.status < 300) {
+          if (error.status >= 200 && error.status < 300) {
           
-              const res = new HttpResponse({
-                body: null,
-                headers: error.headers,
-                status: error.status,
-                statusText: error.statusText,
-                //url: err.url
-              });
+            const res = new HttpResponse({
+              body: null,
+              headers: error.headers,
+              status: error.status,
+              statusText: error.statusText,
+              //url: err.url
+            });
               
-              return of(res);
-            } else {
-              return Observable.throw(error);
-            }
+            return of(res);
+          } else {
+            return Observable.throw(error);
+          }
         }),
         finalize(() => {
-
+          this.spinner.hide();
         })
     )
   };
