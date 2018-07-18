@@ -19,6 +19,8 @@ namespace digital.caliber.services.Services
 
         Task<ApplicationUser> Authenticate(string email, string password, bool rememberMe);
 
+        Task Logout();
+
         Task<bool> Update(ApplicationUser user);
 
         Task<bool> Delete(int id);

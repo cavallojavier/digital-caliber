@@ -86,6 +86,11 @@ namespace digital.caliber.services.Services
             throw new NotImplementedException();
         }
 
+        public async Task Logout()
+        {
+            await _signInManager.SignOutAsync();
+        }
+
         public void Dispose()
         {
             GC.Collect();

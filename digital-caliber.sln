@@ -3,13 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.27428.2015
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "digital.caliber", "digital-caliber\digital.caliber.csproj", "{04E05143-CEFB-466F-814B-A88ACF2B3374}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "digital.caliber.services", "digital-caliber.services\digital.caliber.services.csproj", "{4A84946F-5779-446A-BB27-AADC0E9A6484}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "digital.caliber.model", "digital-caliber.model\digital.caliber.model.csproj", "{BBA3FB8E-0A5D-4600-B026-AB5363293F40}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "digital.caliber.tests", "digital-caliber.tests\digital.caliber.tests.csproj", "{8E20BA80-F605-4563-B863-2BDBA1CBBFAE}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "digital.caliber.web", "digital.caliber.web\digital.caliber.web.csproj", "{80745EC7-5603-4A2A-8C62-A0CB9ADD6343}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -17,10 +17,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{04E05143-CEFB-466F-814B-A88ACF2B3374}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{04E05143-CEFB-466F-814B-A88ACF2B3374}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{04E05143-CEFB-466F-814B-A88ACF2B3374}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{04E05143-CEFB-466F-814B-A88ACF2B3374}.Release|Any CPU.Build.0 = Release|Any CPU
 		{4A84946F-5779-446A-BB27-AADC0E9A6484}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{4A84946F-5779-446A-BB27-AADC0E9A6484}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4A84946F-5779-446A-BB27-AADC0E9A6484}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -33,6 +29,10 @@ Global
 		{8E20BA80-F605-4563-B863-2BDBA1CBBFAE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8E20BA80-F605-4563-B863-2BDBA1CBBFAE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8E20BA80-F605-4563-B863-2BDBA1CBBFAE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{80745EC7-5603-4A2A-8C62-A0CB9ADD6343}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{80745EC7-5603-4A2A-8C62-A0CB9ADD6343}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{80745EC7-5603-4A2A-8C62-A0CB9ADD6343}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{80745EC7-5603-4A2A-8C62-A0CB9ADD6343}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
