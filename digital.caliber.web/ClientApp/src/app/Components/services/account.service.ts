@@ -78,7 +78,6 @@ export class AccountService extends BaseService implements OnInit{
             })
         .pipe(
             map((auth:any) => {
-                debugger;
                 //let auth = JSON.parse(res);
                 localStorage.setItem('uId', auth.uId);
                 localStorage.setItem('auth_token', auth.auth_token);

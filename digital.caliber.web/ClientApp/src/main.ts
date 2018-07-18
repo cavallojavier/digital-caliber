@@ -14,7 +14,6 @@ export function getBaseUrl() {
 }
 
 if (environment.production) {
-  debugger;
   enableProdMode();
 }
 
