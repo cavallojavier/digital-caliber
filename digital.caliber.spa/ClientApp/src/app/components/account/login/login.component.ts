@@ -34,7 +34,6 @@ export class LoginComponent implements OnInit {
             return;
         }
         
-        debugger;
         this._accountService.login(this.mail, this.password, this.remember)
         .toPromise()
         .then(() => {

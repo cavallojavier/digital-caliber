@@ -1,14 +1,17 @@
 ﻿import { Injectable, Inject } from '@angular/core';
 import { Http, Response } from '@angular/http';
 import { Configuration } from '../models/configuration';
-import 'rxjs/add/operator/toPromise';
+import { Observable } from 'rxjs';
 
 @Injectable()
 export class ConfigService {
     private readonly _configUrlPath: string = 'ClientConfiguration';
-    private _configData: Configuration = new Configuration();
-    _apiURI: string = '/api';
+    private _configData: Configuration;
+    _apiURI: string;
+
     constructor(private _http: Http) {
+        this._apiURI = '/api';
+        this._configData = new Configuration();
     }
 
     // Call the ClientConfiguration endpoint, deserialize the response and store it in this.configData.

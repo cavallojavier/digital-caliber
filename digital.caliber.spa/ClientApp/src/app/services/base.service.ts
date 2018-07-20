@@ -7,7 +7,6 @@ export abstract class BaseService {
     constructor(public baseSpinner: SpinnerService) { }
 
     protected handleError(error: any) {
-        debugger;
         this.baseSpinner.hide();
         if(error.headers)
         {

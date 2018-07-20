@@ -9,9 +9,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "digital.caliber.model", "di
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "digital.caliber.tests", "digital-caliber.tests\digital.caliber.tests.csproj", "{8E20BA80-F605-4563-B863-2BDBA1CBBFAE}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "digital.caliber.web", "digital.caliber.web\digital.caliber.web.csproj", "{80745EC7-5603-4A2A-8C62-A0CB9ADD6343}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "digital.caliber.spa", "digital.caliber.spa\digital.caliber.spa.csproj", "{A4FAFE48-709D-4837-8499-30E0D30E44E9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "digital.caliber.spa", "digital.caliber.spa\digital.caliber.spa.csproj", "{A4FAFE48-709D-4837-8499-30E0D30E44E9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -31,10 +29,6 @@ Global
 		{8E20BA80-F605-4563-B863-2BDBA1CBBFAE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8E20BA80-F605-4563-B863-2BDBA1CBBFAE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8E20BA80-F605-4563-B863-2BDBA1CBBFAE}.Release|Any CPU.Build.0 = Release|Any CPU
-		{80745EC7-5603-4A2A-8C62-A0CB9ADD6343}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{80745EC7-5603-4A2A-8C62-A0CB9ADD6343}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{80745EC7-5603-4A2A-8C62-A0CB9ADD6343}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{80745EC7-5603-4A2A-8C62-A0CB9ADD6343}.Release|Any CPU.Build.0 = Release|Any CPU
 		{A4FAFE48-709D-4837-8499-30E0D30E44E9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{A4FAFE48-709D-4837-8499-30E0D30E44E9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A4FAFE48-709D-4837-8499-30E0D30E44E9}.Release|Any CPU.ActiveCfg = Release|Any CPU

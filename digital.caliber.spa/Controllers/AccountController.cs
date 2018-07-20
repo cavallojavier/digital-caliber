@@ -16,8 +16,8 @@ using Newtonsoft.Json;
 namespace digital.caliber.spa.Controllers
 {
     [Route("api/[controller]")]
-    //[Produces("application/json")]
-    //[ApiController]
+    [Produces("application/json")]
+    [ApiController]
     public class AccountController : Controller
     {
         private readonly IAccountManager _accountManager;

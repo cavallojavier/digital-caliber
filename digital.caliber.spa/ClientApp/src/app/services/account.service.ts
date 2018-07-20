@@ -7,7 +7,7 @@ import { SpinnerService } from './spinner.service';
 
 import { AccountUser } from '../models/account.interface';
 
-import { Observable } from "rxjs";
+import { Observable, of } from "rxjs";
 import { catchError, map, tap } from 'rxjs/operators';
 
 @Injectable()
@@ -70,15 +70,15 @@ export class AccountService extends BaseService implements OnInit{
         
         this.spinner.show();
 
-        return this.http.post<AccountUser>(url, {
+        return this.http.post(url, {
             firstName: account.firstName,
             lastName: account.lastName,
             email: account.email,
             password: password
             })
         .pipe(
-            map((auth:any) => {
-                //let auth = JSON.parse(res);
+            map((res:any) => {
+                let auth = JSON.parse(res);
                 localStorage.setItem('uId', auth.uId);
                 localStorage.setItem('auth_token', auth.auth_token);
 
@@ -107,32 +107,12 @@ export class AccountService extends BaseService implements OnInit{
         let url = '/account/login';
 
         this.spinner.show();
-        return this.http.post(this.baseUrl + url, body)
-        .map((auth: any) => {
-            debugger;
-            localStorage.setItem('uId', auth.uId);
-                localStorage.setItem('auth_token', auth.auth_token);
-
-                this.loggedUser = {
-                    id: auth.uId,
-                    firstName: auth.firstName,
-                    lastName: auth.lastName,
-                    formattedName: auth.formattedName,
-                    email: auth.email
-                }
-
-                localStorage.setItem("user",  JSON.stringify(this.loggedUser));
-                localStorage.setItem('isLoggedIn', 'true');
-        })
-        .catch(this.handleError);
-        
-        /*
         return this.http.post(this.baseUrl + url, {email: email,
             password: password,
             rememberMe: remember})
         .pipe(
-          map((auth:any) => {
-                //let auth = JSON.parse(res);
+          map((res:any) => {
+                let auth = JSON.parse(res);
                 localStorage.setItem('uId', auth.uId);
                 localStorage.setItem('auth_token', auth.auth_token);
 
@@ -148,6 +128,6 @@ export class AccountService extends BaseService implements OnInit{
                 localStorage.setItem('isLoggedIn', 'true');
             }),
             catchError(this.handleError)
-        );*/
+        );
     }
 }
