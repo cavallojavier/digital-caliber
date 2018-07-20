@@ -34,8 +34,8 @@
                         </div>
                     </li>
                     <li>
-                        <span>Contraseña</span>
-                        <input type="password" data-toggle="tooltip" data-placement="left" title="Min length 8 chars and digits are required" class="form-control input-custom" autocomplete="off" required name="ps" [(ngModel)]="password" #ps="ngModel" [ngClass]="{ 'is-invalid': f.submitted && (ps.invalid || passInvalid) }">
+                        <span data-toggle="tooltip" data-placement="left" title="Min length 8 chars and digits are required">Contraseña <b >*</b></span>
+                        <input type="password" class="form-control input-custom" autocomplete="off" required name="ps" [(ngModel)]="password" #ps="ngModel" [ngClass]="{ 'is-invalid': f.submitted && (ps.invalid || passInvalid) }">
                         <div *ngIf="f.submitted && (ps.invalid || passInvalid)" class="invalid-feedback">
                             <div *ngIf="psVal.errors && psVal.errors.required">- Password is required</div>
                             <div *ngIf="passInvalid">- Password validation must match</div>
