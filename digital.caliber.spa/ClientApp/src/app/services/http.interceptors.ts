@@ -11,6 +11,7 @@ import {
 import { Observable, of } from 'rxjs';
 import { tap, catchError, finalize } from "rxjs/operators";
 import { SpinnerService } from './spinner.service';
+import {throwError} from 'rxjs';
 
 @Injectable()
 export class RequestInterceptor implements HttpInterceptor {
@@ -48,7 +49,7 @@ export class RequestInterceptor implements HttpInterceptor {
               
             return of(res);
           } else {
-            return Observable.throw(error);
+            return throwError(error);
           }
         }),
         finalize(() => {

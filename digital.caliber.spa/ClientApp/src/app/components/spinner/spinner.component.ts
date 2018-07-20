@@ -19,7 +19,6 @@ export class SpinnerComponent implements OnDestroy, OnInit {
     }
 
     ngOnInit(): void {
-        console.log(this.visible);
         this._spinnerStateChanged = this._spinnerService.spinnerState
             .subscribe((state: SpinnerState) => {
                 this.visible = state.show;

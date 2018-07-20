@@ -7,7 +7,7 @@ export abstract class BaseService {
     constructor(public baseSpinner: SpinnerService) { }
 
     protected handleError(error: any) {
-        this.baseSpinner.hide();
+        //this.baseSpinner.hide();
         if(error.headers)
         {
             var applicationError = error.headers.get('Application-Error');

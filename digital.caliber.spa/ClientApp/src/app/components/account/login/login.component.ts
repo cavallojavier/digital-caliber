@@ -40,7 +40,7 @@ export class LoginComponent implements OnInit {
             this._router.navigate(['/home']);
         })
         .catch((err: any) => {
-            this.errors = err;
+            this.errors = err.error;
         });
     }
 

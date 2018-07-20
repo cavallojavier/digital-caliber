@@ -9,6 +9,7 @@ import { AccountUser } from '../models/account.interface';
 
 import { Observable, of } from "rxjs";
 import { catchError, map, tap } from 'rxjs/operators';
+import {throwError} from 'rxjs';
 
 @Injectable()
 export class AccountService extends BaseService implements OnInit{
@@ -92,18 +93,11 @@ export class AccountService extends BaseService implements OnInit{
 
                 localStorage.setItem("user",  JSON.stringify(this.loggedUser));
                 localStorage.setItem('isLoggedIn', 'true');
-            }),
-            catchError(this.handleError)
+            })
         );
     }
 
     public login(email: string, password: string, remember: boolean): Observable<any>{
-        let user = {
-            email: email,
-            password: password
-        };
-
-        let body = JSON.stringify(user);
         let url = '/account/login';
 
         this.spinner.show();
@@ -127,7 +121,6 @@ export class AccountService extends BaseService implements OnInit{
                 localStorage.setItem("user",  JSON.stringify(this.loggedUser));
                 localStorage.setItem('isLoggedIn', 'true');
             }),
-            catchError(this.handleError)
         );
     }
 }

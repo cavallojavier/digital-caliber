@@ -57,9 +57,8 @@ namespace digital.caliber.spa.Controllers
                 if (!identityResult.Succeeded)
                 {
                     var error = identityResult.Errors.Any() ? identityResult.Errors.FirstOrDefault().Description : "Error while registering user!";
-                    throw new Exception(error);
+                    return BadRequest(error);
                 }
-                    
 
                 var user = await _accountManager.Authenticate(registerVm.Email, registerVm.Password, false);
 
