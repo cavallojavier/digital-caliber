@@ -31,7 +31,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\digital-caliber.services\digital.caliber.services.csproj" />
+    <ProjectReference Include="..\digital.caliber.model\digital.caliber.model.csproj" />
+    <ProjectReference Include="..\digital.caliber.services\digital.caliber.services.csproj" />
   </ItemGroup>
 
   <Target Name="DebugEnsureNodeEnv" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('$(SpaRoot)node_modules') ">

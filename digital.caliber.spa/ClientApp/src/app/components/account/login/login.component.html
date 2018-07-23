@@ -11,14 +11,16 @@
                 </div>
                 <ul>
                     <li>
-                        <span>Email</span><input type="email" required name="userEmail" class="form-control input-custom" #userEmail="ngModel" [(ngModel)]="mail" [ngClass]="{ 'is-invalid': f.submitted && (userEmail.invalid || mailInvalid) }" >
+                        <span>Email</span>
+                        <input type="email" required name="userEmail" class="form-control input-custom" #userEmail="ngModel" [(ngModel)]="mail" [ngClass]="{ 'is-invalid': f.submitted && (userEmail.invalid || mailInvalid) }" >
                         <div *ngIf="f.submitted && (userEmail.invalid || mailInvalid)" class="invalid-feedback">
                             <div *ngIf="userEmail.errors && userEmail.errors.required">- Email is required</div>
                             <div *ngIf="!(userEmail.errors && userEmail.errors.required)">- Please verify email</div>
                         </div>
                     </li>
                     <li>
-                        <span>Contraseña</span><input autocomplete='current-password' type="password" required name="ps" class="form-control input-custom" #ps="ngModel" [(ngModel)]="password" [ngClass]="{ 'is-invalid': f.submitted && ps.invalid }">
+                        <span>Contraseña</span>
+                        <input autocomplete='current-password' type="password" required name="ps" class="form-control input-custom" #ps="ngModel" [(ngModel)]="password" [ngClass]="{ 'is-invalid': f.submitted && ps.invalid }">
                         <div *ngIf="f.submitted && ps.invalid" class="invalid-feedback">
                             <div *ngIf="ps.errors.required">- Password required</div>
                         </div>

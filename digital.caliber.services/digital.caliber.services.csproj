@@ -10,11 +10,11 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\digital-caliber.model\digital.caliber.model.csproj" />
+    <Folder Include="CalculationTables\" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="CalculationTables\" />
+    <ProjectReference Include="..\digital.caliber.model\digital.caliber.model.csproj" />
   </ItemGroup>
 
 </Project>

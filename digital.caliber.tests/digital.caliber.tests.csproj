@@ -14,8 +14,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\digital-caliber.model\digital.caliber.model.csproj" />
-    <ProjectReference Include="..\digital-caliber.services\digital.caliber.services.csproj" />
+    <ProjectReference Include="..\digital.caliber.model\digital.caliber.model.csproj" />
+    <ProjectReference Include="..\digital.caliber.services\digital.caliber.services.csproj" />
+    <ProjectReference Include="..\digital.caliber.spa\digital.caliber.spa.csproj" />
   </ItemGroup>
 
 </Project>
