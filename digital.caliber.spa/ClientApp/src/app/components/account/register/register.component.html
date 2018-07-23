@@ -1,0 +1,60 @@
+<div class="register">
+    <img class="brand-home" src="../../../../assets/images/brand.png">
+
+    <div class="box col-sm-5">
+        <box-container>
+            <form #f="ngForm" novalidate (ngSubmit)="submitRegister(f)">
+                <h3 class="text-center">REGISTRARSE</h3>
+                <div *ngIf="f.submitted && errors" class="validation-error">
+                    Ocurrio un error al intentar registrarse:
+                    <p>{{errors}}</p>
+                    
+                </div>
+                <ul>
+                    <li>
+                        <span>Nombre</span>
+                        <input type="text" class="form-control input-custom" required name="firstName" [(ngModel)]="user.firstName" #firstName="ngModel" [ngClass]="{ 'is-invalid': f.submitted && (firstName.invalid) }" >
+                        <div *ngIf="f.submitted && (firstName.invalid)" class="invalid-feedback">
+                            <div *ngIf="firstName.errors && firstName.errors.required">- First name is required</div>
+                        </div>
+                    </li>
+                    <li>
+                        <span>Apellido</span>
+                        <input type="text" class="form-control input-custom" required name="lastName" [(ngModel)]="user.lastName" #lastName="ngModel" [ngClass]="{ 'is-invalid': f.submitted && (lastName.invalid) }">
+                        <div *ngIf="f.submitted && (lastName.invalid)" class="invalid-feedback">
+                            <div *ngIf="lastName.errors && lastName.errors.required">- Last name is required</div>
+                        </div>
+                    </li>
+                    <li>
+                        <span>Email</span>
+                        <input autocomplete='email' type="email" class="form-control input-custom" required name="email" [(ngModel)]="user.email" #email="ngModel"  [ngClass]="{ 'is-invalid': f.submitted && (email.invalid || mailInvalid) }" >
+                        <div *ngIf="f.submitted && (email.invalid || mailInvalid)" class="invalid-feedback">
+                            <div *ngIf="email.errors && email.errors.required">- Email is required</div>
+                            <div *ngIf="!(email.errors && email.errors.required)">- Please verify email</div>
+                        </div>
+                    </li>
+                    <li>
+                        <span data-toggle="tooltip" data-placement="left" title="Min length 8 chars and digits are required">Contraseña <b >*</b></span>
+                        <input type="password" class="form-control input-custom" autocomplete="off" required name="ps" [(ngModel)]="password" #ps="ngModel" [ngClass]="{ 'is-invalid': f.submitted && (ps.invalid || passInvalid) }">
+                        <div *ngIf="f.submitted && (ps.invalid || passInvalid)" class="invalid-feedback">
+                            <div *ngIf="psVal.errors && psVal.errors.required">- Password is required</div>
+                            <div *ngIf="passInvalid">- Password validation must match</div>
+                        </div>
+                    </li>
+                    <li>
+                        <span>Confirmacion contraseña</span>
+                        <input type="password" class="form-control input-custom" autocomplete="off" required name="psVal" [(ngModel)]="passwordVal" #psVal="ngModel" [ngClass]="{ 'is-invalid': f.submitted && (psVal.invalid || passInvalid) }">
+                        <div *ngIf="f.submitted && (psVal.invalid || passInvalid)" class="invalid-feedback">
+                            <div *ngIf="psVal.errors && psVal.errors.required">- Password is required</div>
+                            <div *ngIf="passInvalid">- Password validation must match</div>
+                        </div>
+                    </li>
+                </ul>
+                <div class="button-align">
+                    <button type="submit" class="btn btn-outline btn-secondary">Crear</button>
+                </div>
+            </form>
+        </box-container>
+    </div>
+    
+</div>
