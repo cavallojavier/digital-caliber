@@ -1,4 +1,4 @@
-﻿namespace digital.caliber.model.CalcModel
+﻿namespace digital.caliber.model.ViewModels
 {
     public class BoltonTotal
     {

@@ -26,6 +26,7 @@ import { AuthGuard } from './services/auth-guard.service';
 import { ConfigService } from './services/config.service';
 import { SpinnerService } from './services/spinner.service';
 import { AccountService } from './services/account.service';
+import { MeasuresService } from './services/measures.service';
 
 @NgModule({
   declarations: [
@@ -54,6 +55,7 @@ import { AccountService } from './services/account.service';
     SpinnerService,
     AuthGuard,
     AccountService,
+    MeasuresService,
     HttpClient,
     { provide: HTTP_INTERCEPTORS, useClass: RequestInterceptor, multi: true },
     { provide: LOCALE_ID, useValue: 'es' },

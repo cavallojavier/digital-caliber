@@ -25,7 +25,7 @@ namespace digital.caliber.spa.Auth
         {
             var claimsIdentity = new ClaimsIdentity(new GenericIdentity(userName, "Token"), new[]
             {
-                new Claim("id", id),
+                new Claim("uid", id),
                 new Claim("rol", "api_access")
             });
 
@@ -48,17 +48,16 @@ namespace digital.caliber.spa.Auth
             return false;
         }
 
-        public async Task<string> GenerateEncodedToken(string userName, ClaimsIdentity identity)
+        public async Task<string> GenerateEncodedToken(string userName, string userId, ClaimsIdentity identity)
         {
             var claims = new[]
             {
-                new Claim(JwtRegisteredClaimNames.Sub, userName),
+                new Claim(JwtRegisteredClaimNames.Sub, userId),
+                new Claim(JwtRegisteredClaimNames.UniqueName, userName),
                 new Claim(JwtRegisteredClaimNames.Jti, await _jwtOptions.JtiGenerator()),
                 new Claim(JwtRegisteredClaimNames.Iat, ToUnixEpochDate(_jwtOptions.IssuedAt).ToString(), ClaimValueTypes.Integer64),
-                identity.FindFirst("su"),
-                identity.FindFirst("rol"),
-                identity.FindFirst("id")
-            };
+                new Claim(JwtRegisteredClaimNames.Email, userName)
+            }.Union(identity.Claims);
 
             var jwt = new JwtSecurityToken(
                 issuer: _jwtOptions.Issuer,

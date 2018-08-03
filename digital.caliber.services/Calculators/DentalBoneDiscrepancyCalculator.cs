@@ -1,11 +1,11 @@
-﻿
-using digital.caliber.model.CalcModel;
+﻿using digital.caliber.model.Models;
+using digital.caliber.model.ViewModels;
 
 namespace digital.caliber.services.Calculators
 {
     public static class DentalBoneDiscrepancyCalculator
     {
-        public static DentalBoneDiscrepancy GetResult(MouthCalculationEntity mouseMessure, RoothCalculationEntity theethMessure)
+        public static DentalBoneDiscrepancy GetResult(MeasuresMouthViewModel mouseMessure, MeasuresTeethsViewModel theethMessure)
         {
             var bonesSpaces = BonesSpaces.GetBonesCalculation(mouseMessure);
             var theeths = TheethsSum.GetResults(theethMessure);

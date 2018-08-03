@@ -65,7 +65,8 @@ namespace digital.caliber.spa
             // add app services
             services.AddTransient<ICustomLogger, CustomLogger>();
             services.AddTransient<IAccountManager, AccountManager>();
-            
+            services.AddTransient<IMeasureService, MeasureService>();
+
             services.Configure<MvcOptions>(options =>
             {
                 options.Filters.Add(new RequireHttpsAttribute());

@@ -1,10 +1,11 @@
-﻿using digital.caliber.model.CalcModel;
+﻿using digital.caliber.model.Models;
+using digital.caliber.model.ViewModels;
 
 namespace digital.caliber.services.Calculators
 {
     public class TanakaCalculator
     {
-        public static TanakaJohnston GetResult(RoothCalculationEntity theethMessure)
+        public static TanakaJohnston GetResult(MeasuresTeethsViewModel theethMessure)
         {
             var tanakaResult = new TanakaJohnston();
 

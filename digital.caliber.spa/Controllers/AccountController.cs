@@ -69,12 +69,12 @@ namespace digital.caliber.spa.Controllers
 
                 var response = new
                 {
-                    uId = identity.Claims.Single(c => c.Type == "id").Value,
+                    uId = identity.Claims.Single(c => c.Type == "uid").Value,
                     firstName = user.FirstName,
                     lastName = user.LastName,
                     email = user.Email,
                     formattedName = user.FirstName + " " + user.LastName,
-                    auth_token = await _jwtFactory.GenerateEncodedToken(user.Email, identity),
+                    auth_token = await _jwtFactory.GenerateEncodedToken(user.Email, user.Id, identity),
                     expires_in = (int)_jwtOptions.ValidFor.TotalSeconds
                 };
 
@@ -104,12 +104,12 @@ namespace digital.caliber.spa.Controllers
 
                 var response = new
                 {
-                    uId = identity.Claims.Single(c => c.Type == "id").Value,
+                    uId = identity.Claims.Single(c => c.Type == "uid").Value,
                     firstName = user.FirstName,
                     lastName = user.LastName,
                     email = user.Email,
                     formattedName = user.FirstName + " " + user.LastName,
-                    auth_token = await _jwtFactory.GenerateEncodedToken(user.Email, identity),
+                    auth_token = await _jwtFactory.GenerateEncodedToken(user.Email, user.Id, identity),
                     expires_in = (int)_jwtOptions.ValidFor.TotalSeconds
                 };
 

@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using digital.caliber.model.CalcModel;
+using digital.caliber.model.Models;
 
 namespace digital.caliber.services.Calculators
 {
@@ -22,50 +22,50 @@ namespace digital.caliber.services.Calculators
 
         public decimal SumSuperiorFour { get; set; }
 
-        public static TheethsSum GetResults(RoothCalculationEntity theethMessure)
+        public static TheethsSum GetResults(MeasuresTeethsViewModel theethMessure)
         {
             var result = new TheethsSum();
 
             var incrementalSuperiorListToSum = new List<decimal>()
-                {theethMessure.Tooth11.Value, theethMessure.Tooth12.Value, theethMessure.Tooth21.Value, theethMessure.Tooth22.Value};
+                {theethMessure.Tooth11, theethMessure.Tooth12, theethMessure.Tooth21, theethMessure.Tooth22};
 
             var incrementalInferiorListToSum = new List<decimal>()
-                {theethMessure.Tooth41.Value, theethMessure.Tooth42.Value, theethMessure.Tooth31.Value, theethMessure.Tooth32.Value};
+                {theethMessure.Tooth41, theethMessure.Tooth42, theethMessure.Tooth31, theethMessure.Tooth32};
             
             // Obtain Sum of minor table
             result.SumSuperiorFour = GetSum(incrementalSuperiorListToSum);
             result.SumInferiorFour = GetSum(incrementalInferiorListToSum);
 
             // Add fields of next table
-            incrementalSuperiorListToSum.Add(theethMessure.Tooth13.Value);
-            incrementalSuperiorListToSum.Add(theethMessure.Tooth23.Value);
+            incrementalSuperiorListToSum.Add(theethMessure.Tooth13);
+            incrementalSuperiorListToSum.Add(theethMessure.Tooth23);
 
-            incrementalInferiorListToSum.Add(theethMessure.Tooth33.Value);
-            incrementalInferiorListToSum.Add(theethMessure.Tooth43.Value);
+            incrementalInferiorListToSum.Add(theethMessure.Tooth33);
+            incrementalInferiorListToSum.Add(theethMessure.Tooth43);
 
             result.SumSuperiorSix = GetSum(incrementalSuperiorListToSum);
             result.SumInferiorSix = GetSum(incrementalInferiorListToSum);
 
             // Add fields of next table
-            incrementalSuperiorListToSum.Add(theethMessure.Tooth14.Value);
-            incrementalSuperiorListToSum.Add(theethMessure.Tooth15.Value);
-            incrementalSuperiorListToSum.Add(theethMessure.Tooth24.Value);
-            incrementalSuperiorListToSum.Add(theethMessure.Tooth25.Value);
+            incrementalSuperiorListToSum.Add(theethMessure.Tooth14);
+            incrementalSuperiorListToSum.Add(theethMessure.Tooth15);
+            incrementalSuperiorListToSum.Add(theethMessure.Tooth24);
+            incrementalSuperiorListToSum.Add(theethMessure.Tooth25);
 
-            incrementalInferiorListToSum.Add(theethMessure.Tooth34.Value);
-            incrementalInferiorListToSum.Add(theethMessure.Tooth35.Value);
-            incrementalInferiorListToSum.Add(theethMessure.Tooth44.Value);
-            incrementalInferiorListToSum.Add(theethMessure.Tooth45.Value);
+            incrementalInferiorListToSum.Add(theethMessure.Tooth34);
+            incrementalInferiorListToSum.Add(theethMessure.Tooth35);
+            incrementalInferiorListToSum.Add(theethMessure.Tooth44);
+            incrementalInferiorListToSum.Add(theethMessure.Tooth45);
 
             result.SumSuperiorTen = GetSum(incrementalSuperiorListToSum);
             result.SumInferiorTen = GetSum(incrementalInferiorListToSum);
 
             // Add fields of next table
-            incrementalSuperiorListToSum.Add(theethMessure.Tooth16.Value);
-            incrementalSuperiorListToSum.Add(theethMessure.Tooth26.Value);
+            incrementalSuperiorListToSum.Add(theethMessure.Tooth16);
+            incrementalSuperiorListToSum.Add(theethMessure.Tooth26);
 
-            incrementalInferiorListToSum.Add(theethMessure.Tooth36.Value);
-            incrementalInferiorListToSum.Add(theethMessure.Tooth46.Value);
+            incrementalInferiorListToSum.Add(theethMessure.Tooth36);
+            incrementalInferiorListToSum.Add(theethMessure.Tooth46);
 
             result.SumSuperiorTwelve = GetSum(incrementalSuperiorListToSum);
             result.SumInferiorTwelve = GetSum(incrementalInferiorListToSum);
@@ -99,21 +99,21 @@ namespace digital.caliber.services.Calculators
         /// </summary>
         /// <param name="mouthCalculation">The mouth calculation.</param>
         /// <returns></returns>
-        public static MouthSum GetResults(MouthCalculationEntity mouthCalculation)
+        public static MouthSum GetResults(MeasuresMouthViewModel mouthCalculation)
         {
             var result = new MouthSum();
 
-            result.RightSuperiorAvailableSpace = mouthCalculation.RightSuperiorCanine.Value +
-                                                 mouthCalculation.RightSuperiorPremolar.Value;
+            result.RightSuperiorAvailableSpace = mouthCalculation.RightSuperiorCanine +
+                                                 mouthCalculation.RightSuperiorPremolar;
 
-            result.RightInferiorAvailableSpace = mouthCalculation.RightInferiorCanine.Value +
-                                                 mouthCalculation.RightInferiorPremolar.Value;
+            result.RightInferiorAvailableSpace = mouthCalculation.RightInferiorCanine +
+                                                 mouthCalculation.RightInferiorPremolar;
 
-            result.LeftSuperiorAvailableSpace = mouthCalculation.LeftSuperiorCanine.Value +
-                                                 mouthCalculation.LeftSuperiorPremolar.Value;
+            result.LeftSuperiorAvailableSpace = mouthCalculation.LeftSuperiorCanine +
+                                                 mouthCalculation.LeftSuperiorPremolar;
 
-            result.LeftInferiorAvailableSpace = mouthCalculation.LeftInferiorCanine.Value +
-                                                 mouthCalculation.LeftInferiorPremolar.Value;
+            result.LeftInferiorAvailableSpace = mouthCalculation.LeftInferiorCanine +
+                                                 mouthCalculation.LeftInferiorPremolar;
 
             return result;
         }

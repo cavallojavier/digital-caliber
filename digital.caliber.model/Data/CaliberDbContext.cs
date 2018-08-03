@@ -13,6 +13,8 @@ namespace digital.caliber.model.Data
 
         public DbSet<ApplicationUser> ApplicationUsers { get; set; }
 
+        public DbSet<Measures> Measures { get; set; }
+
         public DbSet<Log> Logs { get; set; }
 
         //public DbSet<BoltonTotalRef> BoltonTotalRef { get; set; }

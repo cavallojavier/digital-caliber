@@ -22,12 +22,35 @@
     <PackageReference Include="FluentValidation.AspNetCore" Version="7.6.104" />
     <PackageReference Include="JetBrains.Annotations" Version="11.1.0" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="2.1.0" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.1.0" />
   </ItemGroup>
 
   <ItemGroup>
     <!-- Don't publish the SPA source files, but do show them in the project files list -->
+    <Compile Remove="ClientApp\src\assets\images\social\**" />
     <Content Remove="$(SpaRoot)**" />
+    <Content Remove="ClientApp\src\assets\images\social\**" />
     <None Include="$(SpaRoot)**" Exclude="$(SpaRoot)node_modules\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Remove="ClientApp\src\assets\images\social\**" />
+    <None Remove="ClientApp\src\assets\images\social\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="ClientApp\src\assets\images\background\chair-back.jpg" />
+    <None Remove="ClientApp\src\assets\images\background\chair-back.jpg" />
+    <None Remove="ClientApp\src\assets\images\background\chair-front.jpg" />
+    <None Remove="ClientApp\src\assets\images\background\chair-front.jpg" />
+    <None Remove="ClientApp\src\assets\images\background\chair-top.jpg" />
+    <None Remove="ClientApp\src\assets\images\background\chair-top.jpg" />
+    <None Remove="ClientApp\src\assets\images\mouse\down-arch.png" />
+    <None Remove="ClientApp\src\assets\images\mouse\down-arch.png" />
+    <None Remove="ClientApp\src\assets\images\mouse\Mouth.png" />
+    <None Remove="ClientApp\src\assets\images\mouse\Mouth.png" />
+    <None Remove="ClientApp\src\assets\images\mouse\upper-arch.png" />
+    <None Remove="ClientApp\src\assets\images\mouse\upper-arch.png" />
   </ItemGroup>
 
   <ItemGroup>

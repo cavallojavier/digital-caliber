@@ -1,11 +1,105 @@
-.mouse-section{
-    margin: 0rem 15px 2rem 15px;
-    padding: 2rem;
+box-container{
+    margin: 2rem;
+}
 
-    .input-number{
-        width: 70px;
+.disabled{
+    opacity: .6;
+    cursor: default !important;
+}
+
+i.fas{
+    font-size: 4rem;
+    position: absolute;
+    top: 50%;
+    cursor: pointer;
+
+    &.arrow-left{
+        right: 0;
+    }
+    &.arrow-right{
+        left: 0;
+    }
+}
+
+.input-number{
+    width: 50px;
+    height: 35px;
+    margin-right: 6px;
+    font-size: 12px;
+}
+
+.patient-section{
+    .box-container{
+        padding: 1rem 0rem;
+        display: flex;
+        margin: 0 auto;
+    }
+    .patient-info{
+        display: flex;
+        flex-direction: row;
+        margin: auto;
+
+        div{
+            margin: 5px;
+            display: inherit;
+            span{
+                margin: 5px 10px;
+                vertical-align: middle;
+                text-align: center;
+            }
+    
+            input{
+                float: right;
+            }
+        }
+        
+    }
+}
+
+.teeth-section{
+    .teeth-sup{
+        background: url("../../../assets/images/mouse/upper-theet.png") no-repeat center top;
+        min-height: 180px;
+        background-size: contain;
+        position: relative;
+        margin: .5rem auto;
+        max-width: 95%;
     }
 
+    .inputs-wrapper{
+        position: relative;
+        display: flex;
+        margin: 5px 0;
+        .inputs-container {
+            margin: 0 auto;
+        }
+    }
+
+    .teeth-inf{
+        background: url("../../../assets/images/mouse/down-theet.png") no-repeat center bottom;
+        min-height: 180px;
+        background-size: contain;
+        position: relative;
+        margin: .5rem auto;
+        max-width: 95%;
+
+        .inputs-container{
+            position: absolute;
+            top: 0;
+            left: 1.5rem;
+        }
+    }
+}
+.mouse-section{
+    
+    .input-number{
+        width: 60px;
+    }
+    
+    .button-align{
+        float: right;
+        margin: 1rem;
+    }
     .mouse-sup{
         margin: 2rem 0;
         min-height: 250px;

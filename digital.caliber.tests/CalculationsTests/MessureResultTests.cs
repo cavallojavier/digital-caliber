@@ -1,4 +1,4 @@
-﻿using digital.caliber.model.CalcModel;
+﻿using digital.caliber.model.Models;
 using digital.caliber.services;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
@@ -7,8 +7,8 @@ namespace digital.caliber.tests.CalculationsTests
     [TestClass]
     public class MessureResultTests : BaseTest
     {
-        private MouthCalculationEntity mouthMessure;
-        private RoothCalculationEntity theethMessure;
+        private MeasuresMouthViewModel mouthMessure;
+        private MeasuresTeethsViewModel theethMessure;
 
         [TestInitialize]
         public void TestInit()

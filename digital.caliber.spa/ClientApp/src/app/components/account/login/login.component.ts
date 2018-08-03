@@ -37,7 +37,7 @@ export class LoginComponent implements OnInit {
         this._accountService.login(this.mail, this.password, this.remember)
         .toPromise()
         .then(() => {
-            this._router.navigate(['/home']);
+            this._router.navigate(['/measures']);
         })
         .catch((err: any) => {
             this.errors = err.error;

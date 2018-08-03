@@ -1,4 +1,5 @@
-﻿using digital.caliber.model.CalcModel;
+﻿using digital.caliber.model.Models;
+using digital.caliber.model.ViewModels;
 using digital.caliber.services.CalculationTables;
 
 namespace digital.caliber.services.Calculators
@@ -13,7 +14,7 @@ namespace digital.caliber.services.Calculators
         /// </summary>
         /// <param name="theethMessure">The theeth messure.</param>
         /// <returns></returns>
-        public static BoltonTotal GetBoltonTotalResult(RoothCalculationEntity theethMessure)
+        public static BoltonTotal GetBoltonTotalResult(MeasuresTeethsViewModel theethMessure)
         {
             var result = new BoltonTotal();
 
@@ -40,7 +41,7 @@ namespace digital.caliber.services.Calculators
         /// </summary>
         /// <param name="theethMessure">The theeth messure.</param>
         /// <returns></returns>
-        public static BoltonPreviousRelation GetBoltonPreviousResult(RoothCalculationEntity theethMessure)
+        public static BoltonPreviousRelation GetBoltonPreviousResult(MeasuresTeethsViewModel theethMessure)
         {
             var result = new BoltonPreviousRelation();
 

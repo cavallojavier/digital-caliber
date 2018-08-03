@@ -1,4 +1,4 @@
-﻿using digital.caliber.model.CalcModel;
+﻿using digital.caliber.model.Models;
 using digital.caliber.services.Calculators;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
@@ -7,7 +7,7 @@ namespace digital.caliber.tests.CalculationsTests.TanakaTests
     [TestClass]
     public class TanakaJohnstonTests : BaseTest
     {
-        private RoothCalculationEntity theethMessure;
+        private MeasuresTeethsViewModel theethMessure;
 
         [TestInitialize]
         public void TestInit()

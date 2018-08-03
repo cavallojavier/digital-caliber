@@ -1,6 +1,6 @@
 ﻿using System.Globalization;
 using System.Threading;
-using digital.caliber.model.CalcModel;
+using digital.caliber.model.Models;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace digital.caliber.tests.CalculationsTests
@@ -24,9 +24,9 @@ namespace digital.caliber.tests.CalculationsTests
         /// Sets the rooth theet default messures.
         /// </summary>
         /// <returns></returns>
-        public RoothCalculationEntity SetRoothTheetDefaultMessures()
+        public MeasuresTeethsViewModel SetRoothTheetDefaultMessures()
         {
-            var roothMessures = new RoothCalculationEntity();
+            var roothMessures = new MeasuresTeethsViewModel();
 
             roothMessures.Tooth11 = 8;
             roothMessures.Tooth12 = 6;
@@ -66,9 +66,9 @@ namespace digital.caliber.tests.CalculationsTests
         /// <summary>
         /// Sets the mouth default messures.
         /// </summary>
-        public MouthCalculationEntity SetMouthDefaultMessures()
+        public MeasuresMouthViewModel SetMouthDefaultMessures()
         {
-            var mouthMessure = new MouthCalculationEntity();
+            var mouthMessure = new MeasuresMouthViewModel();
 
             mouthMessure.RightSuperiorIncisive = 4;
             mouthMessure.RightSuperiorCanine = 8;

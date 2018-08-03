@@ -15,8 +15,6 @@
     line-height: 1.4 !important;
     width: 100%;
     overflow: auto;
-    
-    
 }
 
 .container-fluid{
@@ -41,7 +39,7 @@
 @media (min-width: 768px) {
     .body-content {
         //padding-top: 50px;
-        padding: 0px 8rem 0 8rem;
+        padding: 0px 4rem 0 4rem;
     }
 }
 
@@ -49,6 +47,6 @@
     /* On small screens, the nav menu spans the full width of the screen. Leave a space for it. */
     .body-content {
         //padding-top: 50px;
-        padding: 50px 5rem 0 5rem;
+        padding: 50px 2rem 0 2rem;
     }
 }

@@ -1,5 +1,6 @@
 ﻿using System;
-using digital.caliber.model.CalcModel;
+using digital.caliber.model.Models;
+using digital.caliber.model.ViewModels;
 
 namespace digital.caliber.services.Calculators
 {
@@ -10,7 +11,7 @@ namespace digital.caliber.services.Calculators
         /// </summary>
         /// <param name="theethMessure">The theeth messure.</param>
         /// <returns></returns>
-        public static Pont GetResult(RoothCalculationEntity theethMessure)
+        public static Pont GetResult(MeasuresTeethsViewModel theethMessure)
         {
             var pontResult = new Pont();
 

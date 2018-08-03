@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using digital.caliber.model.Data;
 
 namespace digital.caliber.model.Migrations
 {
     [DbContext(typeof(CaliberDbContext))]
-    partial class CaliberDbContextModelSnapshot : ModelSnapshot
+    [Migration("20180803161027_measures")]
+    partial class measures
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

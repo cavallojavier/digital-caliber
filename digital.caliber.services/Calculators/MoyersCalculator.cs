@@ -1,4 +1,5 @@
-﻿using digital.caliber.model.CalcModel;
+﻿using digital.caliber.model.Models;
+using digital.caliber.model.ViewModels;
 using digital.caliber.services.CalculationTables;
 
 namespace digital.caliber.services.Calculators
@@ -11,7 +12,7 @@ namespace digital.caliber.services.Calculators
         /// <param name="mouthMessure">The mouth messure.</param>
         /// <param name="theethMessure">The theeth messure.</param>
         /// <returns></returns>
-        public static Moyers GetResult(MouthCalculationEntity mouthMessure, RoothCalculationEntity theethMessure)
+        public static Moyers GetResult(MeasuresMouthViewModel mouthMessure, MeasuresTeethsViewModel theethMessure)
         {
             var result = new Moyers();
 
