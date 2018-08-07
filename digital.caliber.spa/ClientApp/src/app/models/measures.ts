@@ -1,12 +1,25 @@
-﻿export class measures {
+﻿export class measuresResume {
+    public id: number;
+    public hcNumber: string;
+    public patientName: string;
+    public dateMeasure: Date;
+
+    constructor() {
+        this.hcNumber = '';
+        this.patientName = '';
+    }
+}
+
+export class measures {
+    public id: number;
     public hcNumber: string;
     public patientName: string;
     public mouth: mouth;
-    public teeth: teeths;
+    public teeths: teeths;
 
     constructor() {
         this.mouth = new mouth;
-        this.teeth = new teeths;
+        this.teeths = new teeths;
         this.hcNumber = '';
         this.patientName = '';
     }

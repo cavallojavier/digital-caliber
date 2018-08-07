@@ -19,7 +19,7 @@ namespace digital.caliber.model.Models
         [MaxLength(50), Required]
         public string HcNumber { get; set; }
 
-        public DateTime DateMessure { get; set; }
+        public DateTime DateMeasure { get; set; }
 
         public virtual MeasuresTeeths Teeths { get; set; }
 

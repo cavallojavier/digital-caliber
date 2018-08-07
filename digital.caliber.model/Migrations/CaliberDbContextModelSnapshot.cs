@@ -109,7 +109,7 @@ namespace digital.caliber.model.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<DateTime>("DateMessure");
+                    b.Property<DateTime>("DateMeasure");
 
                     b.Property<string>("HcNumber")
                         .IsRequired()

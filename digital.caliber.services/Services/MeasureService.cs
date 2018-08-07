@@ -22,11 +22,16 @@ namespace digital.caliber.services.Services
             _logger = logger;
         }
 
-        public async Task<List<MeasureViewModel>> GetMeasures(string userId)
+        public async Task<List<MeasureResumeViewModel>> GetMeasures(string userId, int? maxResults = null)
         {
-            var result = await _context.Measures.Where(x => x.UserId == userId).ToListAsync();
+            var query = _context.Measures.Where(x => x.UserId == userId)
+                            .OrderByDescending(x => x.Id).AsQueryable();
 
-            return MeasureViewModel.ToViewModel(result);
+            if (maxResults == null || maxResults.GetValueOrDefault() == 0)
+                return MeasureResumeViewModel.ToViewModel(await query.ToListAsync()).ToList();
+
+            var result = await query.Take(maxResults.GetValueOrDefault()).ToListAsync();
+            return MeasureResumeViewModel.ToViewModel(result).ToList();
         }
 
         public async Task<MeasureViewModel> GetMeasure(string userId, int id)
@@ -39,14 +44,14 @@ namespace digital.caliber.services.Services
             return MeasureViewModel.ToViewModel(result);
         }
 
-        public async Task SaveMeasure(string userId, MeasureViewModel viewModel)
+        public async Task<int> SaveMeasure(string userId, MeasureViewModel viewModel)
         {
             var model = new Measures()
             {
                 UserId = userId,
                 PatientName = viewModel.PatientName,
                 HcNumber = viewModel.HcNumber,
-                DateMessure = DateTime.UtcNow,
+                DateMeasure = DateTime.UtcNow,
                 Mouth = new MeasuresMouth()
                 {
                     LeftInferiorCanine = viewModel.Mouth.LeftInferiorCanine,
@@ -109,16 +114,8 @@ namespace digital.caliber.services.Services
                 await _context.Measures.AddAsync(model);
             }
 
-            try
-            {
-                
-                await _context.SaveChangesAsync();
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine(e);
-                throw;
-            }
+            await _context.SaveChangesAsync();
+            return model.Id;
         }
 
         public async Task DeleteMeasure(string userId, int id)
@@ -130,6 +127,24 @@ namespace digital.caliber.services.Services
 
             _context.Measures.Remove(measure);
             await _context.SaveChangesAsync();
+        }
+
+        public async Task<ResultsMeasures> GetResult(string userId, int id)
+        {
+            var data = await _context.Measures
+                .Include(x => x.Mouth)
+                .Include(x => x.Teeths)
+                .FirstOrDefaultAsync(x => x.UserId == userId && x.Id == id);
+
+            var model = MeasureViewModel.ToViewModel(data);
+            var result = MeasuresResultsProvider.GetResult(model.Mouth, model.Teeths);
+
+            result.Id = data.Id;
+            result.HcNumber = data.HcNumber;
+            result.PatientName = data.PatientName;
+            result.DateMeasure = data.DateMeasure;
+
+            return result;
         }
     }
 }

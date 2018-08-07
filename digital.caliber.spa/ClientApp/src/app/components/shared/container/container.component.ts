@@ -5,7 +5,7 @@ import { Component } from '@angular/core';
     templateUrl: './container.component.html',
     styleUrls: ['./container.component.scss']
 })
-/** candidate-home component*/
+
 export class ContainerComponent {
 
     constructor() { }

@@ -16,28 +16,28 @@ namespace digital.caliber.model.ViewModels
         
         public decimal Bones33To43 { get; set; }
 
-        public static BonesSpaces GetBonesCalculation(MeasuresMouthViewModel mouseMessure)
+        public static BonesSpaces GetBonesCalculation(MeasuresMouthViewModel mouseMeasure)
         {
             var bonesSpaces = new BonesSpaces
             {
-                PerineoSuperiorArch = mouseMessure.LeftSuperiorCanine + mouseMessure.LeftSuperiorIncisive +
-                                      mouseMessure.LeftSuperiorPremolar +
-                                      mouseMessure.RightSuperiorCanine +
-                                      mouseMessure.RightSuperiorIncisive +
-                                      mouseMessure.RightSuperiorPremolar,
-                PerineoInferiorArch = mouseMessure.LeftInferiorCanine + mouseMessure.LeftInferiorIncisive +
-                                      mouseMessure.LeftInferiorPremolar +
-                                      mouseMessure.RightInferiorCanine +
-                                      mouseMessure.RightInferiorIncisive +
-                                      mouseMessure.RightInferiorPremolar,
+                PerineoSuperiorArch = mouseMeasure.LeftSuperiorCanine + mouseMeasure.LeftSuperiorIncisive +
+                                      mouseMeasure.LeftSuperiorPremolar +
+                                      mouseMeasure.RightSuperiorCanine +
+                                      mouseMeasure.RightSuperiorIncisive +
+                                      mouseMeasure.RightSuperiorPremolar,
+                PerineoInferiorArch = mouseMeasure.LeftInferiorCanine + mouseMeasure.LeftInferiorIncisive +
+                                      mouseMeasure.LeftInferiorPremolar +
+                                      mouseMeasure.RightInferiorCanine +
+                                      mouseMeasure.RightInferiorIncisive +
+                                      mouseMeasure.RightInferiorPremolar,
                 SuperiorBonesIntercanine =
-                    mouseMessure.LeftSuperiorIncisive + mouseMessure.RightSuperiorIncisive,
+                    mouseMeasure.LeftSuperiorIncisive + mouseMeasure.RightSuperiorIncisive,
                 InferiorBonesIntercanine =
-                    mouseMessure.LeftInferiorIncisive + mouseMessure.RightInferiorIncisive,
-                Bones13To23 = mouseMessure.LeftSuperiorIncisive + mouseMessure.LeftSuperiorCanine +
-                              mouseMessure.RightSuperiorIncisive + mouseMessure.RightSuperiorCanine,
-                Bones33To43 = mouseMessure.LeftInferiorIncisive + mouseMessure.LeftInferiorCanine +
-                              mouseMessure.RightInferiorIncisive + mouseMessure.RightInferiorCanine
+                    mouseMeasure.LeftInferiorIncisive + mouseMeasure.RightInferiorIncisive,
+                Bones13To23 = mouseMeasure.LeftSuperiorIncisive + mouseMeasure.LeftSuperiorCanine +
+                              mouseMeasure.RightSuperiorIncisive + mouseMeasure.RightSuperiorCanine,
+                Bones33To43 = mouseMeasure.LeftInferiorIncisive + mouseMeasure.LeftInferiorCanine +
+                              mouseMeasure.RightInferiorIncisive + mouseMeasure.RightInferiorCanine
             };
 
             return bonesSpaces;

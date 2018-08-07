@@ -14,10 +14,10 @@ namespace digital.caliber.model.Migrations
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    UserId = table.Column<string>(nullable: false),
+                    UserId = table.Column<string>(nullable: true),
                     PatientName = table.Column<string>(maxLength: 255, nullable: false),
                     HcNumber = table.Column<string>(maxLength: 50, nullable: false),
-                    DateMessure = table.Column<DateTime>(nullable: false)
+                    DateMeasure = table.Column<DateTime>(nullable: false)
                 },
                 constraints: table =>
                 {

@@ -1,10 +1,10 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
-import { Router, ActivatedRoute } from '@angular/router';
-import { Form } from '@angular/forms';
-import { SpinnerService } from '../../services/spinner.service';
-import { MeasuresService } from '../../services/measures.service';
+import { Router, ActivatedRoute, Params } from '@angular/router';
+import { NgForm } from '@angular/forms';
 
-import { measures } from '../../models/measures';
+import { MeasuresService } from '../../../services/measures.service';
+
+import { measures } from '../../../models/measures';
 
 @Component({
     selector: 'measures',
@@ -12,14 +12,15 @@ import { measures } from '../../models/measures';
     styleUrls: ['./measures.component.scss']
 })
 /** candidate-home component*/
-export class MeasureComponent {
+export class MeasureComponent implements OnInit {
     errors: string;
     measures: measures;
     step: number = 1;
-    @ViewChild('f') form: Form;
+    @ViewChild(NgForm) form;
+    private sub: any;
+
     constructor(private _router: Router,
                 private _routeQuery: ActivatedRoute,
-                private _spinner: SpinnerService,
                 private _measureService: MeasuresService) { 
                     this.errors = '';
                     this.measures = new measures();
@@ -27,12 +28,27 @@ export class MeasureComponent {
 
     /** Called by Angular after candidate.join component initialized */
     ngOnInit(): void {
-        
+        this.sub = this._routeQuery.params.subscribe((params: Params) => {
+            
+            let measureId = +params['id'];
+            if(measureId){
+                this._measureService.getMeasure(measureId)
+                .toPromise()
+                .then(data => {
+                    this.measures = data;
+                });
+            }
+        });
+    }
+
+    ngOnDestroy() {
+        this.sub.unsubscribe();
     }
 
     //Steps: 1: (teeth) - 2: (mouth) - 3: (results)
     increaseStep(e): void{
         e.preventDefault();
+        
         if(!this.form.valid){
             this.form.submitted = true;
             return;
@@ -53,8 +69,9 @@ export class MeasureComponent {
         
         this._measureService.saveMeasure(this.measures)
         .toPromise()
-        .then(() => {
+        .then((data: number) => {
             console.log('measure successfully saved!');
+            this._router.navigate(['./orthodontics/results', data]);  
         })
         .catch((err: any) => {
             this.errors = err.error;

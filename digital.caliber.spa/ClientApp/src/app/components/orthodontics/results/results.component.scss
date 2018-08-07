@@ -1,0 +1,87 @@
+.box-results{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    
+    .box-result{
+        display: flex;
+        flex-direction: column;
+        flex-grow: 1;
+        flex-shrink: 0;
+        flex-basis: 30%;
+        margin: .5rem;
+
+        h3{
+            text-align: center;
+        }
+        h4{
+            font-size: 1.5rem;
+            text-align: center;
+        }
+
+        .box-content{
+            display: flex;
+            flex-direction: column;
+
+            &.rowed{
+                flex-direction: row;
+            }
+
+            button{
+                margin: 1rem;
+            }
+        }
+    }
+}
+
+.item-result{
+    display: flex;
+    flex-direction: row;
+
+    span{
+        font-weight: bold;
+        text-decoration: underline;
+
+        &:last-child{
+            font-weight: 300;
+            text-decoration: none;
+            padding-left: 1rem;
+        }
+    }
+}
+
+.item-title{
+    font-weight: bold;
+    text-decoration: underline;
+}
+.item-val{
+    font-weight: 300;
+}
+
+.patient-section{
+    .box-container{
+        padding: 1rem 0rem;
+        display: flex;
+        margin: 0 auto;
+    }
+    .patient-info{
+        display: flex;
+        flex-direction: row;
+        margin: auto;
+
+        div{
+            margin: 5px;
+            display: inherit;
+            span{
+                margin: 5px 10px;
+                vertical-align: middle;
+                text-align: center;
+            }
+    
+            input{
+                float: right;
+            }
+        }
+        
+    }
+}

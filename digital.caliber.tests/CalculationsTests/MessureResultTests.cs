@@ -19,9 +19,7 @@ namespace digital.caliber.tests.CalculationsTests
         [TestMethod]
         public void GetResultShouldSuccess()
         {
-            var provider = new MessuresResultsProvider(mouthMessure, theethMessure);
-
-            var results = provider.GetResult();
+            var results = MeasuresResultsProvider.GetResult(mouthMessure, theethMessure);
 
             var moyers = results.Moyers;
 

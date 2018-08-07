@@ -50,7 +50,7 @@ export class RegisterComponent implements OnInit {
         this._accountService.register(this.user, this.password)
         .toPromise()
         .then(() => {
-            this._router.navigate(['/home']);
+            this._router.navigate(['/orthodontics']);
         })
         .catch((err: any) => {
             this.errors = err.error;

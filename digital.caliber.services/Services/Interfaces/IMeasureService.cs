@@ -8,12 +8,14 @@ namespace digital.caliber.services.Services
 {
     public interface IMeasureService
     {
-        Task<List<MeasureViewModel>> GetMeasures(string userId);
+        Task<List<MeasureResumeViewModel>> GetMeasures(string userId, int? maxResults);
 
         Task<MeasureViewModel> GetMeasure(string userId, int id);
 
-        Task SaveMeasure(string userId, MeasureViewModel viewModel);
+        Task<int> SaveMeasure(string userId, MeasureViewModel viewModel);
 
         Task DeleteMeasure(string userId, int id);
+
+        Task<ResultsMeasures> GetResult(string userId, int id);
     }
 }

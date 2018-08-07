@@ -1,0 +1,16 @@
+<div class="modal fade" id="{{modalId}}" role="dialog">
+  <div class="modal-dialog">
+  
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <i class="modal-logo-icon pull-left"></i>
+        <h3 class="modal-title tc-purple" *ngIf="modalTitle">{{ modalTitle }}</h3>
+        <button class="close pull-right" data-dismiss="modal" type="button">×</button>
+      </div>
+      <div class="modal-body">
+          <ng-content></ng-content>
+      </div>
+    </div>
+  </div>
+</div>

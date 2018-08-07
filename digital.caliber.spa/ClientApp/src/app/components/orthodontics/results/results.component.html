@@ -1,0 +1,77 @@
+<div class="row">
+    <div class="col patient-section">
+        <div class="box-container">
+            <div class="patient-info">
+                <div class="item-result"><span>Paciente: </span><span>{{result.patientName}}</span></div>
+                <div class="item-result"><span>N° HC: </span><span>{{result.hcNumber}}</span></div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="box-results">
+    <box-container class="box-result">
+        <h3>Bolton</h3>
+        <div class="box-content">
+            <!--
+            {{result.boltonTotal.isSuperiorExcess ? 'Exceso Superior' : 'Exceso inferior' }}
+            {{result.boltonTotal.isSuperiorExcess ? 'Exceso Superior' : 'Exceso inferior' }}
+            -->
+            <div class="item-result"><span>Total -> : </span><span>{{result.boltonTotal.total}} (mm)</span></div>
+            <div class="item-result"><span>Anterior -> : </span><span>{{result.boltonTotal.total}} (mm)</span></div>
+        </div>  
+    </box-container>
+    <box-container class="box-result">
+        <h3>Discrepancia</h3>
+        <h4>Oseo-Dentaria</h4>
+        <div class="box-content">
+            <div class="item-result"><span>Superior: </span><span>{{result.dentalBoneDiscrepancy.superior}} (mm)</span></div>
+            <div class="item-result"><span>Inferior: </span><span>{{result.dentalBoneDiscrepancy.inferior}} (mm)</span></div>
+            <div class="item-result"><span>Antero superior: </span><span>{{result.dentalBoneDiscrepancy.superiorAntero}} (mm)</span></div>
+            <div class="item-result"><span>Antero inferior: </span><span>{{result.dentalBoneDiscrepancy.inferiorAntero}} (mm)</span></div>
+            <div class="item-result"><span>Incisivos inferior: </span><span>{{result.dentalBoneDiscrepancy.inferiorIncisives}} (mm)</span></div>
+        </div>  
+    </box-container>
+    <box-container class="box-result">
+        <h3>Moyers </h3>
+        <h4>Prediccion de discrepancias</h4>
+        <div class="box-content">
+            <div class="row">
+                <div class="col"></div>
+                <div class="col"><span class="item-title">Derecho</span></div>
+                <div class="col"><span class="item-title">Izquierdo</span></div>
+            </div>
+            <div class="row">
+                <div class="col"><span class="item-title">Superiores</span></div>
+                <div class="col"><span class="item-val">{{result.moyers.rightSuperior}} (mm)</span></div>
+                <div class="col"><span class="item-val">{{result.moyers.leftSuperior}} (mm)</span></div>
+            </div>
+            <div class="row">
+                <div class="col"><span class="item-title">Inferiores</span></div>
+                <div class="col"><span class="item-val">{{result.moyers.rightInferior}} (mm)</span></div>
+                <div class="col"><span class="item-val">{{result.moyers.leftInferior}} (mm)</span></div>
+            </div>
+        </div>  
+    </box-container>
+    <box-container class="box-result">
+        <h3>Pont</h3>
+        <div class="box-content">
+            <div class="item-result"><span>14 a 24: </span><span>{{result.pont.pont14To24}} (mm)</span></div>
+            <div class="item-result"><span>16 a 26: </span><span>{{result.pont.pont16To26}} (mm)</span></div>
+            <div class="item-result"><span>Long. Arco: </span><span>{{result.pont.archLong}} (mm)</span></div>
+        </div>  
+    </box-container>
+    <box-container class="box-result">
+        <h3>Tanaka</h3>
+        <div class="box-content">
+            <div class="item-result"><span>Superiores: </span><span>{{result.tanaka.superior}} (mm)</span></div>
+            <div class="item-result"><span>Inferiores: </span><span>{{result.tanaka.inferior}} (mm)</span></div>
+        </div>  
+    </box-container>
+    <box-container class="box-result">
+        <div class="box-content rowed">
+            <button type="button" class="btn btn-secondary" (click)="exportExcel()">Excel</button>
+            <button type="button" class="btn btn-secondary" (click)="exportPdf()">Pdf</button>
+            <button type="button" class="btn btn-secondary" (click)="goBack()">Volver</button>
+        </div>
+    </box-container>
+</div>

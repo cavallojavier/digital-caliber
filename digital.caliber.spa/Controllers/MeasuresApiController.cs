@@ -23,12 +23,12 @@ namespace digital.caliber.spa.Controllers
             _userManager = userManager;
         }
 
-        [HttpGet]
-        public async Task<List<MeasureViewModel>> GetMeassures()
+        [HttpGet("getMeasures/{items}")]
+        public async Task<List<MeasureResumeViewModel>> GetMeassures([FromRoute] int? items)
         {
             var loggedUser = await _userManager.GetUserAsync(User);
 
-            var result = await _measureService.GetMeasures(loggedUser.Id);
+            var result = await _measureService.GetMeasures(loggedUser.Id, items);
 
             return result;
         }
@@ -41,6 +41,14 @@ namespace digital.caliber.spa.Controllers
             var result = await _measureService.GetMeasure(loggedUser.Id, id);
 
             return result;
+        }
+
+        [HttpGet("GetResults/{id}"), ActionName("GetResults")]
+        public async Task<ResultsMeasures> GetResults([FromRoute] int id)
+        {
+            var loggedUser = await _userManager.GetUserAsync(User);
+
+            return await _measureService.GetResult(loggedUser.Id, id);
         }
 
         [HttpDelete("{id}")]
@@ -57,8 +65,9 @@ namespace digital.caliber.spa.Controllers
             if (!ModelState.IsValid) return BadRequest();
 
             var loggedUser = await _userManager.GetUserAsync(User);
-            await _measureService.SaveMeasure(loggedUser.Id, viewModel);
-            return Ok();
+            var measureId = await _measureService.SaveMeasure(loggedUser.Id, viewModel);
+
+            return Ok(measureId);
         }
     }
 }

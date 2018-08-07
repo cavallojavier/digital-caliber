@@ -5,12 +5,13 @@ import { ConfigService } from './config.service';
 import { BaseService } from './base.service';
 import { SpinnerService } from './spinner.service';
 
-import { measures } from '../models/measures';
+import { measures, measuresResume } from '../models/measures';
+import { measuresResult } from '../models/results';
 
 import { Observable, of } from "rxjs";
 import { catchError, map, tap } from 'rxjs/operators';
 import {throwError} from 'rxjs';
-import { error } from '../../../node_modules/@angular/compiler/src/util';
+import { error } from '@angular/compiler/src/util';
 
 @Injectable()
 export class MeasuresService extends BaseService implements OnInit{
@@ -28,13 +29,13 @@ export class MeasuresService extends BaseService implements OnInit{
         
     }
 
-    getMeasures(): Observable<measures[]>{
+    getMeasures(maxItems: number|null): Observable<measuresResume[]>{
         this.spinner.show();
 
-        return this.http.get(this.baseUrl)
+        return this.http.get(this.baseUrl + 'getMeasures/' + maxItems)
         .pipe(
             map((res: any) => {
-                return res.json();
+                return res;
             })
         );
     }
@@ -45,18 +46,29 @@ export class MeasuresService extends BaseService implements OnInit{
         return this.http.get(this.baseUrl + id)
         .pipe(
             map((res: any) => {
-                return res.json();
+                return res;
             })
         );
     }
 
-    deleteMeasure(id: number): Observable<measures>{
+    getResults(id: number): Observable<measuresResult>{
+        this.spinner.show();
+
+        return this.http.get(this.baseUrl + 'getresults/' + id)
+        .pipe(
+            map((res: any) => {
+                return res;
+            })
+        );
+    }
+
+    deleteMeasure(id: number): Observable<any>{
         this.spinner.show();
 
         return this.http.delete(this.baseUrl + id)
         .pipe(
             map((res: any) => {
-                return res.json();
+                return res;
             })
         );
     }
@@ -64,10 +76,17 @@ export class MeasuresService extends BaseService implements OnInit{
     saveMeasure(measure: measures): Observable<any>{
         this.spinner.show();
 
-        return this.http.post<measures>(this.baseUrl, { patientName: measure.patientName,
+        return this.http.post<measures>(this.baseUrl, { 
+            id: measure.id,
+            patientName: measure.patientName,
             hcNumber: measure.hcNumber,
-            teeths: measure.teeth,
+            teeths: measure.teeths,
             mouth: measure.mouth
-        });
+        })
+        .pipe(
+            map((res: any) => {
+                return res;
+            })
+        );;
     }
 }

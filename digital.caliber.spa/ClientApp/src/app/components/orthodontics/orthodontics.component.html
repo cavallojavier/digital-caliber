@@ -1,0 +1,27 @@
+<div class="ortho">
+    <box-container>
+        <div class="row">
+            <div class="col-sm-4 search-box">
+                <!--<input type="text" name="filter" class="input-custom magnifier-separator" placeholder='filtrar'
+                (input)="filterPatients($event)" (keyup)="filterPatients($event)" (change)="filterPatients($event)" [(ngModel)]="searchText"/>
+                <i class="fas fa-search magnifier-icon"></i>-->
+            </div>
+            <div class="col-sm-4"></div>
+            <div class="col-sm-4 text-right mt-2">
+                <a [routerLink]="['measures']"><i class="fas fa-plus-circle"></i>Nueva medicion</a> |
+                <a [routerLink]="['patients']" ><i class="fas fa-users"></i>Pacientes</a>
+            </div>
+        </div>
+    </box-container>
+    <hr>
+    <box-container>
+        <div class="list-items">
+            <span class="pl-3">Ultimas mediciones</span>
+            <patient-row *ngFor="let item of measures;" [measure]='item' (onDeletingComplete)="onDeletingComplete($event)"></patient-row>
+        </div>
+    </box-container>
+</div>
+
+
+
+

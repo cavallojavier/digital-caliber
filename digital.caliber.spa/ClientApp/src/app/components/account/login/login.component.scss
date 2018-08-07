@@ -1,11 +1,5 @@
 
 .register{
-    .brand-home{
-        width: 50%;
-        margin-top: 2rem;
-        position: fixed;
-    }
-
     input[type="checkbox"].styled:checked + label:after,
     input[type="radio"].styled:checked + label:after,
     .checkbox input[type=checkbox]:checked + label:after {
@@ -22,6 +16,7 @@
 
     .box{
        float: right;
+       margin-right: 1rem;
 
        h3{
             margin-top: 0;

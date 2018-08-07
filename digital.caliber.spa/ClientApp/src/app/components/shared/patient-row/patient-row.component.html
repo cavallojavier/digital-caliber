@@ -1,0 +1,27 @@
+<div class="row row-item">
+    <div class="col-sm-6">{{measure.patientName}} - HC: {{measure.hcNumber}} - {{measure.dateMeasure | date}}</div>
+    <div class="col-sm-6 actions">
+        <a class="black-link" (click)="edit(measure.id)"><i class="far fa-edit"></i>Editar</a> | 
+        <a class="black-link" (click)="viewResults(measure.id)"><i class="fas fa-glasses"></i>Resultados</a> |
+        <a class="black-link"  data-toggle="modal"
+        [attr.data-target]="'#confirm_' + measure.id" data-dismiss="modal"><i class="far fa-trash-alt"></i>Borrar</a>
+    </div>
+</div>
+
+
+
+<app-modal [modalTitle]="'Borrar?'" [blocking]='false' [modalId]="'confirm_' + measure.id">
+    <div class="row">
+        <div class="center-content">
+            <p>
+                Seguro que quieres borrar las medidas del paciente <strong>'{{measure.patientName}}'</strong> ?
+            </p>
+        </div>
+        <div class="modal-footer">
+            <div class="modal-buttons">
+                <button type="button" #btnCloseModal class="btn btn-outline btn-secondary btn-sm" data-dismiss="modal">Cancelar</button>
+                <button class="btn btn-outline btn-primary-invert btn-sm" (click)="delete(measure.id)" data-dismiss="modal">Borrar</button>    
+            </div>
+        </div>
+    </div>
+</app-modal>

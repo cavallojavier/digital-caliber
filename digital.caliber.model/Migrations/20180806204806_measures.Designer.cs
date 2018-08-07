@@ -10,7 +10,7 @@ using digital.caliber.model.Data;
 namespace digital.caliber.model.Migrations
 {
     [DbContext(typeof(CaliberDbContext))]
-    [Migration("20180803161027_measures")]
+    [Migration("20180806204806_measures")]
     partial class measures
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -111,7 +111,7 @@ namespace digital.caliber.model.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<DateTime>("DateMessure");
+                    b.Property<DateTime>("DateMeasure");
 
                     b.Property<string>("HcNumber")
                         .IsRequired()
