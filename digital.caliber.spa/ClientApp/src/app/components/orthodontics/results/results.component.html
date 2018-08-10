@@ -5,6 +5,7 @@
                 <div class="item-result"><span>Paciente: </span><span>{{result.patientName}}</span></div>
                 <div class="item-result"><span>N° HC: </span><span>{{result.hcNumber}}</span></div>
             </div>
+            <a (click)="goBack();"><i class="fas fa-chevron-circle-left"></i>Volver</a>
         </div>
     </div>
 </div>
@@ -66,10 +67,10 @@
     <box-container class="box-result">
         <div class="box-content rowed">
             <!--<button type="button" class="btn btn-secondary" (click)="exportExcel()">Excel</button>
-            <button type="button" class="btn btn-secondary" (click)="exportPdf()">Pdf</button>-->
+            <button type="button" class="btn btn-secondary" (click)="exportPdf()">Pdf</button>
             <button type="button" class="btn btn-secondary" (click)="goBack()">
                 <i class="fas fa-chevron-circle-left"></i>Volver
-            </button>
+            </button>-->
         </div>
     </box-container>
 </div>

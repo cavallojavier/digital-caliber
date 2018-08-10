@@ -8,7 +8,7 @@ import { AppComponent } from './app.component';
 import { throwIfAlreadyLoaded } from './module-import-guard';
 
 import { ContainerComponent } from './components/shared/container/container.component';
-import { PatientRowComponent } from './components/shared/patient-row/patient-row.component';
+import { MeasureRowComponent } from './components/shared/measure-row/measure-row.component';
 import { SpinnerComponent } from './components/spinner/spinner.component';
 import { ModalComponent } from './components/shared/modals/modal.component';
 
@@ -25,7 +25,7 @@ import { decimalToStringPipe } from './components/shared/pipes/decimal-display.p
 @NgModule({
   declarations: [
     ContainerComponent,
-    PatientRowComponent,
+    MeasureRowComponent,
     ModalComponent,
     SpinnerComponent,
     decimalToStringPipe
@@ -36,7 +36,7 @@ import { decimalToStringPipe } from './components/shared/pipes/decimal-display.p
   ],
   exports:[
     ContainerComponent,
-    PatientRowComponent,
+    MeasureRowComponent,
     ModalComponent,
     SpinnerComponent,
     decimalToStringPipe

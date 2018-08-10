@@ -17,7 +17,7 @@
     <box-container>
         <div class="list-items">
             <span class="pl-3">Ultimas mediciones</span>
-            <patient-row *ngFor="let item of measures;" [measure]='item' (onDeletingComplete)="onDeletingComplete($event)"></patient-row>
+            <measure-row *ngFor="let item of measures;" [measure]='item' (onDeletingComplete)="onDeletingComplete($event)"></measure-row>
             <span *ngIf="measures.length < 1" class="no-result">Sin resultados</span>
         </div>
     </box-container>

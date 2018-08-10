@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { NgForm } from '@angular/forms';
+import { Location } from '@angular/common';
 
 import { MeasuresService } from '../../../services/measures.service';
 
@@ -21,6 +22,7 @@ export class MeasureComponent implements OnInit {
 
     constructor(private _router: Router,
                 private _routeQuery: ActivatedRoute,
+                private _location: Location,
                 private _measureService: MeasuresService) { 
                     this.errors = '';
                     this.measures = new measures();
@@ -76,5 +78,9 @@ export class MeasureComponent implements OnInit {
         .catch((err: any) => {
             this.errors = err.error;
         });
+    }
+
+    goback(){
+        this._location.back();
     }
 }

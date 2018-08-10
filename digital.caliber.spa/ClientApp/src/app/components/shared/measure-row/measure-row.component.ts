@@ -5,12 +5,12 @@ import { measuresResume } from '../../../models/measures';
 import { MeasuresService } from '../../../services/measures.service';
 
 @Component({
-    selector: 'patient-row',
-    templateUrl: './patient-row.component.html',
-    styleUrls: ['./patient-row.component.scss']
+    selector: 'measure-row',
+    templateUrl: './measure-row.component.html',
+    styleUrls: ['./measure-row.component.scss']
 })
 
-export class PatientRowComponent implements OnInit {
+export class MeasureRowComponent implements OnInit {
 
     @Input() measure: measuresResume;
     @Output() onDeletingComplete = new EventEmitter<number>();

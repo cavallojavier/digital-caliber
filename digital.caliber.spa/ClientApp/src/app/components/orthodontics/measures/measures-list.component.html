@@ -15,7 +15,7 @@
     </box-container>
     <hr>
     <box-container>
-        <patient-row *ngFor="let item of filteredMeasures;" [measure]='item' (onDeletingComplete)="onDeletingComplete($event)"></patient-row>
+        <measure-row *ngFor="let item of filteredMeasures;" [measure]='item' (onDeletingComplete)="onDeletingComplete($event)"></measure-row>
         <span *ngIf="filteredMeasures.length < 1" class="no-result">Sin resultados</span>
     </box-container>
 </div>
