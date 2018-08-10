@@ -6,12 +6,12 @@ import { MeasuresService } from '../../../services/measures.service';
 import { measuresResult } from '../../../models/results';
 
 @Component({
-    selector: 'results',
-    templateUrl: './results.component.html',
-    styleUrls: ['./results.component.scss']
+    selector: 'result-pdf',
+    templateUrl: './result-pdf.component.html',
+    styleUrls: ['./result-pdf.component.scss']
 })
 /** candidate-home component*/
-export class ResultsComponent implements OnInit {
+export class ResultPdfComponent implements OnInit {
     measureId: number;
     result: measuresResult;
     private sub: any;
@@ -44,14 +44,6 @@ export class ResultsComponent implements OnInit {
 
     ngOnDestroy() {
         this.sub.unsubscribe();
-    }
-
-    exportPdf(){
-        this._measureService.exportPdf(this.measureId).toPromise();
-    }
-
-    exportExcel(){
-
     }
 
     goBack(){

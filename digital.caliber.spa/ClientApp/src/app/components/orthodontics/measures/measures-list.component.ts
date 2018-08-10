@@ -8,11 +8,11 @@ import { measuresResume } from '../../../models/measures';
 
 @Component({
     selector: 'patients',
-    templateUrl: './patients.component.html',
-    styleUrls: ['./patients.component.scss']
+    templateUrl: './measures-list.component.html',
+    styleUrls: ['./measures-list.component.scss']
 })
 /** candidate-home component*/
-export class PatientsComponent implements OnInit {
+export class MeasuresListComponent implements OnInit {
     
     measures: measuresResume[];
     filteredMeasures:measuresResume[];
@@ -44,7 +44,9 @@ export class PatientsComponent implements OnInit {
     }
 
     filterPatients(event: any){
-        this.filteredMeasures = this.measures.filter(x => x.patientName.toLowerCase().includes(this.searchText.toLowerCase()));
+        this.filteredMeasures = this.measures.filter(x => 
+                    x.patientName.toLowerCase().includes(this.searchText.toLowerCase())
+                    || x.hcNumber.toLowerCase().includes(this.searchText.toLowerCase()));
     }
 
     goback(){

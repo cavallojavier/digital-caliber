@@ -19,12 +19,16 @@ import { SpinnerService } from './services/spinner.service';
 import { AccountService } from './services/account.service';
 import { RequestInterceptor } from './services/http.interceptors';
 
+//Pipes
+import { decimalToStringPipe } from './components/shared/pipes/decimal-display.pipe';
+
 @NgModule({
   declarations: [
     ContainerComponent,
     PatientRowComponent,
     ModalComponent,
-    SpinnerComponent
+    SpinnerComponent,
+    decimalToStringPipe
   ],
   imports: [
     CommonModule,
@@ -34,7 +38,8 @@ import { RequestInterceptor } from './services/http.interceptors';
     ContainerComponent,
     PatientRowComponent,
     ModalComponent,
-    SpinnerComponent
+    SpinnerComponent,
+    decimalToStringPipe
   ],
   providers: [
     AuthGuard,

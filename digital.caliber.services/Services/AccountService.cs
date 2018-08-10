@@ -1,21 +1,18 @@
 ﻿using System;
-using System.Linq;
-using System.Security.Claims;
 using System.Threading.Tasks;
 using digital.caliber.model.Models;
 using digital.caliber.services.CustomLogger;
 using Microsoft.AspNetCore.Identity;
-using Microsoft.Extensions.Logging;
 
 namespace digital.caliber.services.Services
 {
-    public class AccountManager : IAccountManager
+    public class AccountService : IAccountService
     {
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly SignInManager<ApplicationUser> _signInManager;
         private readonly ICustomLogger _logger;
 
-        public AccountManager(UserManager<ApplicationUser> userManager, SignInManager<ApplicationUser> signInManager, ICustomLogger logger)
+        public AccountService(UserManager<ApplicationUser> userManager, SignInManager<ApplicationUser> signInManager, ICustomLogger logger)
         {
             _userManager = userManager;
             _signInManager = signInManager;

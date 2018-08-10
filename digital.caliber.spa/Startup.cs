@@ -1,7 +1,7 @@
 using System;
 using System.Text;
 using System.Threading.Tasks;
-using AutoMapper;
+//using AutoMapper;
 using digital.caliber.model.Data;
 using digital.caliber.model.Models;
 using digital.caliber.services.CustomLogger;
@@ -57,15 +57,16 @@ namespace digital.caliber.spa
                 options.UseSqlServer(Configuration.GetConnectionString("DBConnection"))
             );
 
-            services.AddAutoMapper();
+            //services.AddAutoMapper();
             services.AddOptions();
             services.Configure<ClientConfiguration>(Configuration.GetSection("ClientConfiguration"));
 
             services.AddTransient<IValidatorFactory, ServiceProviderValidatorFactory>();
             // add app services
             services.AddTransient<ICustomLogger, CustomLogger>();
-            services.AddTransient<IAccountManager, AccountManager>();
+            services.AddTransient<IAccountService, AccountService>();
             services.AddTransient<IMeasureService, MeasureService>();
+            services.AddTransient<IExportService, ExportService>();
 
             services.Configure<MvcOptions>(options =>
             {

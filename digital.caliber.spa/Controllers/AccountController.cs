@@ -20,13 +20,13 @@ namespace digital.caliber.spa.Controllers
     [ApiController]
     public class AccountController : Controller
     {
-        private readonly IAccountManager _accountManager;
+        private readonly IAccountService _accountManager;
         private readonly IJwtFactory _jwtFactory;
         private readonly JwtIssuerOptions _jwtOptions;
         private readonly ICustomLogger _logger;
         private readonly JsonSerializerSettings _serializerSettings;
 
-        public AccountController(IAccountManager accountManager, 
+        public AccountController(IAccountService accountManager, 
             IJwtFactory jwtFactory,
             IOptions<JwtIssuerOptions> jwtOptions, 
             ICustomLogger logger)

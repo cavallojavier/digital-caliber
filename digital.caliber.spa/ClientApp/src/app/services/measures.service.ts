@@ -1,6 +1,8 @@
 import { Injectable, OnInit } from '@angular/core';
 import { HttpClient, HttpHeaders} from '@angular/common/http';
 
+import { saveAs } from 'file-saver';
+
 import { ConfigService } from './config.service';
 import { BaseService } from './base.service';
 import { SpinnerService } from './spinner.service';
@@ -88,5 +90,24 @@ export class MeasuresService extends BaseService implements OnInit{
                 return res;
             })
         );;
+    }
+/*
+    public downloadFile() {
+        this.http.get('my-api-url', { responseType: 'blob' }).subscribe(blob => {
+           saveAs(blob, 'SomeFileDownloadName.someExtensions', {
+              type: 'text/plain;charset=windows-1252' // --> or whatever you need here
+           }
+        }
+    }*/
+
+    exportPdf(id: number){
+        this.spinner.show();
+
+        return this.http.get(this.baseUrl + 'exportResultsPdf/' + id);
+        /*.subscribe(blob => {
+            saveAs(blob, 'SomeFileDownloadName.someExtensions', {
+               type: 'text/plain;charset=windows-1252' // --> or whatever you need here
+            })
+         });*/
     }
 }
