@@ -1,6 +1,6 @@
 <div class="row">
     <div class="col-sm-1" >
-        <i class="fas fa-chevron-circle-left arrow-left" (click)="decreaseStep($event)" *ngIf="step > 1"></i>
+        <i class="fas fa-chevron-circle-left arrows arrow-left" (click)="decreaseStep($event)" *ngIf="step > 1"></i>
     </div>
     <div class="col-sm-10">
         <form #f="ngForm" novalidate (ngSubmit)="save(f)">
@@ -11,7 +11,7 @@
                             <div><span>Paciente: </span><input type="text" required name="patientName" #patientName="ngModel" class="input-custom" [(ngModel)]="measures.patientName" [ngClass]="{ 'is-invalid': f.submitted && patientName.invalid }"/></div>
                             <div><span>N° HC: </span><input type="text" required name="hcNumber" #hcNumber="ngModel" class="input-custom" [(ngModel)]="measures.hcNumber" [ngClass]="{ 'is-invalid': f.submitted && hcNumber.invalid }"/></div>
                         </div>
-                        <a (click)="goback();"><i class="far fa-trash-alt"></i>Cancelar</a>
+                        <a (click)="goback();"><i class="fas fa-times-circle"></i>Cancelar</a>
                     </div>
                 </div>
             </div>
@@ -97,6 +97,6 @@
         </form>
     </div>
     <div class="col-sm-1">
-        <i class="fas fa-chevron-circle-right arrow-right" (click)="increaseStep($event)" *ngIf="step <= 1"></i>
+        <i class="fas fa-chevron-circle-right arrows arrow-right" (click)="increaseStep($event)" *ngIf="step <= 1"></i>
     </div>
 </div>

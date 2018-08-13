@@ -26,17 +26,23 @@ li.link-active a:focus {
         margin-bottom: 0;
 
         .navbar-brand{
-            height: auto;
+            height: 60px;
             //display: -webkit-box;
             display: -webkit-flex;
             //display: -ms-flexbox;
             display: flex;
             flex-direction: row;
             -webkit-flex-direction: row;
-            margin-top: 20px;
+            margin-top: -15px;
+            
             width: 150px;
             img{
                 height: 80px;
+            }
+
+            &:hover{
+                text-decoration: transparent !important;
+                border-bottom: none;
             }
         }
 

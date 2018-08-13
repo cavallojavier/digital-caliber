@@ -1,7 +1,7 @@
 import { Injectable, OnInit } from '@angular/core';
 import { HttpClient, HttpHeaders} from '@angular/common/http';
 
-import { saveAs } from 'file-saver';
+//import { saveAs } from 'file-saver';
 
 import { ConfigService } from './config.service';
 import { BaseService } from './base.service';

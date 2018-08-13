@@ -18,6 +18,21 @@
         </div>  
     </box-container>
     <box-container class="box-result">
+        <h3>Pont</h3>
+        <div class="box-content">
+            <div class="item-result"><span>14 a 24: </span><span>{{result.pont.pont14To24 | decimalToString}} (mm)</span></div>
+            <div class="item-result"><span>16 a 26: </span><span>{{result.pont.pont16To26 | decimalToString}} (mm)</span></div>
+            <div class="item-result"><span>Long. Arco: </span><span>{{result.pont.archLong | decimalToString}} (mm)</span></div>
+        </div>  
+    </box-container>
+    <box-container class="box-result">
+        <h3>Tanaka</h3>
+        <div class="box-content">
+            <div class="item-result"><span>Superiores: </span><span>{{result.tanaka.superior | decimalToString}} (mm)</span></div>
+            <div class="item-result"><span>Inferiores: </span><span>{{result.tanaka.inferior | decimalToString}} (mm)</span></div>
+        </div>  
+    </box-container>
+    <box-container class="box-result">
         <h3>Discrepancia</h3>
         <h4>Oseo-Dentaria</h4>
         <div class="box-content">
@@ -49,28 +64,15 @@
             </div>
         </div>  
     </box-container>
-    <box-container class="box-result">
-        <h3>Pont</h3>
-        <div class="box-content">
-            <div class="item-result"><span>14 a 24: </span><span>{{result.pont.pont14To24 | decimalToString}} (mm)</span></div>
-            <div class="item-result"><span>16 a 26: </span><span>{{result.pont.pont16To26 | decimalToString}} (mm)</span></div>
-            <div class="item-result"><span>Long. Arco: </span><span>{{result.pont.archLong | decimalToString}} (mm)</span></div>
-        </div>  
-    </box-container>
-    <box-container class="box-result">
-        <h3>Tanaka</h3>
-        <div class="box-content">
-            <div class="item-result"><span>Superiores: </span><span>{{result.tanaka.superior | decimalToString}} (mm)</span></div>
-            <div class="item-result"><span>Inferiores: </span><span>{{result.tanaka.inferior | decimalToString}} (mm)</span></div>
-        </div>  
-    </box-container>
-    <box-container class="box-result">
+    
+    
+    <!--<box-container class="box-result">
         <div class="box-content rowed">
             <!--<button type="button" class="btn btn-secondary" (click)="exportExcel()">Excel</button>
             <button type="button" class="btn btn-secondary" (click)="exportPdf()">Pdf</button>
             <button type="button" class="btn btn-secondary" (click)="goBack()">
                 <i class="fas fa-chevron-circle-left"></i>Volver
-            </button>-->
+            </button>
         </div>
-    </box-container>
+    </box-container>-->
 </div>
