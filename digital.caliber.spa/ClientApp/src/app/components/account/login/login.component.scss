@@ -44,7 +44,13 @@
                 margin: .5rem 1rem;
 
                 input[type='checkbox']{
-                    margin-right: 5px;
+                    //margin-right: 5px;
+                }
+
+                &:last-child{
+                    -webkit-flex-direction: row;
+                    -ms-flex-direction: row;
+                    flex-direction: row;
                 }
             }
         }

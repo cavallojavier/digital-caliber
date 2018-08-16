@@ -94,6 +94,7 @@ li.link-active a:focus {
 
                 &:hover{
                     text-decoration: none;
+                    border-bottom: none;
                 }
             }
 
@@ -114,7 +115,19 @@ li.link-active a:focus {
 
                 
             }
-        } 
+        }
+        
+        .dropdown-toggle{
+            text-decoration: none;
+            border-bottom: none;
+        }
+        .dropdown:hover > .dropdown-menu {
+            display: block;
+        }
+        
+        .dropdown > .dropdown-toggle:active {
+            pointer-events: none;
+        }
     }
 }
 

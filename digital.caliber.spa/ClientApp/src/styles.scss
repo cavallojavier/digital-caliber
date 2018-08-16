@@ -1,5 +1,7 @@
 @import '~bootstrap/dist/css/bootstrap.min.css';
 
+@import './scss/_checkbox.scss';
+
 html::before {
     content: ' ';
     display: block;

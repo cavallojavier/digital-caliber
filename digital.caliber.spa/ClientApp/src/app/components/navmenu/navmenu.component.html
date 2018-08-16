@@ -18,14 +18,12 @@
                         Login
                     </a>
                 </li>
-                <!-->li class="nav-item dropdown" *ngIf="isSignedIn" [routerLinkActive]="['link-active']" disabled>
-                    <a class="dropdown-item" [routerLink]="['/patients']">Pacientes</a>
-                </li>-->
-                <li class="nav-item dropdown" *ngIf="isSignedIn" [routerLinkActive]="['link-active']">
-                    <a class="dropdown-item" [routerLink]="['/orthodontics']">Ortodoncia</a>
+                <li class="nav-item" *ngIf="isSignedIn" [routerLinkActive]="['link-active']">
+                    <a [routerLink]="['/orthodontics']">Ortodoncia</a>
                 </li>
                 <li class="nav-item dropdown" *ngIf="isSignedIn">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <a class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+                         id="navbarDropdown">
                         Hi, {{username}}
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
