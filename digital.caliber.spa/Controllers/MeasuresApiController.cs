@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using digital.caliber.model.Models;
 using digital.caliber.model.ViewModels;
@@ -80,13 +79,11 @@ namespace digital.caliber.spa.Controllers
             var loggedUser = await _userManager.GetUserAsync(User);
             var (stream, fileName) = await _exportService.ExportToPdf(loggedUser.Id, id);
 
-            //return File(stream, "application/pdf", fileName);
             return new FileContentResult(stream, new
                 MediaTypeHeaderValue("application/octet"))
             {
                 FileDownloadName = fileName
             };
-            
         }
     }
 }

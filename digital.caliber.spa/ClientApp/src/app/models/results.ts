@@ -2,7 +2,7 @@ export class measuresResult {
     public id: number;
     public hcNumber: string;
     public patientName: string;
-    public date: Date;
+    public dateMeasure: Date;
 
     public dentalBoneDiscrepancy: dentalBoneDiscrepancy;
     public tanaka: tanakaJohnston;

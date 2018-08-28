@@ -1,7 +1,6 @@
 import { Injectable, OnInit } from '@angular/core';
 import { HttpClient, HttpHeaders} from '@angular/common/http';
-
-//import { saveAs } from 'file-saver';
+import { Http, ResponseContentType } from '@angular/http';
 
 import { ConfigService } from './config.service';
 import { BaseService } from './base.service';
@@ -91,23 +90,14 @@ export class MeasuresService extends BaseService implements OnInit{
             })
         );;
     }
-/*
-    public downloadFile() {
-        this.http.get('my-api-url', { responseType: 'blob' }).subscribe(blob => {
-           saveAs(blob, 'SomeFileDownloadName.someExtensions', {
-              type: 'text/plain;charset=windows-1252' // --> or whatever you need here
-           }
-        }
-    }*/
 
-    exportPdf(id: number){
+    async getPdf(id: number): Promise<Blob>{
         this.spinner.show();
 
-        return this.http.get(this.baseUrl + 'exportResultsPdf/' + id);
-        /*.subscribe(blob => {
-            saveAs(blob, 'SomeFileDownloadName.someExtensions', {
-               type: 'text/plain;charset=windows-1252' // --> or whatever you need here
-            })
-         });*/
+        const file =  await this.http.get<Blob>(
+            this.baseUrl + 'exportResultsPdf/' + id,
+            {responseType: 'blob' as 'json'}).toPromise();
+
+        return file;
     }
 }

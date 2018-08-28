@@ -1,6 +1,7 @@
 @import '~bootstrap/dist/css/bootstrap.min.css';
 
 @import './scss/_checkbox.scss';
+@import './scss/_export.scss';
 
 html::before {
     content: ' ';
@@ -234,47 +235,4 @@ input[type=number]::-webkit-outer-spin-button {
     border-radius: 10px;
     -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.5);
     background-color: #a8a8a8;
-}
-
-.pdf{
-    
-    .pdf-logo{
-        content: url("./assets/images/logo_black.png");
-        height: 40px;
-        width: 40px;
-        margin: 0 10px; 
-    }
-    color:#3f3f3f;
-    .header{
-        margin: 1rem;
-        .item-row{
-            background-color: white;
-            border: 1px solid #3f3f3f;
-            padding: 1rem;
-            &.title{
-                background-color: rgb(44, 93, 152);
-                color: white;
-                text-align: center;
-            }
-        }
-    }
-    
-    .grid-container{
-        margin: 2rem;
-        border: 1px solid #3f3f3f;
-
-        .grid-title{
-            background-color: rgb(120, 164, 216);
-            text-align: center;
-            color: white;
-        }
-    
-        .grid-row{
-            background-color: white;
-
-            &.alt{
-                background-color: rgb(142, 180, 227);
-            }
-        }
-    }
 }

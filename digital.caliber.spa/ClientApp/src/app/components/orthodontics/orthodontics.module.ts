@@ -18,6 +18,9 @@ import { ConfigService } from '../../services/config.service';
 import { AuthGuard } from "../../services/auth-guard.service";
 import { MeasuresService } from '../../services/measures.service';
 
+//Pipes
+import { DateFormatPipe } from '../shared/pipes/date-transform.pipe';
+
 @NgModule({
 
     imports: [
@@ -37,7 +40,8 @@ import { MeasuresService } from '../../services/measures.service';
         { provide: 'authorize', useValue: true },
         MeasuresService,
         ConfigService,
-        AuthGuard
+        AuthGuard,
+        DateFormatPipe
     ]
 })
 export class OrthodonticsModule { }

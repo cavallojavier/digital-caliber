@@ -61,7 +61,8 @@
 
 .patient-section{
     margin: 0 3rem;
-    a{margin: auto 3rem;}
+    a{margin: auto .5rem;}
+    a:last-child{margin: auto 2rem;}
 
     .box-container{
         padding: 1rem 0rem;
@@ -88,4 +89,10 @@
         }
         
     }
+}
+
+.export{
+    float: right;
+    margin-right: 4rem;
+    margin-top: -2.5rem;
 }

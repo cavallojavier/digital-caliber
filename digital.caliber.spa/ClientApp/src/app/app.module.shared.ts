@@ -21,6 +21,7 @@ import { RequestInterceptor } from './services/http.interceptors';
 
 //Pipes
 import { decimalToStringPipe } from './components/shared/pipes/decimal-display.pipe';
+import { DateFormatPipe } from './components/shared/pipes/date-transform.pipe';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { decimalToStringPipe } from './components/shared/pipes/decimal-display.p
     MeasureRowComponent,
     ModalComponent,
     SpinnerComponent,
-    decimalToStringPipe
+    decimalToStringPipe,
+    DateFormatPipe
   ],
   imports: [
     CommonModule,
@@ -39,7 +41,8 @@ import { decimalToStringPipe } from './components/shared/pipes/decimal-display.p
     MeasureRowComponent,
     ModalComponent,
     SpinnerComponent,
-    decimalToStringPipe
+    decimalToStringPipe,
+    DateFormatPipe
   ],
   providers: [
     AuthGuard,

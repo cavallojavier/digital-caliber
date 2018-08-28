@@ -1,11 +1,14 @@
-<div class="pdf">
-    <div class="pdf-logo"></div>
+<div class="pdf" id="printable">
+    <div class="pdf-logo">
+        <img class="pdf-logo" src="../../../../assets/images/logo_black.png">
+    </div>
     <div class="header">
         <div class="item-row title">INDICES DENTARIOS</div>
         <div class="item-row"><span>Paciente: </span><span>Javier Cavallo</span></div>
         <div class="item-row"><span>Numero de H.C.: </span><span>123456</span></div>
         <div class="item-row"><span>Fecha: </span><span>04/04/2018</span></div>
     </div>
+    
 
     <div class="grid-container">
         <div class="row grid-title">
@@ -42,3 +45,5 @@
         </div>
     </div>
 </div>
+
+<button type="button" class="btn btn-secondary" (click)="exportPdf()">Pdf</button>
