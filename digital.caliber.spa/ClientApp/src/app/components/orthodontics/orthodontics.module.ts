@@ -11,7 +11,6 @@ import { OrthodonticsComponent } from './orthodontics.component';
 import { MeasureComponent } from './measures/measures.component';
 import { MeasuresListComponent } from './measures/measures-list.component';
 import { ResultsComponent } from './results/results.component'
-import { ResultPdfComponent } from './results/result-pdf.component';
 
 //Services
 import { ConfigService } from '../../services/config.service';
@@ -33,8 +32,7 @@ import { DateFormatPipe } from '../shared/pipes/date-transform.pipe';
         OrthodonticsComponent,
         MeasureComponent,
         MeasuresListComponent,
-        ResultsComponent,
-        ResultPdfComponent
+        ResultsComponent
     ],
     providers: [
         { provide: 'authorize', useValue: true },

@@ -19,6 +19,12 @@ i.arrows{
     &.arrow-right{
         left: 0;
     }
+
+    &:hover{
+        transform: scale(1.2);
+        opacity: .8;
+        transition: all .1s ease-in-out;
+    }
 }
 
 .input-number{
@@ -58,36 +64,184 @@ i.arrows{
 }
 
 .teeth-section{
-    .teeth-sup{
-        background: url("../../../../assets/images/mouse/upper-theet.png") no-repeat center top;
-        min-height: 180px;
-        background-size: contain;
-        position: relative;
-        margin: .5rem auto;
-        max-width: 95%;
-    }
-
-    .inputs-wrapper{
+    .theeth-individual{
         position: relative;
         display: flex;
-        margin: 5px 0;
-        .inputs-container {
+        margin: 1rem auto;
+
+        ul{
+            display: flex;
+            flex-direction: row;
             margin: 0 auto;
+            -webkit-padding-start: 0;
+
+            li{
+                display: flex;
+                flex-direction: column;
+
+                min-height: 110px;
+                width: 50px;
+                position: relative;
+                margin: .5rem 5px;
+                display: inline-block;
+
+                i{
+                    background: url("../../../../assets/images/mouse/theeths_sprites-ltr.png");
+                    background-size: cover;
+                    min-height: 110px;
+                    width: 50px;
+                    display: inline-block;
+                }
+
+                input[type="number"]{
+                    display: block;
+                    margin-top: -1.4rem;
+                }
+
+                &:nth-child(14n+1)  > i {
+                    background-position: -704px 15px;
+                }
+    
+                &:nth-child(14n+2) > i {
+                    background-position: -750px 10px;
+                }
+
+                &:nth-child(14n+3)  > i{
+                    background-position: -238px 10px;
+                    max-width: 38px;
+                    margin-left: 5px;
+                }
+
+                &:nth-child(14n+4)  > i{
+                    background-position: -205px 10px;
+                    max-width: 38px;
+                    margin-left: 5px;
+                }
+
+                &:nth-child(14n+5) > i {
+                    background-position: -624px -4px;
+                    max-width: 38px;
+                }
+
+                &:nth-child(14n+6) > i {
+                    background-position: -109px 10px;
+                    max-width: 38px;
+                    margin-left: 5px;
+                }
+
+                &:nth-child(14n+7)  > i{
+                    background-position: -370px 0px;
+                    max-width: 38px;
+                    margin-left: 5px;
+                }
+
+                &:nth-child(14n+8) > i {
+                    background-position: -405px 0px;
+                    max-width: 38px;
+                    margin-left: 5px;
+                }
+                &:nth-child(14n+9) > i {
+                    background-position: -140px 10px;
+                    max-width: 38px;
+                    margin-left: 5px;
+                }
+                &:nth-child(14n+10) > i {
+                    background-position: -585px -3px;
+                    max-width: 38px;
+                }
+                &:nth-child(14n+11) > i {
+                    background-position: -172px 10px;
+                    max-width: 38px;
+                    margin-left: 5px;
+                }
+                &:nth-child(14n+12) > i {
+                    background-position: -270px 10px;
+                    max-width: 38px;
+                    margin-left: 5px;
+                }
+                &:nth-child(14n+13)  > i{
+                    background-position: -798px 10px;
+                }
+                &:nth-child(14n+14)  > i{
+                    background-position: -660px 15px;
+                }
+            }
         }
-    }
 
-    .teeth-inf{
-        background: url("../../../../assets/images/mouse/down-theet.png") no-repeat center bottom;
-        min-height: 180px;
-        background-size: contain;
-        position: relative;
-        margin: .5rem auto;
-        max-width: 95%;
+        ul.inf-theeth{
+            li{
+                &:nth-child(14n+1)  > i {
+                    background-position: 54px 5px;
+                    margin-left: -5px;
+                }
+    
+                &:nth-child(14n+2) > i {
+                    background-position: 220px 5px;
+                }
 
-        .inputs-container{
-            position: absolute;
-            top: 0;
-            left: 1.5rem;
+                &:nth-child(14n+3)  > i{
+                    background-position: 518px 5px;
+                    max-width: 38px;
+                    margin-left: 5px;
+                }
+
+                &:nth-child(14n+4)  > i{
+                    background-position: 592px 5px;
+                    max-width: 38px;
+                    margin-left: 5px;
+                }
+
+                &:nth-child(14n+5) > i {
+                    background-position: 732px 5px;
+                    max-width: 38px;
+                    margin-left: 5px;
+                }
+
+                &:nth-child(14n+6) > i {
+                    background-position: -80px 5px;
+                    max-width: 34px;
+                    margin-left: 8px;
+                }
+
+                &:nth-child(14n+7)  > i{
+                    background-position: -53px 5px;
+                    max-width: 34px;
+                    margin-left: 8px;
+                }
+
+                &:nth-child(14n+8) > i {
+                    background-position: 3px 5px;
+                    max-width: 34px;
+                    margin-left: 8px;
+                }
+                &:nth-child(14n+9) > i {
+                    background-position: -25px 5px;
+                    max-width: 34px;
+                    margin-left: 8px;
+                }
+                &:nth-child(14n+10) > i {
+                    background-position: 765px 3px;
+                    max-width: 38px;
+                    margin-left: 5px;
+                }
+                &:nth-child(14n+11) > i {
+                    background-position: -442px 5px;
+                    max-width: 38px;
+                    margin-left: 5px;
+                }
+                &:nth-child(14n+12) > i {
+                    background-position: -512px 5px;
+                    max-width: 38px;
+                    margin-left: 5px;
+                }
+                &:nth-child(14n+13)  > i{
+                    background-position: 168px 5px;
+                }
+                &:nth-child(14n+14)  > i{
+                    background-position: 110px 5px;
+                    margin-left: 5px;
+                }
+            }
         }
     }
 }
@@ -98,8 +252,19 @@ i.arrows{
     }
     
     .button-align{
-        float: right;
-        margin: 1rem;
+        font-size: 4rem;
+        position: absolute;
+        top: 42%;
+        right: 2rem;
+        border: none;
+        background-color: transparent;
+        color: white;
+
+        &:hover{
+            transform: scale(1.2);
+            opacity: .8;
+            transition: all .1s ease-in-out;
+        }
     }
     .mouse-sup{
         margin: 2rem 0 1rem 0;
@@ -108,9 +273,7 @@ i.arrows{
         background: url("../../../../assets/images/mouse/upper-arch.png") no-repeat center top;
         background-size: contain;
         .mouse-sup-left{
-            //background: url("../../../../assets/images/mouse/mouse-sup-left.png") no-repeat right top;
             min-height: 250px;
-            //background-size: 25%;
 
             input.bottom-left{
                 position: absolute;
@@ -132,9 +295,7 @@ i.arrows{
         }
 
         .mouse-sup-right{
-            //background: url("../../../../assets/images/mouse/mouse-sup-right.png") no-repeat left top;
             min-height: 250px;
-            //background-size: 25%;
 
             input.bottom-right{
                 position: absolute;
@@ -162,9 +323,7 @@ i.arrows{
         background: url("../../../../assets/images/mouse/down-arch.png") no-repeat center bottom;
         background-size: contain;
         .mouse-inf-left{
-            //background: url("../../../../assets/images/mouse/mouse-inf-left.png") no-repeat right bottom;
             min-height: 250px;
-            //background-size: 25%;
 
             input.bottom-left{
                 position: absolute;
@@ -186,9 +345,7 @@ i.arrows{
         }
 
         .mouse-inf-right{
-            //background: url("../../../../assets/images/mouse/mouse-inf-right.png") no-repeat left bottom;
             min-height: 250px;
-            //background-size: 25%;
 
             input.bottom-right{
                 position: absolute;

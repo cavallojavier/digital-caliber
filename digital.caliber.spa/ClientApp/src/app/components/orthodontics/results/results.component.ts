@@ -6,7 +6,7 @@ import { MeasuresService } from '../../../services/measures.service';
 import { measuresResult } from '../../../models/results';
 import { DateFormatPipe } from '../../shared/pipes/date-transform.pipe';
 
-import html2canvas from 'html2canvas';
+//import html2canvas from 'html2canvas';
 
 @Component({
     selector: 'results',
@@ -65,29 +65,7 @@ export class ResultsComponent implements OnInit {
         
         window.URL.revokeObjectURL(url);
     }
-
-    async exportPdfClient(){
-     
-        let date = this._datePipe.transform(this.result.dateMeasure);
-        let fileName = this.result.patientName + ' - ' + date.toString() + '.pdf';
-
-        var data = document.getElementById('printable');  
-        html2canvas(data).then(canvas => {  
-            // Few necessary setting options  
-            var imgWidth = 208;   
-            var pageHeight = 295;    
-            var imgHeight = canvas.height * imgWidth / canvas.width;  
-            var heightLeft = imgHeight;  
-        
-            const contentDataURL = canvas.toDataURL('image/png')  
-            let pdf = new jspdf('p', 'mm', 'a4'); // A4 size page of PDF  
-            var position = 0;  
-            pdf.addImage(contentDataURL, 'PNG', 0, position, imgWidth, imgHeight)  
-            pdf.save(fileName); // Generated PDF   
-        });  
-    }
-
-
+  
     exportExcel(){
 
     }

@@ -12,7 +12,7 @@ namespace digital.caliber.tests.CalculationsTests.TanakaTests
         [TestInitialize]
         public void TestInit()
         {
-            theethMessure = SetRoothTheetDefaultMessures();
+            theethMessure = SetRoothTheetDefaultMeasures();
         }
 
         [TestMethod]

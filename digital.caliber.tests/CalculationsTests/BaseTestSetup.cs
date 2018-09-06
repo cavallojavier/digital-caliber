@@ -24,69 +24,65 @@ namespace digital.caliber.tests.CalculationsTests
         /// Sets the rooth theet default messures.
         /// </summary>
         /// <returns></returns>
-        public MeasuresTeethsViewModel SetRoothTheetDefaultMessures()
+        public MeasuresTeethsViewModel SetRoothTheetDefaultMeasures()
         {
-            var roothMessures = new MeasuresTeethsViewModel();
+            var roothMeasures = new MeasuresTeethsViewModel
+            {
+                Tooth11 = 8,
+                Tooth12 = 6,
+                Tooth13 = 8,
+                Tooth14 = 8,
+                Tooth15 = 7,
+                Tooth16 = 11,
+                Tooth17 = 0,
+                Tooth21 = 8,
+                Tooth22 = 6,
+                Tooth23 = 8,
+                Tooth24 = 8,
+                Tooth25 = 8,
+                Tooth26 = 11,
+                Tooth27 = 0,
+                Tooth31 = 6,
+                Tooth32 = 6,
+                Tooth33 = 7,
+                Tooth34 = 7,
+                Tooth35 = 7,
+                Tooth36 = 11,
+                Tooth37 = 11,
+                Tooth41 = 6,
+                Tooth42 = 6,
+                Tooth43 = 7,
+                Tooth44 = 7,
+                Tooth45 = 7,
+                Tooth46 = 11,
+                Tooth47 = 11
+            };
 
-            roothMessures.Tooth11 = 8;
-            roothMessures.Tooth12 = 6;
-            roothMessures.Tooth13 = 8;
-            roothMessures.Tooth14 = 8;
-            roothMessures.Tooth15 = 7;
-            roothMessures.Tooth16 = 11;
-            roothMessures.Tooth17 = 0;
-
-            roothMessures.Tooth21 = 8;
-            roothMessures.Tooth22 = 6;
-            roothMessures.Tooth23 = 8;
-            roothMessures.Tooth24 = 8;
-            roothMessures.Tooth25 = 8;
-            roothMessures.Tooth26 = 11;
-            roothMessures.Tooth27 = 0;
-
-            roothMessures.Tooth31 = 6;
-            roothMessures.Tooth32 = 6;
-            roothMessures.Tooth33 = 7;
-            roothMessures.Tooth34 = 7;
-            roothMessures.Tooth35 = 7;
-            roothMessures.Tooth36 = 11;
-            roothMessures.Tooth37 = 11;
-
-            roothMessures.Tooth41 = 6;
-            roothMessures.Tooth42 = 6;
-            roothMessures.Tooth43 = 7;
-            roothMessures.Tooth44 = 7;
-            roothMessures.Tooth45 = 7;
-            roothMessures.Tooth46 = 11;
-            roothMessures.Tooth47 = 11;
-
-            return roothMessures;
+            return roothMeasures;
         }
 
         /// <summary>
         /// Sets the mouth default messures.
         /// </summary>
-        public MeasuresMouthViewModel SetMouthDefaultMessures()
+        public MeasuresMouthViewModel SetMouthDefaultMeasures()
         {
-            var mouthMessure = new MeasuresMouthViewModel();
+            var mouthMeasure = new MeasuresMouthViewModel
+            {
+                RightSuperiorIncisive = 4,
+                RightSuperiorCanine = 8,
+                RightSuperiorPremolar = 16,
+                LeftSuperiorIncisive = 4,
+                LeftSuperiorCanine = 8,
+                LeftSuperiorPremolar = 13,
+                RightInferiorIncisive = 4,
+                RightInferiorCanine = 8,
+                RightInferiorPremolar = 11,
+                LeftInferiorIncisive = 4,
+                LeftInferiorCanine = 8,
+                LeftInferiorPremolar = 19
+            };
 
-            mouthMessure.RightSuperiorIncisive = 4;
-            mouthMessure.RightSuperiorCanine = 8;
-            mouthMessure.RightSuperiorPremolar = 16;
-
-            mouthMessure.LeftSuperiorIncisive = 4;
-            mouthMessure.LeftSuperiorCanine = 8;
-            mouthMessure.LeftSuperiorPremolar = 13;
-
-            mouthMessure.RightInferiorIncisive = 4;
-            mouthMessure.RightInferiorCanine = 8;
-            mouthMessure.RightInferiorPremolar = 11;
-
-            mouthMessure.LeftInferiorIncisive = 4;
-            mouthMessure.LeftInferiorCanine = 8;
-            mouthMessure.LeftInferiorPremolar = 19;
-
-            return mouthMessure;
+            return mouthMeasure;
         }
     }
 }

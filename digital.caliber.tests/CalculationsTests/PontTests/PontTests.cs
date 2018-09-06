@@ -15,7 +15,7 @@ namespace digital.caliber.tests.CalculationsTests.PontTests
         [TestInitialize]
         public void TestInit()
         {
-            theethMessure = SetRoothTheetDefaultMessures();
+            theethMessure = SetRoothTheetDefaultMeasures();
         }
 
         [TestMethod]

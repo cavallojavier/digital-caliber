@@ -42,12 +42,16 @@
     <None Remove="ClientApp\src\assets\images\background\chair-front.jpg" />
     <None Remove="ClientApp\src\assets\images\background\chair-top.jpg" />
     <None Remove="ClientApp\src\assets\images\background\chair-top.jpg" />
-    <None Remove="ClientApp\src\assets\images\mouse\down-arch.png" />
-    <None Remove="ClientApp\src\assets\images\mouse\down-arch.png" />
+    <None Remove="ClientApp\src\assets\images\mouse\mouse-inf-left.png" />
+    <None Remove="ClientApp\src\assets\images\mouse\mouse-inf-left.png" />
+    <None Remove="ClientApp\src\assets\images\mouse\mouse-inf-right.png" />
+    <None Remove="ClientApp\src\assets\images\mouse\mouse-inf-right.png" />
+    <None Remove="ClientApp\src\assets\images\mouse\mouse-sup-left.png" />
+    <None Remove="ClientApp\src\assets\images\mouse\mouse-sup-left.png" />
+    <None Remove="ClientApp\src\assets\images\mouse\mouse-sup-right.png" />
+    <None Remove="ClientApp\src\assets\images\mouse\mouse-sup-right.png" />
     <None Remove="ClientApp\src\assets\images\mouse\Mouth.png" />
     <None Remove="ClientApp\src\assets\images\mouse\Mouth.png" />
-    <None Remove="ClientApp\src\assets\images\mouse\upper-arch.png" />
-    <None Remove="ClientApp\src\assets\images\mouse\upper-arch.png" />
   </ItemGroup>
 
   <ItemGroup>

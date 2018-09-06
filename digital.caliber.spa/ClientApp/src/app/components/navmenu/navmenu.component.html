@@ -18,19 +18,22 @@
                         Login
                     </a>
                 </li>
-                <li class="nav-item" *ngIf="isSignedIn" [routerLinkActive]="['link-active']">
-                    <a [routerLink]="['/orthodontics']">Ortodoncia</a>
+                <li class="nav-item dropdown" *ngIf="isSignedIn">
+                    <a class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+                    id="navbarDropdown">Ortodoncia</a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a [routerLink]="['/orthodontics']" [routerLinkActive]="['link-active']">Indices mesio-distal</a>
+                        <!--<div class="dropdown-divider"></div>
+                        <a [routerLink]="['/orthodontics']">Posicion vertical brackets</a>-->
+                    </div>
                 </li>
                 <li class="nav-item dropdown" *ngIf="isSignedIn">
                     <a class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
-                         id="navbarDropdown">
-                        Hi, {{username}}
+                         id="navbarDropdownUser">
+                        Hola, {{username}}
                     </a>
-                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <!--<div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="#">Another action</a>
-                        <div class="dropdown-divider"></div>-->
-                        <a class="dropdown-item" href="#" (click)="logout($event)">Sign out</a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdownUser">
+                        <a class="dropdown-item" href="#" (click)="logout($event)">Salir</a>
                     </div>
                 </li>
             </ul>

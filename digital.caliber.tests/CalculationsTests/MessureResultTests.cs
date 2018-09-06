@@ -60,8 +60,8 @@ namespace digital.caliber.tests.CalculationsTests
 
         private void SetDefaultMessuresInputsValue()
         {
-            mouthMessure = SetMouthDefaultMessures();
-            theethMessure = SetRoothTheetDefaultMessures();
+            mouthMessure = SetMouthDefaultMeasures();
+            theethMessure = SetRoothTheetDefaultMeasures();
         }
     }
 }

@@ -5,7 +5,6 @@ import { ResultsComponent } from './results/results.component';
 import { MeasureComponent } from './measures/measures.component';
 import { MeasuresListComponent } from './measures/measures-list.component';
 import { AuthGuard } from '../../services/auth-guard.service';
-import { ResultPdfComponent } from './results/result-pdf.component';
 
 const orthodonticsRoutes: Routes = [
     {
@@ -18,7 +17,6 @@ const orthodonticsRoutes: Routes = [
             { path: 'measures', component: MeasureComponent },
             { path: 'measures/:id', component: MeasureComponent },
             { path: 'results/:id', component: ResultsComponent },
-            { path: 'resultsPdf/:id', component: ResultPdfComponent },
             { path: '**', redirectTo: '' },
         ]
     }
