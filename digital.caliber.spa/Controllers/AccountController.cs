@@ -53,14 +53,21 @@ namespace digital.caliber.spa.Controllers
 
             try
             {
-                var identityResult = await _accountManager.Register(registerVm.FirstName, registerVm.LastName, registerVm.Email, registerVm.Password);
+                var identityResult = await _accountManager.RegisterAsync(registerVm.FirstName, registerVm.LastName, registerVm.Email, registerVm.Password);
                 if (!identityResult.Succeeded)
                 {
-                    var error = identityResult.Errors.Any() ? identityResult.Errors.FirstOrDefault().Description : "Error while registering user!";
+                    var error = identityResult.Errors.Any() ? identityResult.Errors.FirstOrDefault()?.Description : "Error while registering user!";
                     return BadRequest(error);
                 }
 
-                var user = await _accountManager.Authenticate(registerVm.Email, registerVm.Password, false);
+                var signInResult = await _accountManager.AuthenticateAsync(registerVm.Email, registerVm.Password, false);
+
+                if (!signInResult.Succeeded)
+                {
+                    return BadRequest("Error while trying to sign in.");
+                }
+
+                var user = await _accountManager.GetByEmailAsync(registerVm.Email);
 
                 if (user == null)
                     return Unauthorized();
@@ -95,7 +102,14 @@ namespace digital.caliber.spa.Controllers
         {
             try
             {
-                var user = await _accountManager.Authenticate(loginVm.Email, loginVm.Password, loginVm.RememberMe);
+                var signInResult = await _accountManager.AuthenticateAsync(loginVm.Email, loginVm.Password, loginVm.RememberMe);
+
+                if (!signInResult.Succeeded)
+                {
+                    return BadRequest("Error while trying to sign in.");
+                }
+
+                var user = await _accountManager.GetByEmailAsync(loginVm.Email);
 
                 if (user == null)
                     return Unauthorized();
@@ -120,7 +134,7 @@ namespace digital.caliber.spa.Controllers
             catch (Exception ex)
             {
                 await _logger.Log(LogLevel.Error, "Account", ex, "Login");
-                throw ex;
+                return BadRequest("An error happened while trying to login!");
             }
         }
 
@@ -128,9 +142,64 @@ namespace digital.caliber.spa.Controllers
         [HttpPost("Logout"), ActionName("Logout")]
         public async Task<ActionResult> Logout()
         {
-            await this._accountManager.Logout();
+            await this._accountManager.LogoutAsync();
 
             return Ok();
+        }
+
+        [Authorize(AuthenticationSchemes = "Bearer")]
+        [HttpPost("UpdateProfile"), ActionName("UpdateProfile")]
+        public async Task<IActionResult> UpdateProfile(ProfileUpdateViewModel profileVm)
+        {
+            if (!ModelState.IsValid) return BadRequest(ModelState);
+
+            var user = await _accountManager.GetByUserAsync(User);
+
+            if (user == null)
+            {
+                return BadRequest("User not found!");
+            }
+
+            var result = await _accountManager.UpdateAsync(user, profileVm.FirstName, profileVm.LastName, profileVm.Email);
+
+            if (!result.Succeeded) return BadRequest(result.Errors.FirstOrDefault()?.Description);
+
+            user = await _accountManager.GetByUserAsync(User);
+                
+            var response = new
+            {
+                firstName = user.FirstName,
+                lastName = user.LastName,
+                email = user.Email,
+                formattedName = user.FirstName + " " + user.LastName,
+            };
+
+            var userData = JsonConvert.SerializeObject(response);
+
+            return new OkObjectResult(userData);
+        }
+
+        [Authorize(AuthenticationSchemes = "Bearer")]
+        [HttpPost("UpdatePassword"), ActionName("UpdatePassword")]
+        public async Task<IActionResult> UpdatePassword(PasswordUpdateViewModel passwordVm)
+        {
+            if (!ModelState.IsValid) return BadRequest(ModelState);
+
+            var user = await _accountManager.GetByUserAsync(User);
+
+            if (user == null)
+            {
+                return BadRequest("User not found!");
+            }
+
+            var result = await _accountManager.UpdatePasswordAsync(user, passwordVm.CurrentPassword, passwordVm.NewPassword);
+            
+            if (result.Succeeded)
+            {
+                return Ok("Password updated!");
+            }
+
+            return BadRequest(result.Errors.FirstOrDefault()?.Description);
         }
 
         private async Task<ClaimsIdentity> GetClaimsIdentity(ApplicationUser user)

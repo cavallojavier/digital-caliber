@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Security.Claims;
 using System.Threading.Tasks;
 using digital.caliber.model.Models;
 using digital.caliber.services.CustomLogger;
@@ -19,37 +20,37 @@ namespace digital.caliber.services.Services
             _logger = logger;
         }
 
-        public async Task<ApplicationUser> Authenticate(string email, string password, bool rememberMe)
+        public async Task<SignInResult> AuthenticateAsync(string email, string password, bool rememberMe)
         {
-            var result = await _signInManager.PasswordSignInAsync(email, password, rememberMe, false);
-
-            if (!result.Succeeded)
-                throw new Exception("Authentication failed");
-
-            return await _userManager.FindByEmailAsync(email);
+            return await _signInManager.PasswordSignInAsync(email, password, rememberMe, false);
         }
 
-        public async Task<ApplicationUser> GetByEmail(string email)
+        public async Task<ApplicationUser> GetByEmailAsync(string email)
         {
             return await _userManager.FindByEmailAsync(email);
         }
 
-        public async Task<ApplicationUser> GetByName(string name)
+        public async Task<ApplicationUser> GetByNameAsync(string name)
         {
             return await _userManager.FindByNameAsync(name);
         }
 
-        public async Task<ApplicationUser> GetById(string id)
+        public async Task<ApplicationUser> GetByIdAsync(string id)
         {
             return await _userManager.FindByIdAsync(id);
         }
 
-        public Task<bool> Delete(int id)
+        public async Task<ApplicationUser> GetByUserAsync(ClaimsPrincipal user)
+        {
+            return await _userManager.GetUserAsync(user);
+        }
+
+        public Task<bool> DeleteAsync(int id)
         {
             throw new NotImplementedException();
         }
 
-        public async Task<string> ForgotPassword(string email)
+        public async Task<string> ForgotPasswordAsync(string email)
         {
             var user = await _userManager.FindByEmailAsync(email);
             if (user == null)
@@ -58,7 +59,7 @@ namespace digital.caliber.services.Services
             return await _userManager.GeneratePasswordResetTokenAsync(user);
         }
 
-        public async Task<IdentityResult> Register(string firstName, string lastName, string email, string password)
+        public async Task<IdentityResult> RegisterAsync(string firstName, string lastName, string email, string password)
         {
             //Check if existing already
             var exists = await _userManager.FindByEmailAsync(email);
@@ -78,14 +79,24 @@ namespace digital.caliber.services.Services
             return await _userManager.CreateAsync(user, password);
         }
 
-        public Task<bool> Update(ApplicationUser user)
+        public async Task<IdentityResult> UpdateAsync(ApplicationUser user, string firstName, string lastName, string email)
         {
-            throw new NotImplementedException();
+            user.FirstName = firstName;
+            user.LastName = lastName;
+            user.Email = email;
+
+            return await _userManager.UpdateAsync(user);
         }
 
-        public async Task Logout()
+        public async Task LogoutAsync()
         {
             await _signInManager.SignOutAsync();
+        }
+
+        public async Task<IdentityResult> UpdatePasswordAsync(ApplicationUser user, string currentPassword, string newPassword)
+        {
+            var result = await _userManager.ChangePasswordAsync(user, currentPassword, newPassword);
+            return result;
         }
 
         public void Dispose()

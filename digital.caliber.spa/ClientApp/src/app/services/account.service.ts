@@ -5,7 +5,7 @@ import { ConfigService } from './config.service';
 import { BaseService } from './base.service';
 import { SpinnerService } from './spinner.service';
 
-import { AccountUser } from '../models/account.interface';
+import { AccountUser, PasswordUpdate, AccountUpdate } from '../models/account.interface';
 
 import { Observable, of } from "rxjs";
 import { catchError, map, tap } from 'rxjs/operators';
@@ -52,10 +52,44 @@ export class AccountService extends BaseService implements OnInit{
             map(() => {
                 localStorage.clear();
                 this.loggedUser = null;
-            }),
-            catchError(this.handleError)
+            })
         );
-        
+    }
+
+    updatePassword(account: PasswordUpdate): Observable<any> {
+        this.spinner.show();
+        return this.http.post(this.baseUrl + '/account/updatepassword',  {
+            currentPassword: account.currentPassword,
+            newPassword: account.newPassword
+            })
+        .pipe(
+            map(() => {
+                
+            })
+        );
+    }
+
+    public updateAccount(account: AccountUpdate): Observable<any>{
+        let url = '/account/updateprofile';
+
+        this.spinner.show();
+        return this.http.post(this.baseUrl + url, {
+            email: account.email,
+            firstName: account.firstName,
+            lastName: account.lastName})
+        .pipe(
+          map((res:any) => {
+                this.getLoggedUser();
+                let update = JSON.parse(res);
+                
+                this.loggedUser.firstName = update.firstName;
+                this.loggedUser.lastName = update.lastName;
+                this.loggedUser.email = update.email;
+                this.loggedUser.formattedName: update.formattedName
+
+                localStorage.setItem("user",  JSON.stringify(this.loggedUser));
+            })
+        );
     }
 
     public getAuthToken(): string {

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Security.Claims;
 using System.Threading.Tasks;
 using digital.caliber.model.Models;
 using Microsoft.AspNetCore.Identity;
@@ -7,22 +8,26 @@ namespace digital.caliber.services.Services
 {
     public interface IAccountService : IDisposable
     {
-        Task<ApplicationUser> GetById(string id);
+        Task<ApplicationUser> GetByIdAsync(string id);
 
-        Task<ApplicationUser> GetByEmail(string email);
+        Task<ApplicationUser> GetByEmailAsync(string email);
 
-        Task<ApplicationUser> GetByName(string name);
+        Task<ApplicationUser> GetByNameAsync(string name);
 
-        Task<IdentityResult> Register(string firstName, string lastName, string email, string password);
+        Task<ApplicationUser> GetByUserAsync(ClaimsPrincipal user);
 
-        Task<ApplicationUser> Authenticate(string email, string password, bool rememberMe);
+        Task<IdentityResult> RegisterAsync(string firstName, string lastName, string email, string password);
 
-        Task Logout();
+        Task<SignInResult> AuthenticateAsync(string email, string password, bool rememberMe);
 
-        Task<bool> Update(ApplicationUser user);
+        Task LogoutAsync();
 
-        Task<bool> Delete(int id);
+        Task<IdentityResult> UpdateAsync(ApplicationUser user, string firstName, string lastName, string email);
 
-        Task<string> ForgotPassword(string email);
+        Task<IdentityResult> UpdatePasswordAsync(ApplicationUser user, string oldPassword, string newPassword);
+
+        Task<bool> DeleteAsync(int id);
+
+        Task<string> ForgotPasswordAsync(string email);
     }
 }

@@ -33,6 +33,8 @@
                         Hola, {{username}}
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdownUser">
+                        <a class="dropdown-item" [routerLink]="['/profile']">Tu cuenta</a>
+                        <div class="dropdown-divider"></div>
                         <a class="dropdown-item" href="#" (click)="logout($event)">Salir</a>
                     </div>
                 </li>

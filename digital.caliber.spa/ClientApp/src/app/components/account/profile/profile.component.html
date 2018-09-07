@@ -1,0 +1,82 @@
+<div class="row profile">
+    <div class="box col-sm-6">
+        <box-container>
+            <form #f="ngForm" novalidate (ngSubmit)="updateProfile(f)">
+                <h3 class="text-center">Perfil</h3>
+                <div *ngIf="f.submitted && errors" class="validation-error">
+                    Ocurrio un error al intentar actualizar tu perfil:
+                    <p>{{errors}}</p>
+                    
+                </div>
+                <ul>
+                    <li>
+                        <span>Nombre</span>
+                        <input type="text" class="form-control input-custom" required name="firstName" [(ngModel)]="accountUpdate.firstName" #firstName="ngModel" [ngClass]="{ 'is-invalid': f.submitted && (firstName.invalid) }" >
+                        <div *ngIf="f.submitted && (firstName.invalid)" class="invalid-feedback">
+                            <div *ngIf="firstName.errors && firstName.errors.required">- Nombre es requerido</div>
+                        </div>
+                    </li>
+                    <li>
+                        <span>Apellido</span>
+                        <input type="text" class="form-control input-custom" required name="lastName" [(ngModel)]="accountUpdate.lastName" #lastName="ngModel" [ngClass]="{ 'is-invalid': f.submitted && (lastName.invalid) }">
+                        <div *ngIf="f.submitted && (lastName.invalid)" class="invalid-feedback">
+                            <div *ngIf="lastName.errors && lastName.errors.required">- Apellido es requerido</div>
+                        </div>
+                    </li>
+                    <li>
+                        <span>Email</span>
+                        <input autocomplete='email' type="email" class="form-control input-custom" required name="email" [(ngModel)]="accountUpdate.email" #email="ngModel"  [ngClass]="{ 'is-invalid': f.submitted && (email.invalid || mailInvalid) }" >
+                        <div *ngIf="f.submitted && (email.invalid || mailInvalid)" class="invalid-feedback">
+                            <div *ngIf="email.errors && email.errors.required">- Email es requerido</div>
+                            <div *ngIf="!(email.errors && email.errors.required)">- Verificar email</div>
+                        </div>
+                    </li>
+                </ul>
+                <div class="button-align">
+                    <button type="submit" class="btn btn-outline btn-secondary">Actualizar</button>
+                </div>
+            </form>
+        </box-container>
+    </div>
+    <div class="box col-sm-6">
+        <box-container>
+            <form #p="ngForm" novalidate (ngSubmit)="updatePassword(p)">
+                <h3 class="text-center">Actualizar contraseña</h3>
+                <div *ngIf="p.submitted && passerrors" class="validation-error">
+                    Ocurrio un error al intentar actualizar tu contraseña:
+                    <p>{{passerrors}}</p>
+                    
+                </div>
+                <ul>
+                    <li>
+                        <span data-toggle="tooltip" data-placement="left" title="Min length 8 chars and digits are required">Contraseña actual</span>
+                        <input type="password" class="form-control input-custom" autocomplete="off" required name="ps" [(ngModel)]="passwordUpdate.currentPassword" #ps="ngModel" [ngClass]="{ 'is-invalid': p.submitted && (ps.invalid) }">
+                        <div *ngIf="p.submitted && (ps.invalid || passInvalid)" class="invalid-feedback">
+                            <div *ngIf="psVal.errors && psVal.errors.required">- Contraseña es requerido</div>
+                            <div *ngIf="passInvalid">- La contraseña debe ser igual</div>
+                        </div>
+                    </li>
+                    <li>
+                        <span data-toggle="tooltip" data-placement="left" title="Min length 8 chars and digits are required">Contraseña</span>
+                        <input type="password" class="form-control input-custom" autocomplete="off" required name="ps" [(ngModel)]="passwordUpdate.newPassword" #ps="ngModel" [ngClass]="{ 'is-invalid': p.submitted && (ps.invalid || passInvalid) }">
+                        <div *ngIf="p.submitted && (ps.invalid || passInvalid)" class="invalid-feedback">
+                            <div *ngIf="psVal.errors && psVal.errors.required">- Contraseña es requerido</div>
+                            <div *ngIf="passInvalid">- La contraseña debe ser igual</div>
+                        </div>
+                    </li>
+                    <li>
+                        <span>Confirmacion contraseña</span>
+                        <input type="password" class="form-control input-custom" autocomplete="off" required name="psVal" [(ngModel)]="passwordVal" #psVal="ngModel" [ngClass]="{ 'is-invalid': p.submitted && (psVal.invalid || passInvalid) }">
+                        <div *ngIf="p.submitted && (psVal.invalid || passInvalid)" class="invalid-feedback">
+                            <div *ngIf="psVal.errors && psVal.errors.required">- Contraseña es requerido</div>
+                            <div *ngIf="passInvalid">- La contraseña debe ser igual</div>
+                        </div>
+                    </li>
+                </ul>
+                <div class="button-align">
+                    <button type="submit" class="btn btn-outline btn-secondary">Cambiar</button>
+                </div>
+            </form>
+        </box-container>
+    </div>
+</div>
