@@ -85,7 +85,7 @@ export class AccountService extends BaseService implements OnInit{
                 this.loggedUser.firstName = update.firstName;
                 this.loggedUser.lastName = update.lastName;
                 this.loggedUser.email = update.email;
-                this.loggedUser.formattedName: update.formattedName
+                this.loggedUser.formattedName = update.formattedName;
 
                 localStorage.setItem("user",  JSON.stringify(this.loggedUser));
             })
