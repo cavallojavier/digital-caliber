@@ -63,5 +63,9 @@ namespace digital.caliber.model.Models
         public decimal Tooth46 { get; set; }
 
         public decimal Tooth47 { get; set; }
+
+        public decimal ProtIncisiveSup { get; set; }
+
+        public decimal ProtIncisiveInf { get; set; }
     }
 }

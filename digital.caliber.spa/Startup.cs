@@ -4,6 +4,8 @@ using System.Threading.Tasks;
 //using AutoMapper;
 using digital.caliber.model.Data;
 using digital.caliber.model.Models;
+using digital.caliber.services.Cache;
+using digital.caliber.services.CalculationTables;
 using digital.caliber.services.CustomLogger;
 using digital.caliber.services.Services;
 using digital.caliber.spa.Auth;
@@ -52,6 +54,7 @@ namespace digital.caliber.spa
             });
 
             //.AddJsonFormatters(options => options.ContractResolver = new CamelCasePropertyNamesContractResolver())
+            services.AddSingleton<CustomMemoryCache>();
 
             services.AddDbContext<CaliberDbContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("DBConnection"))
@@ -184,6 +187,10 @@ namespace digital.caliber.spa
             app.UseStaticFiles();
             app.UseSpaStaticFiles();
 
+            MoyersTable.CacheInstance = app.ApplicationServices.GetService<CustomMemoryCache>();
+            PontTable.CacheInstance = app.ApplicationServices.GetService<CustomMemoryCache>();
+            BoltonTable.CacheInstance = app.ApplicationServices.GetService<CustomMemoryCache>();
+            
             app.UseMvc(routes =>
             {
                 routes.MapRoute(

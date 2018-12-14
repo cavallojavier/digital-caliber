@@ -65,6 +65,20 @@
             </div>
         </div>  
     </box-container>
+    <box-container class="box-result">
+        <h3>Discrepancia Cefalometrica</h3>
+        <div class="box-content">
+            <div class="item-result"><span>Superior: </span><span>{{result.cefalometricDiscrepancy.superior | decimalToString}} +/- 2 (mm)</span></div>
+            <div class="item-result"><span>Inferior: </span><span>{{result.cefalometricDiscrepancy.inferior | decimalToString}} +/- 2 (mm)</span></div>
+        </div>  
+    </box-container>
+    <box-container class="box-result">
+        <h3>Discrepancia Total</h3>
+        <div class="box-content">
+            <div class="item-result"><span>Superior: </span><span>{{result.totalDiscrepancy.superior | decimalToString}} +/- 4 (mm)</span></div>
+            <div class="item-result"><span>Inferior: </span><span>{{result.totalDiscrepancy.inferior | decimalToString}} +/- 4 (mm)</span></div>
+        </div>  
+    </box-container>
 </div>
 <a class="download-zip-link" #downloadZipLink></a>
 

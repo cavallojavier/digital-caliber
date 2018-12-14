@@ -90,7 +90,10 @@ namespace digital.caliber.model.ViewModels
                     Tooth44 = measure.Teeths.Tooth44,
                     Tooth45 = measure.Teeths.Tooth45,
                     Tooth46 = measure.Teeths.Tooth46,
-                    Tooth47 = measure.Teeths.Tooth47
+                    Tooth47 = measure.Teeths.Tooth47,
+
+                    ProtIncisiveSup = measure.Teeths.ProtIncisiveSup,
+                    ProtIncisiveInf = measure.Teeths.ProtIncisiveInf
                 };
             }
 

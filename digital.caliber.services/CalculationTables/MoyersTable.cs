@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
 using System.Linq;
+using System.Threading.Tasks;
 using digital.caliber.services.Cache;
 using digital.caliber.services.Resources;
 
@@ -10,18 +11,18 @@ namespace digital.caliber.services.CalculationTables
 {
     public static class MoyersTable
     {
-        private const string MoyersFileName = "MoyersReference.txt";
+        public static CustomMemoryCache CacheInstance { get; set; }
 
         /// <summary>
         /// Finds the moyer superior value.
         /// </summary>
         /// <param name="referenceValue">The reference value.</param>
         /// <returns></returns>
-        public static decimal? FindMoyerSuperiorValue(decimal referenceValue)
+        public static async Task<decimal?> FindMoyerSuperiorValue(decimal referenceValue)
         {
             try
             {
-                var table = GetMoyersTable();
+                var table = await GetMoyersTable();
                 var closest = table.OrderBy(item => Math.Abs(referenceValue - item.Item1)).First();
 
                 if (Math.Abs(referenceValue - closest.Item1) > 1)
@@ -42,11 +43,11 @@ namespace digital.caliber.services.CalculationTables
         /// </summary>
         /// <param name="referenceValue">The reference value.</param>
         /// <returns></returns>
-        public static decimal? FindMoyerInferiorValue(decimal referenceValue)
+        public static async Task<decimal?> FindMoyerInferiorValue(decimal referenceValue)
         {
             try
             {
-                var table = GetMoyersTable();
+                var table = await GetMoyersTable();
                 var closest = table.OrderBy(item => Math.Abs(referenceValue - item.Item3)).First();
 
                 if (Math.Abs(referenceValue - closest.Item3) > 1)
@@ -66,13 +67,15 @@ namespace digital.caliber.services.CalculationTables
         /// Gets the moyers superior.
         /// </summary>
         /// <returns></returns>
-        private static IEnumerable<Tuple<decimal, decimal, decimal, decimal>> GetMoyersTable()
+        private static async Task<IEnumerable<Tuple<decimal, decimal, decimal, decimal>>> GetMoyersTable()
         {
             List<Tuple<decimal, decimal, decimal, decimal>> result;
+            CacheInstance = CacheInstance ?? new CustomMemoryCache();
+            var cachedItem = await CacheInstance.GetAsync<List<Tuple<decimal, decimal, decimal, decimal>>>(CacheKey.MoyersTableKey);
 
-            if (CacheHelper.Get(CacheKey.MoyersTableKey, out result))
+            if (cachedItem != null)
             {
-                return result;
+                return cachedItem;
             }
 
             result = new List<Tuple<decimal, decimal, decimal, decimal>>();
@@ -93,7 +96,7 @@ namespace digital.caliber.services.CalculationTables
                 }
             }
 
-            CacheHelper.Add(result, CacheKey.MoyersTableKey);
+            await CacheInstance.AddAsync(result, CacheKey.MoyersTableKey, 120);
 
             return result;
         }

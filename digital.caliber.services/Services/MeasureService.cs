@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using digital.caliber.model.Data;
 using digital.caliber.model.Models;
 using digital.caliber.model.ViewModels;
+using digital.caliber.services.Cache;
 using digital.caliber.services.CustomLogger;
 using Microsoft.EntityFrameworkCore;
 
@@ -15,11 +15,13 @@ namespace digital.caliber.services.Services
     {
         private readonly CaliberDbContext _context;
         private readonly ICustomLogger _logger;
-
-        public MeasureService(CaliberDbContext context, ICustomLogger logger)
+        private readonly CustomMemoryCache _cacheService;
+        
+        public MeasureService(CaliberDbContext context, ICustomLogger logger, CustomMemoryCache cache)
         {
             _context = context;
             _logger = logger;
+            _cacheService = cache;
         }
 
         public async Task<List<MeasureResumeViewModel>> GetMeasures(string userId, int? maxResults = null)
@@ -103,6 +105,9 @@ namespace digital.caliber.services.Services
                     Tooth45 = viewModel.Teeths.Tooth45,
                     Tooth46 = viewModel.Teeths.Tooth46,
                     Tooth47 = viewModel.Teeths.Tooth47,
+
+                    ProtIncisiveSup = viewModel.Teeths.ProtIncisiveSup,
+                    ProtIncisiveInf = viewModel.Teeths.ProtIncisiveInf
                 }
             };
 
@@ -124,18 +129,27 @@ namespace digital.caliber.services.Services
 
         public async Task<ResultsMeasures> GetResult(string userId, int id)
         {
+            var cacheKey = string.Format(CacheKey.MeasureResultKey, id);
+            var exists = await _cacheService.ExistsAsync(cacheKey);
+            if (exists)
+            {
+                return await _cacheService.GetAsync<ResultsMeasures>(cacheKey);
+            }
+
             var data = await _context.Measures
                 .Include(x => x.Mouth)
                 .Include(x => x.Teeths)
                 .FirstOrDefaultAsync(x => x.UserId == userId && x.Id == id);
 
             var model = MeasureViewModel.ToViewModel(data);
-            var result = MeasuresResultsProvider.GetResult(model.Mouth, model.Teeths);
+            var result = await MeasuresResultsProvider.GetResult(model.Mouth, model.Teeths);
 
             result.Id = data.Id;
             result.HcNumber = data.HcNumber;
             result.PatientName = data.PatientName;
             result.DateMeasure = data.DateMeasure;
+
+            await _cacheService.AddAsync(result, cacheKey);
 
             return result;
         }
@@ -181,6 +195,9 @@ namespace digital.caliber.services.Services
             model.Teeths.Tooth46 = viewModel.Teeths.Tooth46;
             model.Teeths.Tooth47 = viewModel.Teeths.Tooth47;
 
+            model.Teeths.ProtIncisiveSup = viewModel.Teeths.ProtIncisiveSup;
+            model.Teeths.ProtIncisiveInf = viewModel.Teeths.ProtIncisiveInf;
+
             model.Mouth.LeftInferiorCanine = viewModel.Mouth.LeftInferiorCanine;
             model.Mouth.LeftInferiorIncisive = viewModel.Mouth.LeftInferiorIncisive;
             model.Mouth.LeftInferiorPremolar = viewModel.Mouth.LeftInferiorPremolar;
@@ -197,6 +214,9 @@ namespace digital.caliber.services.Services
             _context.Update(model);
             await _context.SaveChangesAsync();
 
+            var cacheKey = string.Format(CacheKey.MeasureResultKey, model.Id);
+            _cacheService.ClearAsync(cacheKey);
+         
             return model.Id;
         }
     }

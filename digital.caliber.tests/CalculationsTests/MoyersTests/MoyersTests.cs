@@ -19,7 +19,7 @@ namespace digital.caliber.tests.CalculationsTests.MoyersTests
         [TestMethod]
         public void GetMoyersShouldSuccess()
         {
-            var moyers = MoyersCalculator.GetResult(mouthMessure, theethMessure);
+            var moyers = MoyersCalculator.GetResult(mouthMessure, theethMessure).Result;
 
             Assert.AreEqual(moyers.RightSuperior, (decimal)0.9, "Superior Right Invalid");
             Assert.AreEqual(moyers.LeftSuperior, (decimal)-2.1, "Superior Left Invalid");

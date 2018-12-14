@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
 using System.Linq;
+using System.Threading.Tasks;
 using digital.caliber.services.Cache;
 using digital.caliber.services.Resources;
 
@@ -10,18 +11,18 @@ namespace digital.caliber.services.CalculationTables
 {
     public static class PontTable
     {
-        private const string PontFileName = "PontReferences.txt";
+        public static CustomMemoryCache CacheInstance { get; set; }
 
         /// <summary>
         /// Finds the moyer superior value.
         /// </summary>
         /// <param name="referenceValue">The reference value.</param>
         /// <returns></returns>
-        public static decimal? FindPontValue(decimal referenceValue)
+        public static async Task<decimal?> FindPontValue(decimal referenceValue)
         {
             try
             {
-                var table = GetPontTable();
+                var table = await GetPontTable();
                 var closest = table.OrderBy(item => Math.Abs(referenceValue - item.Item1)).First();
 
                 if(Math.Abs(referenceValue - closest.Item1) > 1)
@@ -41,13 +42,15 @@ namespace digital.caliber.services.CalculationTables
         /// Gets the moyers superior.
         /// </summary>
         /// <returns></returns>
-        private static IEnumerable<Tuple<decimal, decimal>> GetPontTable()
+        private static async Task<IEnumerable<Tuple<decimal, decimal>>> GetPontTable()
         {
             List<Tuple<decimal, decimal>> result;
+            CacheInstance = CacheInstance ?? new CustomMemoryCache();
+            var cachedItem = await CacheInstance.GetAsync<List<Tuple<decimal, decimal>>>(CacheKey.PontTableKey);
 
-            if (CacheHelper.Get(CacheKey.PontTableKey, out result))
+            if (cachedItem != null)
             {
-                return result;
+                return cachedItem;
             }
 
             result = new List<Tuple<decimal, decimal>>();
@@ -66,7 +69,7 @@ namespace digital.caliber.services.CalculationTables
                 }
             }
 
-            CacheHelper.Add(result, CacheKey.PontTableKey);
+            await CacheInstance.AddAsync(result, CacheKey.PontTableKey, 120);
 
             return result;
         }

@@ -5,6 +5,7 @@ using System.IO;
 using System.Threading;
 using System.Threading.Tasks;
 using digital.caliber.model.ViewModels;
+using digital.caliber.services.Extensions;
 using digital.caliber.services.Resources.Texts;
 using iTextSharp.text;
 using iTextSharp.text.pdf;
@@ -43,21 +44,28 @@ namespace digital.caliber.services.Services
                 doc.AddAuthor(TextsResource.PdfAuthor);
                 
                 doc.Open();
-                doc.SetMargins(10, 10, (float)1.5, (float)1.5);
                 
                 SetTitle(doc);
 
                 SetPatientData(doc, dataResult.PatientName, dataResult.HcNumber, dataResult.DateMeasure);
 
+                SetBolton(doc, dataResult);
+
+                SetPont(doc, dataResult);
+
+                SetTanaka(doc, dataResult);
+
                 SetDentalBoneDiscrepancy(doc, dataResult);
 
                 SetMoyers(doc, dataResult);
 
-                SetTanaka(doc, dataResult);
+                doc.NewPage();
 
-                SetBolton(doc, dataResult);
+                SetCefalometricDiscrepancy(doc, dataResult);
 
-                SetPont(doc, dataResult);
+                SetTotalDiscrepancy(doc, dataResult);
+
+                doc.SetMargins(10, 10, (float)1.5, (float)1.5);
 
                 doc.Close();
                 writer.Close();
@@ -65,12 +73,7 @@ namespace digital.caliber.services.Services
                 return (pdfStream.ToArray(), fileName);
             }
         }
-
-        public Task<(byte[], string)> ExportToExcel(string userId, int id)
-        {
-            throw new NotImplementedException();
-        }
-
+        
         private static void SetPatientData(Document doc, string patientName, string hcNumber, DateTime dateOfMeasure)
         {
             var itemsToDisplay = new Dictionary<string, string>
@@ -87,13 +90,13 @@ namespace digital.caliber.services.Services
         {
             var itemsToDisplay = new Dictionary<string, string>
             {
-                {TextsResource.Higher, results.DentalBoneDiscrepancy.Superior.ToString()},
-                {TextsResource.Lower, results.DentalBoneDiscrepancy.Inferior.ToString()},
-                {TextsResource.DentalBone_HigherAntero, results.DentalBoneDiscrepancy.SuperiorAntero.ToString()},
-                {TextsResource.DentalBone_LowerAntero, results.DentalBoneDiscrepancy.InferiorAntero.ToString()},
+                {TextsResource.Higher, results.DentalBoneDiscrepancy.Superior.ToStringUnit()},
+                {TextsResource.Lower, results.DentalBoneDiscrepancy.Inferior.ToStringUnit()},
+                {TextsResource.DentalBone_HigherAntero, results.DentalBoneDiscrepancy.SuperiorAntero.ToStringUnit()},
+                {TextsResource.DentalBone_LowerAntero, results.DentalBoneDiscrepancy.InferiorAntero.ToStringUnit()},
                 {
                     TextsResource.DentalBone_LowerIncisives,
-                    results.DentalBoneDiscrepancy.InferiorIncisives.ToString()
+                    results.DentalBoneDiscrepancy.InferiorIncisives.ToStringUnit()
                 }
             };
 
@@ -105,10 +108,10 @@ namespace digital.caliber.services.Services
         {
             var itemsToDisplay = new Dictionary<string, string>
             {
-                {TextsResource.HigherRigth, results.Moyers.RightSuperior.ToString()},
-                {TextsResource.HigherLeft, results.Moyers.LeftSuperior.ToString()},
-                {TextsResource.LowerRigth, results.Moyers.RightInferior.ToString()},
-                {TextsResource.LowerLeft, results.Moyers.LeftInferior.ToString()}
+                {TextsResource.HigherRigth, results.Moyers.RightSuperior.ToStringUnit()},
+                {TextsResource.HigherLeft, results.Moyers.LeftSuperior.ToStringUnit()},
+                {TextsResource.LowerRigth, results.Moyers.RightInferior.ToStringUnit()},
+                {TextsResource.LowerLeft, results.Moyers.LeftInferior.ToStringUnit()}
             };
 
 
@@ -119,8 +122,8 @@ namespace digital.caliber.services.Services
         {
             var itemsToDisplay = new Dictionary<string, string>
             {
-                {TextsResource.Higher, results.Tanaka.Superior.ToString()},
-                {TextsResource.Lower, results.Tanaka.Inferior.ToString()}
+                {TextsResource.Higher, results.Tanaka.Superior.ToStringUnit()},
+                {TextsResource.Lower, results.Tanaka.Inferior.ToStringUnit()}
             };
 
 
@@ -135,15 +138,15 @@ namespace digital.caliber.services.Services
                     string.Format("{0} - {1}", TextsResource.Bolton_Total,
                         GetBoltonExcessLabel(results.BoltonTotal.IsSuperiorExcess)),
                     results.BoltonTotal.IsSuperiorExcess
-                        ? results.BoltonTotal.SuperiorExcess.ToString()
-                        : results.BoltonTotal.InferiorExcess.ToString()
+                        ? results.BoltonTotal.SuperiorExcess.ToStringUnit()
+                        : results.BoltonTotal.InferiorExcess.ToStringUnit()
                 },
                 {
                     string.Format("{0} - {1}", TextsResource.Bolton_Antero,
                         GetBoltonExcessLabel(results.BoltonPreviousRelation.IsSuperiorExcess)),
                     results.BoltonTotal.IsSuperiorExcess
-                        ? results.BoltonPreviousRelation.SuperiorExcess.ToString()
-                        : results.BoltonPreviousRelation.InferiorExcess.ToString()
+                        ? results.BoltonPreviousRelation.SuperiorExcess.ToStringUnit()
+                        : results.BoltonPreviousRelation.InferiorExcess.ToStringUnit()
                 }
             };
 
@@ -155,13 +158,35 @@ namespace digital.caliber.services.Services
         {
             var itemsToDisplay = new Dictionary<string, string>
             {
-                {TextsResource.Pont_14To24, results.Pont.Pont14To24.ToString()},
-                {TextsResource.Pont_16To26, results.Pont.Pont16To26.ToString()},
-                {TextsResource.Pont_LongArch, results.Pont.ArchLong.ToString()}
+                {TextsResource.Pont_14To24, results.Pont.Pont14To24.ToStringUnit()},
+                {TextsResource.Pont_16To26, results.Pont.Pont16To26.ToStringUnit()},
+                {TextsResource.Pont_LongArch, results.Pont.ArchLong.ToStringUnit()}
             };
 
 
             SetTable(doc, TextsResource.Pont_Title, itemsToDisplay);
+        }
+
+        private static void SetCefalometricDiscrepancy(Document doc, ResultsMeasures results)
+        {
+            var itemsToDisplay = new Dictionary<string, string>
+            {
+                {TextsResource.Higher, results.CefalometricDiscrepancy.Superior.ToStringWithText(" +/- 2 (mm)")},
+                {TextsResource.Lower, results.CefalometricDiscrepancy.Inferior.ToStringWithText(" +/- 2 (mm)")},
+            };
+
+            SetTable(doc, TextsResource.CefaloDiscrepancy_Title, itemsToDisplay);
+        }
+
+        private static void SetTotalDiscrepancy(Document doc, ResultsMeasures results)
+        {
+            var itemsToDisplay = new Dictionary<string, string>
+            {
+                {TextsResource.Higher, results.TotalDiscrepancy.Superior.ToStringWithText(" +/- 4 (mm)")},
+                {TextsResource.Lower, results.TotalDiscrepancy.Inferior.ToStringWithText(" +/- 4 (mm)")},
+            };
+
+            SetTable(doc, TextsResource.TotalDiscrepancy_Title, itemsToDisplay);
         }
 
         private static void SetTitle(Document doc)

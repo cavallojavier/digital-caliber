@@ -88,6 +88,15 @@ namespace digital.caliber.services.Resources.Texts {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Discrepancia Cefalometrica.
+        /// </summary>
+        internal static string CefaloDiscrepancy_Title {
+            get {
+                return ResourceManager.GetString("CefaloDiscrepancy_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Antero Superior.
         /// </summary>
         internal static string DentalBone_HigherAntero {
@@ -327,6 +336,15 @@ namespace digital.caliber.services.Resources.Texts {
         internal static string Title {
             get {
                 return ResourceManager.GetString("Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Discrepancia Total.
+        /// </summary>
+        internal static string TotalDiscrepancy_Title {
+            get {
+                return ResourceManager.GetString("TotalDiscrepancy_Title", resourceCulture);
             }
         }
     }

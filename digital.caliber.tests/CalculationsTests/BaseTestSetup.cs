@@ -1,6 +1,7 @@
 ﻿using System.Globalization;
 using System.Threading;
 using digital.caliber.model.Models;
+using digital.caliber.services.Cache;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace digital.caliber.tests.CalculationsTests

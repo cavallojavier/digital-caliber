@@ -21,7 +21,7 @@ namespace digital.caliber.tests.CalculationsTests.PontTests
         [TestMethod]
         public void GetPontResultShouldSuccess()
         {
-            var pontResult = PontCalculator.GetResult(theethMessure);
+            var pontResult = PontCalculator.GetResult(theethMessure).Result;
 
             Assert.AreEqual(pontResult.Pont14To24, (decimal)33.5, "14 to 24 Invalid");
             Assert.AreEqual(pontResult.Pont16To26, (decimal)43, "16 to 26 Invalid");
@@ -35,7 +35,7 @@ namespace digital.caliber.tests.CalculationsTests.PontTests
             theethMessure.Tooth12 = 1;
             theethMessure.Tooth21 = 1;
 
-            var pontResult = PontCalculator.GetResult(theethMessure);
+            var pontResult = PontCalculator.GetResult(theethMessure).Result;
             Assert.AreEqual(pontResult.ArchLong, null, "Arch Long Invalid");
         }
     }

@@ -73,4 +73,7 @@ class teeths{
     public tooth45: number;
     public tooth46: number;
     public tooth47: number;
+
+    public protIncisiveSup: number;
+    public protIncisiveInf: number;
 }

@@ -1,4 +1,5 @@
-﻿using digital.caliber.model.Models;
+﻿using System.Threading.Tasks;
+using digital.caliber.model.Models;
 using digital.caliber.services.Calculators;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
@@ -18,7 +19,7 @@ namespace digital.caliber.tests.CalculationsTests.BoltonTests
         [TestMethod]
         public void GetBoltonTotalResultShouldSuccess()
         {
-            var boltonResult = BoltonCalculator.GetBoltonTotalResult(theethMessure);
+            var boltonResult = BoltonCalculator.GetBoltonTotalResult(theethMessure).Result;
 
             Assert.AreEqual(boltonResult.SuperiorExcess, (decimal)1, "Superior excess Invalid");
             Assert.AreEqual(boltonResult.InferiorExcess, (decimal)-0.6, "Inferior excess Invalid");
@@ -31,7 +32,7 @@ namespace digital.caliber.tests.CalculationsTests.BoltonTests
         [TestMethod]
         public void GetBoltonPreviousResultShouldSuccess()
         {
-            var boltonResult = BoltonCalculator.GetBoltonPreviousResult(theethMessure);
+            var boltonResult = BoltonCalculator.GetBoltonPreviousResult(theethMessure).Result;
 
             Assert.AreEqual(boltonResult.SuperiorExcess, (decimal)-5, "Superior excess Invalid");
             Assert.AreEqual(boltonResult.InferiorExcess, (decimal)4, "Inferior excess Invalid");

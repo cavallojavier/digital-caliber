@@ -9,7 +9,9 @@ export class measuresResult {
     public pont: pont;
     public moyers: moyers;
     public boltonTotal: boltonTotal;
-    public boltonPreviousRelation: boltonPreviousRelation
+    public boltonPreviousRelation: boltonPreviousRelation;
+    public cefalometricDiscrepancy: cefalometricDiscrepancy;
+    public totalDiscrepancy: totalDiscrepancy;
 
     constructor() {
         this.id = 0;
@@ -21,6 +23,8 @@ export class measuresResult {
         this.moyers = new moyers;
         this.boltonTotal = new boltonTotal;
         this.boltonPreviousRelation = new boltonPreviousRelation;
+        this.cefalometricDiscrepancy = new cefalometricDiscrepancy;
+        this.totalDiscrepancy = new totalDiscrepancy;
     }
 }
 
@@ -72,4 +76,14 @@ class boltonPreviousRelation{
     public superiorExcess: number|null;
     public total: number|null;
     public isSuperiorExcess: number|null;
+}
+
+class cefalometricDiscrepancy{
+    public superior: number|null;
+    public inferior: number|null;
+}
+
+class totalDiscrepancy{
+    public superior: number|null;
+    public inferior: number|null;
 }

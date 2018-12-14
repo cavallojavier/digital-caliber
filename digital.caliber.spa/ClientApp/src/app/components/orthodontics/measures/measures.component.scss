@@ -244,6 +244,23 @@ i.arrows{
             }
         }
     }
+
+    .protrusion{
+        ul{
+            display: flex;
+            flex-direction: row;
+
+            li{
+                display: inline;
+                margin-left:1rem;
+
+                .input-number{
+                    width: 65px;
+                    margin-left: 5px;
+                }
+            }
+        }
+    }
 }
 .mouse-section{
     

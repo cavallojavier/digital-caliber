@@ -1,12 +1,13 @@
 ﻿using System;
+using System.Threading.Tasks;
 using Microsoft.Extensions.Caching.Memory;
 
 namespace digital.caliber.services.Cache
 {
     public static class CacheHelper
     {
-        private static MemoryCache cache = new MemoryCache(new MemoryCacheOptions() { });
-        private static readonly int expirationTime = 120;
+        private static readonly MemoryCache Cache = new MemoryCache(new MemoryCacheOptions() { });
+        private const int ExpirationTime = 120;
 
         /// <summary>
         /// Insert value into the cache using
@@ -19,10 +20,10 @@ namespace digital.caliber.services.Cache
         {
             Clear(key);
             
-            cache.Set(
+            Cache.Set(
                 key,
                 cachingObject,
-                DateTime.Now.AddMinutes(expirationTime));
+                DateTime.Now.AddMinutes(ExpirationTime));
         }
 
         /// <summary>
@@ -31,7 +32,7 @@ namespace digital.caliber.services.Cache
         /// <param name="key">Name of cached item</param>
         public static void Clear(string key)
         {
-            cache.Remove(key);
+            Cache.Remove(key);
         }
 
         /// <summary>
@@ -41,7 +42,7 @@ namespace digital.caliber.services.Cache
         /// <returns></returns>
         public static bool Exists(string key)
         {
-            return cache.Get(key) != null;
+            return Cache.Get(key) != null;
         }
 
         /// <summary>
@@ -61,7 +62,7 @@ namespace digital.caliber.services.Cache
                     return false;
                 }
 
-                value = (T)cache.Get(key);
+                value = (T)Cache.Get(key);
             }
             catch
             {
@@ -70,6 +71,12 @@ namespace digital.caliber.services.Cache
             }
 
             return true;
+        }
+
+        public static async Task<T> Get<T>(string key)
+        {
+            var cacheEntry = await Task.FromResult(Cache.Get(key));
+            return (T)cacheEntry;
         }
     }
 }

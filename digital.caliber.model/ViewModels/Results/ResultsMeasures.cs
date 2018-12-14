@@ -23,5 +23,9 @@ namespace digital.caliber.model.ViewModels
         public BoltonTotal BoltonTotal { get; set; }
 
         public BoltonPreviousRelation BoltonPreviousRelation { get; set; }
+
+        public CefalometricDiscrepancy CefalometricDiscrepancy { get; set; }
+
+        public TotalDiscrepancy TotalDiscrepancy { get; set; }
     }
 }

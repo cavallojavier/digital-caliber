@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
 using System.Linq;
+using System.Threading.Tasks;
 using digital.caliber.services.Cache;
 using digital.caliber.services.Resources;
 
@@ -16,19 +17,18 @@ namespace digital.caliber.services.CalculationTables
 
     public static class BoltonTable
     {
-        private const string BoltonTotalFileName = "BoltonTotalReferences.txt";
-        private const string BoltonPreviousFileName = "BoltonPreviousRelationReferences.txt";
+        public static CustomMemoryCache CacheInstance { get; set; }
 
         /// <summary>
         /// Finds the bolton total value.
         /// </summary>
         /// <param name="referenceValue">The reference value.</param>
         /// <returns></returns>
-        public static decimal? FindBoltonTotalByMaxilarValue(decimal referenceValue)
+        public static async Task<decimal?> FindBoltonTotalByMaxilarValue(decimal referenceValue)
         {
             try
             {
-                var table = GetBoltonTotalTable();
+                var table = await GetBoltonTotalTable();
                 // var itemFound = table.FirstOrDefault(x => x.Item1.Equals(referenceValue));
                 var closest = table.OrderBy(item => Math.Abs(referenceValue - item.Item1)).First();
                 
@@ -51,11 +51,11 @@ namespace digital.caliber.services.CalculationTables
         /// <param name="referenceValue">The reference value.</param>
         /// <returns></returns>
         /// <exception cref="ElementNotFoundException">Element:  + referenceValue +  is not a valid indexer.</exception>
-        public static decimal? FindBoltonTotalByMandibularValue(decimal referenceValue)
+        public static async Task<decimal?> FindBoltonTotalByMandibularValue(decimal referenceValue)
         {
             try
             {
-                var table = GetBoltonTotalTable();
+                var table = await GetBoltonTotalTable();
                 var closest = table.OrderBy(item => Math.Abs(referenceValue - item.Item2)).First();
 
                 if (Math.Abs(referenceValue - closest.Item2) > 1)
@@ -81,11 +81,11 @@ namespace digital.caliber.services.CalculationTables
         /// </summary>
         /// <param name="referenceValue">The reference value.</param>
         /// <returns></returns>
-        public static decimal? FindPreviousRelationBoltonByMaxilarValue(decimal referenceValue)
+        public static async Task<decimal?> FindPreviousRelationBoltonByMaxilarValue(decimal referenceValue)
         {
             try
             {
-                var table = GetBoltonPreviousRelationTable();
+                var table = await GetBoltonPreviousRelationTable();
                 var closest = table.OrderBy(item => Math.Abs(referenceValue - item.Item1)).First();
 
                 if (Math.Abs(referenceValue - closest.Item1) > 1)
@@ -106,11 +106,11 @@ namespace digital.caliber.services.CalculationTables
         /// </summary>
         /// <param name="referenceValue">The reference value.</param>
         /// <returns></returns>
-        public static decimal? FindPreviousRelationBoltonByMandibularValue(decimal referenceValue)
+        public static async Task<decimal?> FindPreviousRelationBoltonByMandibularValue(decimal referenceValue)
         {
             try
             {
-                var table = GetBoltonPreviousRelationTable();
+                var table = await GetBoltonPreviousRelationTable();
 
                 var closest = table.OrderBy(item => Math.Abs(referenceValue - item.Item2)).First();
 
@@ -131,13 +131,15 @@ namespace digital.caliber.services.CalculationTables
         /// Gets the moyers superior.
         /// </summary>
         /// <returns></returns>
-        private static IEnumerable<Tuple<decimal, decimal, decimal>> GetBoltonTotalTable()
+        private static async Task<IEnumerable<Tuple<decimal, decimal, decimal>>> GetBoltonTotalTable()
         {
             List<Tuple<decimal, decimal, decimal>> result;
+            CacheInstance = CacheInstance ?? new CustomMemoryCache();
+            var cachedItem = await CacheInstance.GetAsync<List<Tuple<decimal, decimal, decimal>>>(CacheKey.BoltonTotalTableKey);
 
-            if (CacheHelper.Get(CacheKey.BoltonTotalTableKey, out result))
+            if (cachedItem != null)
             {
-                return result;
+                return cachedItem;
             }
 
             result = new List<Tuple<decimal, decimal, decimal>>();
@@ -156,8 +158,8 @@ namespace digital.caliber.services.CalculationTables
                     result.Add(new Tuple<decimal, decimal, decimal>(item1, item2, item3));
                 }
             }
-
-            CacheHelper.Add(result, CacheKey.BoltonTotalTableKey);
+            
+            await CacheInstance.AddAsync(result, CacheKey.BoltonTotalTableKey, 120);
 
             return result;
         }
@@ -166,15 +168,17 @@ namespace digital.caliber.services.CalculationTables
         /// Gets the moyers superior.
         /// </summary>
         /// <returns></returns>
-        private static IEnumerable<Tuple<decimal, decimal, decimal>> GetBoltonPreviousRelationTable()
+        private static async Task<IEnumerable<Tuple<decimal, decimal, decimal>>> GetBoltonPreviousRelationTable()
         {
             List<Tuple<decimal, decimal, decimal>> result;
+            CacheInstance = CacheInstance ?? new CustomMemoryCache();
+            var cachedItem = await CacheInstance.GetAsync<List<Tuple<decimal, decimal, decimal>>>(CacheKey.BoltonPreviousTableKey);
 
-            if (CacheHelper.Get(CacheKey.BoltonPreviousTableKey, out result))
+            if (cachedItem != null)
             {
-                return result;
+                return cachedItem;
             }
-
+           
             result = new List<Tuple<decimal, decimal, decimal>>();
 
             using (var reader = new StreamReader(new MemoryStream(ResourceFiles.BoltonPreviousRelationReferences)))
@@ -191,8 +195,8 @@ namespace digital.caliber.services.CalculationTables
                     result.Add(new Tuple<decimal, decimal, decimal>(item1, item2, item3));
                 }
             }
-
-            CacheHelper.Add(result, CacheKey.BoltonPreviousTableKey);
+            
+            await CacheInstance.AddAsync(result, CacheKey.BoltonPreviousTableKey, 120);
 
             return result;
         }

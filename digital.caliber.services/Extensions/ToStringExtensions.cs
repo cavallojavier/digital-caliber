@@ -10,5 +10,15 @@ namespace digital.caliber.services.Extensions
         {
             return number.HasValue ? number.ToString() : "-";
         }
+
+        public static string ToStringUnit(this decimal? number)
+        {
+            return number.HasValue ? number.ToString() + "- (mm)" : "- (mm)";
+        }
+
+        public static string ToStringWithText(this decimal? number, string text)
+        {
+            return number.HasValue ? number.ToString() + text : text;
+        }
     }
 }
