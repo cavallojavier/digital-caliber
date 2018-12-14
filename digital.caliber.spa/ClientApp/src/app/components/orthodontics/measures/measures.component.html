@@ -142,7 +142,7 @@
                         </div>
                         <div class="row protrusion">
                             <ul class="mx-auto">
-                                <li data-placement="top" ngbTooltip="Valor obtenido de la cefalometria de Ricketts">
+                                <li data-toggle="tooltip" data-placement="top" title="Valor obtenido de la cefalometria de Ricketts">
                                     <span>Protrusion Incisivo Superior:</span>
                                     <input type="number" class="input-number input-custom" name="protInSup" #protInSup="ngModel" [(ngModel)]="measures.teeths.protIncisiveSup" [ngClass]="{ 'is-invalid': f.submitted && protInSup.invalid }"/>
                                 </li>
