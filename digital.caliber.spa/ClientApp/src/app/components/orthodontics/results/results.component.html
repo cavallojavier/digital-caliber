@@ -12,28 +12,6 @@
 </div>
 <div class="box-results">
     <box-container class="box-result">
-        <h3>Bolton</h3>
-        <div class="box-content">
-            <div class="item-result"><span>Total -> {{result.boltonTotal.isSuperiorExcess ? 'Exceso Superior' : 'Exceso inferior'}}:</span><span>{{result.boltonTotal.isSuperiorExcess ? result.boltonTotal.superiorExcess :  result.boltonTotal.inferiorExcess | decimalToString}} (mm)</span></div>
-            <div class="item-result"><span>Anterior -> {{result.boltonPreviousRelation.isSuperiorExcess ? 'Exceso Superior' : 'Exceso inferior'}}: </span><span>{{result.boltonPreviousRelation.isSuperiorExcess ? result.boltonPreviousRelation.superiorExcess :  result.boltonPreviousRelation.inferiorExcess | decimalToString}} (mm)</span></div>
-        </div>  
-    </box-container>
-    <box-container class="box-result">
-        <h3>Pont</h3>
-        <div class="box-content">
-            <div class="item-result"><span>14 a 24: </span><span>{{result.pont.pont14To24 | decimalToString}} (mm)</span></div>
-            <div class="item-result"><span>16 a 26: </span><span>{{result.pont.pont16To26 | decimalToString}} (mm)</span></div>
-            <div class="item-result"><span>Long. Arco: </span><span>{{result.pont.archLong | decimalToString}} (mm)</span></div>
-        </div>  
-    </box-container>
-    <box-container class="box-result">
-        <h3>Tanaka-Johnston</h3>
-        <div class="box-content">
-            <div class="item-result"><span>Superiores: </span><span>{{result.tanaka.superior | decimalToString}} (mm)</span></div>
-            <div class="item-result"><span>Inferiores: </span><span>{{result.tanaka.inferior | decimalToString}} (mm)</span></div>
-        </div>  
-    </box-container>
-    <box-container class="box-result">
         <h3>Discrepancia</h3>
         <h4>Oseo-Dentaria</h4>
         <div class="box-content">
@@ -42,6 +20,13 @@
             <div class="item-result"><span>Antero superior: </span><span>{{result.dentalBoneDiscrepancy.superiorAntero | decimalToString}} (mm)</span></div>
             <div class="item-result"><span>Antero inferior: </span><span>{{result.dentalBoneDiscrepancy.inferiorAntero | decimalToString}} (mm)</span></div>
             <div class="item-result"><span>Incisivos inferior: </span><span>{{result.dentalBoneDiscrepancy.inferiorIncisives | decimalToString}} (mm)</span></div>
+        </div>  
+    </box-container>
+    <box-container class="box-result">
+        <h3>Bolton</h3>
+        <div class="box-content">
+            <div class="item-result"><span>Total -> {{result.boltonTotal.isSuperiorExcess ? 'Exceso Superior' : 'Exceso inferior'}}:</span><span>{{result.boltonTotal.isSuperiorExcess ? result.boltonTotal.superiorExcess :  result.boltonTotal.inferiorExcess | decimalToString}} (mm)</span></div>
+            <div class="item-result"><span>Anterior -> {{result.boltonPreviousRelation.isSuperiorExcess ? 'Exceso Superior' : 'Exceso inferior'}}: </span><span>{{result.boltonPreviousRelation.isSuperiorExcess ? result.boltonPreviousRelation.superiorExcess :  result.boltonPreviousRelation.inferiorExcess | decimalToString}} (mm)</span></div>
         </div>  
     </box-container>
     <box-container class="box-result">
@@ -70,6 +55,21 @@
         <div class="box-content">
             <div class="item-result"><span>Superior: </span><span>{{result.cefalometricDiscrepancy.superior | decimalToString}} +/- 2 (mm)</span></div>
             <div class="item-result"><span>Inferior: </span><span>{{result.cefalometricDiscrepancy.inferior | decimalToString}} +/- 2 (mm)</span></div>
+        </div>  
+    </box-container>
+    <box-container class="box-result">
+        <h3>Pont</h3>
+        <div class="box-content">
+            <div class="item-result"><span>14 a 24: </span><span>{{result.pont.pont14To24 | decimalToString}} (mm)</span></div>
+            <div class="item-result"><span>16 a 26: </span><span>{{result.pont.pont16To26 | decimalToString}} (mm)</span></div>
+            <div class="item-result"><span>Long. Arco: </span><span>{{result.pont.archLong | decimalToString}} (mm)</span></div>
+        </div>  
+    </box-container>
+    <box-container class="box-result">
+        <h3>Tanaka-Johnston</h3>
+        <div class="box-content">
+            <div class="item-result"><span>Superiores: </span><span>{{result.tanaka.superior | decimalToString}} (mm)</span></div>
+            <div class="item-result"><span>Inferiores: </span><span>{{result.tanaka.inferior | decimalToString}} (mm)</span></div>
         </div>  
     </box-container>
     <box-container class="box-result">

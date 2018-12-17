@@ -9,8 +9,8 @@ namespace digital.caliber.services.Calculators
         {
             return await Task.FromResult(new TotalDiscrepancy()
             {
-                Superior = cefalometricDiscrepancy.Superior - dentalBoneDiscrepancy.Superior,
-                Inferior = cefalometricDiscrepancy.Inferior - dentalBoneDiscrepancy.Inferior
+                Superior = cefalometricDiscrepancy.Superior + dentalBoneDiscrepancy.Superior,
+                Inferior = cefalometricDiscrepancy.Inferior + dentalBoneDiscrepancy.Inferior
             });
         }
     }

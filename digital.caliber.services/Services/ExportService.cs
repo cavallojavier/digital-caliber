@@ -49,21 +49,21 @@ namespace digital.caliber.services.Services
 
                 SetPatientData(doc, dataResult.PatientName, dataResult.HcNumber, dataResult.DateMeasure);
 
-                SetBolton(doc, dataResult);
-
-                SetPont(doc, dataResult);
-
-                SetTanaka(doc, dataResult);
-
                 SetDentalBoneDiscrepancy(doc, dataResult);
-
-                SetMoyers(doc, dataResult);
-
-                doc.NewPage();
 
                 SetCefalometricDiscrepancy(doc, dataResult);
 
                 SetTotalDiscrepancy(doc, dataResult);
+
+                SetBolton(doc, dataResult);
+
+                doc.NewPage();
+
+                SetMoyers(doc, dataResult);
+
+                SetTanaka(doc, dataResult);
+
+                SetPont(doc, dataResult);
 
                 doc.SetMargins(10, 10, (float)1.5, (float)1.5);
 
